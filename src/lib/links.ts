@@ -13,19 +13,19 @@ export interface LinkEntry {
  */
 export const linkDatabase: Record<string, LinkEntry> = {
   doc: {
-    alias: "doc",
-    url: "https://developer.mozilla.org/fr/docs/Web",
-    label: "Documentation technique",
+    alias: "blog",
+    url: "http://localhost:3000/articles/5-erreurs-a-eviter-avant-dimprimer-1-000-flyers",
+    label: "Article flyers",
   },
   dashboard: {
-    alias: "dashboard",
-    url: "https://vercel.com",
-    label: "Tableau de bord",
+    alias: "form-rs",
+    url: "https://stafprint.netlify.app/training/143f2f42-fab5-4add-91a2-9734d1784af4",
+    label: "Formation",
   },
   verify: {
-    alias: "verify",
-    url: "https://www.cloudflare.com",
-    label: "Portail de vérification",
+    alias: "ser-23",
+    url: "https://stafprint.netlify.app/services/impression-de-baches",
+    label: "Service",
   },
 };
 
@@ -33,7 +33,7 @@ export function getLinkEntry(alias: string): LinkEntry {
   return (
     linkDatabase[alias] ?? {
       alias,
-      url: `https://example.com/${alias}`,
+      url: `https://stafprint.netlify.app/${alias}`,
       label: "Ressource externe",
     }
   );
