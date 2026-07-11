@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles, } from "lucide-react";
-import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logos.json";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -31,7 +31,7 @@ function Home() {
       {/* Header */}
       <header className="border-b border-border/70 bg-background/80 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-          <BrandMark />
+          <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
           <span className="hidden items-center gap-2 text-xs font-medium text-muted-foreground sm:inline-flex">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
             Systèmes opérationnels
