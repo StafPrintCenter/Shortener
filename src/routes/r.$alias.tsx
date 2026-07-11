@@ -162,7 +162,7 @@ function RedirectPage() {
                 </>
               ) : cancelled ? (
                 <>
-                  <span className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                  <span className="flex h-21 w-21 items-center justify-center rounded-full bg-destructive/10 text-destructive">
                     <X className="h-10 w-10" strokeWidth={2} />
                   </span>
                   <h1 className="mt-4 text-lg font-semibold">
