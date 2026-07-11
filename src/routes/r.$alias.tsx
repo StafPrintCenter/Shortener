@@ -2,25 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
-import {
-  ShieldCheck,
-  ShieldAlert,
-  Info,
-  ExternalLink,
-  Globe,
-  ArrowRight,
-  CheckCircle2,
-  Loader2,
-  X,
-  ImageOff,
-} from "lucide-react";
+import { ShieldCheck, ShieldAlert, Info, ExternalLink, Globe, ArrowRight, CheckCircle2, Loader2, X, ImageOff, } from "lucide-react";
 import { toast } from "sonner";
-
-import { BrandMark } from "@/components/brand-mark";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { getLinkEntry } from "@/lib/links";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
+import logo from "@/assets/logos.json";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/r/$alias")({
@@ -120,7 +108,7 @@ function RedirectPage() {
       <header className="border-b border-border/70">
         <div className="mx-auto flex h-16 w-full max-w-3xl items-center justify-between px-6">
           <Link to="/" className="transition-opacity hover:opacity-80">
-            <BrandMark />
+            <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
           </Link>
           <span className="font-mono text-xs text-muted-foreground">
             /r/{alias}
