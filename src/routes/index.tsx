@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles, } from "lucide-react";
-
 import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
 
@@ -59,7 +58,7 @@ function Home() {
 
             <p className="mt-6 max-w-xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
               SPC Redirect raccourcit exclusivement les liens vers nos services,
-              réalisations, formations et articles — jamais vers une destination
+              réalisations, formations et articles ; jamais vers une destination
               externe. Un aperçu clair avant chaque clic, et un suivi des clics
               pour vos partages.
             </p>
