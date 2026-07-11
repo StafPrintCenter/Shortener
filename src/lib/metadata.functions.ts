@@ -39,9 +39,7 @@ function extractMeta(html: string, keys: string[]): string | undefined {
 }
 
 export const fetchSiteMetadata = createServerFn({ method: "GET" })
-  .inputValidator((data) =>
-    z.object({ url: z.string().url() }).parse(data),
-  )
+  .validator(z.object({ url: z.string().url() })) // <-- Changement ici : .validator() prend directement le schéma Zod
   .handler(async ({ data }): Promise<SiteMetadata> => {
     const target = new URL(data.url);
 
