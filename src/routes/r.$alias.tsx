@@ -174,7 +174,7 @@ function RedirectPage() {
                 </>
               ) : (
                 <>
-                  <div className="relative h-[84px] w-[84px]">
+                  <div className="relative h-21 w-21">
                     <svg
                       className="h-full w-full -rotate-90"
                       viewBox="0 0 80 80"
