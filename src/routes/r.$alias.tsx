@@ -47,8 +47,8 @@ function RedirectPage() {
   const fetchMeta = useServerFn(fetchSiteMetadata);
   const { data: meta, isLoading } = useQuery({
     queryKey: ["site-metadata", entry.url],
-    // CORRECTION ICI : Grâce à la mise à jour de .validator(), on passe directement l'objet attendu par Zod
-    queryFn: () => fetchMeta({ url: entry.url }),
+    // CORRECTION : L'objet contenant "url" doit être passé dans la propriété "data"
+    queryFn: () => fetchMeta({ data: { url: entry.url } }),
     staleTime: 5 * 60 * 1000,
   });
 
