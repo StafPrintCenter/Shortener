@@ -29,6 +29,7 @@ const pillars = [
 function Home() {
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Header */}
       <header className="border-b border-border/70 bg-background/80 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
           <BrandMark />
@@ -39,10 +40,11 @@ function Home() {
         </div>
       </header>
 
+      {/* Main Content */}
       <main className="relative flex-1 overflow-hidden">
+        {/* Background Grid Pattern */}
         <div className="pointer-events-none absolute inset-0 grid-field opacity-70" />
-
-        <section className="relative mx-auto grid max-w-6xl gap-14 px-6 pt-20 pb-24 sm:pt-28 lg:grid-cols-2 lg:items-center lg:gap-10">
+        <section className="relative mx-auto grid max-w-6xl gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
           {/* Colonne gauche — message et actions */}
           <div className="flex flex-col items-start text-left">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
