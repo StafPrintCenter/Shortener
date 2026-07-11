@@ -47,7 +47,8 @@ function RedirectPage() {
   const fetchMeta = useServerFn(fetchSiteMetadata);
   const { data: meta, isLoading } = useQuery({
     queryKey: ["site-metadata", entry.url],
-    queryFn: () => fetchMeta({ data: { url: entry.url } }),
+    // CORRECTION ICI : Grâce à la mise à jour de .validator(), on passe directement l'objet attendu par Zod
+    queryFn: () => fetchMeta({ url: entry.url }),
     staleTime: 5 * 60 * 1000,
   });
 
@@ -57,13 +58,18 @@ function RedirectPage() {
 
   useEffect(() => {
     if (redirected || cancelled) return;
+
     if (seconds <= 0) {
       setRedirected(true);
       toast.success("Redirection effectuée en toute sécurité.", {
         description: meta?.domain ?? entry.url,
       });
+
+      // CORRECTION ICI : Déclenchement de la redirection réelle du navigateur
+      window.location.href = entry.url;
       return;
     }
+
     const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
     return () => clearTimeout(t);
   }, [seconds, redirected, cancelled, meta?.domain, entry.url]);
@@ -89,16 +95,16 @@ function RedirectPage() {
   const safe = meta?.safe ?? true;
   const status = safe
     ? {
-        icon: ShieldCheck,
-        label: "Vérifié sécurisé",
-        className: "border-success/30 bg-success/10 text-success",
-      }
+      icon: ShieldCheck,
+      label: "Vérifié sécurisé",
+      className: "border-success/30 bg-success/10 text-success",
+    }
     : {
-        icon: ShieldAlert,
-        label: "Prudence recommandée",
-        className:
-          "border-destructive/30 bg-destructive/10 text-destructive",
-      };
+      icon: ShieldAlert,
+      label: "Prudence recommandée",
+      className:
+        "border-destructive/30 bg-destructive/10 text-destructive",
+    };
   const StatusIcon = status.icon;
 
   const domain = meta?.domain ?? new URL(entry.url).hostname;
@@ -143,7 +149,7 @@ function RedirectPage() {
             <div className="flex flex-col items-center border-b border-border px-6 py-8 text-center">
               {redirected ? (
                 <>
-                  <span className="flex h-[84px] w-[84px] items-center justify-center rounded-full bg-success/10 text-success">
+                  <span className="flex h-21 w-21 items-center justify-center rounded-full bg-success/10 text-success">
                     <CheckCircle2 className="h-10 w-10" strokeWidth={2} />
                   </span>
                   <h1 className="mt-4 text-lg font-semibold">
