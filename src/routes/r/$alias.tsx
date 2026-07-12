@@ -202,21 +202,9 @@ function RedirectPage() {
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
 
         <div className="relative w-full max-w-4xl">
-
-
           <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
             {/* Colonne gauche — destination */}
             <div className="p-6 md:p-8">
-              <span
-                className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
-                  status.className,
-                )}
-              >
-                <StatusIcon className="h-3.5 w-3.5" />
-                {status.label}
-              </span>
-
               <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Destination
               </p>
