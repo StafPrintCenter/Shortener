@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RAliasRouteImport } from './routes/r.$alias'
+import { Route as RAliasRouteImport } from './routes/r/$alias'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
