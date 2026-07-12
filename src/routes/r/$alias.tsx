@@ -2,11 +2,24 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ExternalLink, Globe, ArrowRight, CheckCircle2, Loader2, X, ImageOff, BarChart3, Clock, } from "lucide-react";
+import {
+  ExternalLink,
+  Globe,
+  ArrowRight,
+  CheckCircle2,
+  Loader2,
+  X,
+  ImageOff,
+  BarChart3,
+  Clock,
+  Tag,
+  ShieldAlert,
+} from "lucide-react";
 import { toast } from "sonner";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
+import { getShortlinkCategoryLabel } from "@/data/shortlinks";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
 import logo from "@/assets/logos.json";
 
@@ -26,7 +39,21 @@ export const Route = createFileRoute("/r/$alias")({
 });
 
 const COUNTDOWN = 5;
-const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL ?? "http://localhost:8000";
+// Une seule origine : sert à la fois pour les appels API et pour le vrai lien de redirection
+// Laravel (/r/{alias}), qui vit sur la même origine que le backend.
+const BACKEND_URL = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:8000";
+const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL ?? "http://localhost:3000";
+
+/** Reproduit la logique d'autorité de DomainGuard côté Laravel : host:port, port par défaut explicite */
+function authority(url: string): string | null {
+  try {
+    const u = new URL(url);
+    const port = u.port || (u.protocol === "https:" ? "443" : "80");
+    return `${u.hostname.toLowerCase()}:${port}`;
+  } catch {
+    return null;
+  }
+}
 
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
@@ -53,13 +80,19 @@ function RedirectPage() {
   const [redirected, setRedirected] = useState(false);
   const [cancelled, setCancelled] = useState(false);
 
-  // Le vrai lien à suivre pour que le clic soit comptabilisé côté backend
   const realRedirectUrl = `${BACKEND_URL}/r/${alias}`;
 
   const isBlocked = shortlink && (shortlink.status !== "active" || shortlink.isActive === false);
 
+  // Garde-fou côté client, en miroir de DomainGuard : si jamais la destination stockée
+  // ne correspond pas au domaine du site principal, on n'autorise pas la redirection
+  // automatique, même si le lien existe et est actif.
+  const isDomainAllowed = longUrl ? authority(longUrl) === authority(FRONTEND_ORIGIN) : true;
+  const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
+  const canRedirect = !!longUrl && !isBlocked && isDomainAllowed;
+
   useEffect(() => {
-    if (redirected || cancelled || !longUrl || isBlocked) return;
+    if (redirected || cancelled || !canRedirect) return;
 
     if (seconds <= 0) {
       setRedirected(true);
@@ -72,10 +105,10 @@ function RedirectPage() {
 
     const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
     return () => clearTimeout(t);
-  }, [seconds, redirected, cancelled, longUrl, isBlocked]);
+  }, [seconds, redirected, cancelled, canRedirect]);
 
   function redirectNow() {
-    if (redirected || cancelled || !longUrl || isBlocked) return;
+    if (redirected || cancelled || !canRedirect) return;
     setSeconds(0);
   }
 
@@ -92,64 +125,20 @@ function RedirectPage() {
     setSeconds(COUNTDOWN);
   }
 
-  const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const title = meta?.title ?? "Contenu STAF PRINT CENTER";
+  const categoryLabel = shortlink ? getShortlinkCategoryLabel(shortlink.category) : null;
 
   const radius = 34;
   const circumference = 2 * Math.PI * radius;
   const dashoffset = circumference * (seconds / COUNTDOWN);
 
-  // Lien introuvable
-  if (!isLoadingLink && (linkError || !shortlink)) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10 text-destructive">
-          <X className="h-8 w-8" />
-        </span>
-        <h1 className="text-lg font-semibold">Lien introuvable</h1>
-        <p className="max-w-sm text-sm text-muted-foreground">
-          Ce lien court n'existe pas. Vérifiez l'adresse ou revenez à l'accueil.
-        </p>
-        <Button asChild>
-          <Link to="/">Retour à l'accueil</Link>
-        </Button>
-      </div>
-    );
-  }
-
-  // Lien désactivé, en attente d'activation, ou expiré
-  if (!isLoadingLink && isBlocked) {
-    const isPending = shortlink!.activateAt && new Date(shortlink!.activateAt) > new Date();
-    const isExpired = shortlink!.expiresAt && new Date(shortlink!.expiresAt) < new Date();
-
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
-          <Clock className="h-8 w-8" />
-        </span>
-        <h1 className="text-lg font-semibold">
-          {isPending ? "Ce lien n'est pas encore actif" : isExpired ? "Ce lien a expiré" : "Ce lien est désactivé"}
-        </h1>
-        <p className="max-w-sm text-sm text-muted-foreground">
-          {isPending
-            ? `Il sera disponible à partir du ${new Date(shortlink!.activateAt!).toLocaleDateString("fr-FR")}.`
-            : "Contactez STAF PRINT CENTER si vous pensez qu'il s'agit d'une erreur."}
-        </p>
-        <div className="flex items-center gap-2">
-          <Button asChild variant="outline">
-            <Link to="/">Retour à l'accueil</Link>
-          </Button>
-          <ReportDialog alias={alias} />
-        </div>
-      </div>
-    );
-  }
+  const notFound = !isLoadingLink && (linkError || !shortlink);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <header className="border-b border-border/70">
         <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
-          <Link to="/" className="text-sm font-semibold tracking-tight transition-opacity hover:opacity-80">
+          <Link to="/" className="transition-opacity hover:opacity-80">
             <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
           </Link>
           <span className="font-mono text-xs text-muted-foreground">
@@ -162,69 +151,143 @@ function RedirectPage() {
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
 
         <div className="relative w-full max-w-4xl">
+          {!notFound && !isBlocked && !isDomainAllowed && (
+            <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-destructive">
+              <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
+              <p className="text-xs leading-relaxed">
+                <span className="font-semibold">Domaine non reconnu :</span>{" "}
+                cette destination ne correspond pas à un domaine STAF PRINT CENTER autorisé.
+                La redirection automatique a été désactivée par précaution.
+              </p>
+            </div>
+          )}
+
           <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
-            {/* Colonne gauche — destination */}
+            {/* Colonne gauche — destination (toujours affichée, même si introuvable) */}
             <div className="p-6 md:p-8">
-              <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Destination
               </p>
 
-              <div className="mt-2 overflow-hidden rounded-lg border border-border bg-secondary/50">
-                <div className="relative aspect-[1.9/1] w-full border-b border-border bg-muted">
-                  {isLoading ? (
-                    <div className="flex h-full w-full items-center justify-center">
-                      <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-                    </div>
-                  ) : meta?.image ? (
-                    <img src={meta.image} alt={title} className="h-full w-full object-cover" loading="lazy" />
-                  ) : (
-                    <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 text-muted-foreground">
-                      <ImageOff className="h-6 w-6" />
-                      <span className="text-xs">Aperçu indisponible</span>
-                    </div>
-                  )}
+              {notFound ? (
+                <div className="mt-2 flex h-full min-h-70 flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-border bg-secondary/30 p-6 text-center">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-muted text-muted-foreground">
+                    <ImageOff className="h-6 w-6" />
+                  </span>
+                  <p className="text-sm text-muted-foreground">
+                    Aucune information disponible pour ce lien.
+                  </p>
                 </div>
-
-                <div className="p-4">
-                  {isLoading ? (
-                    <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
-                  ) : (
-                    <p className="text-sm font-semibold leading-snug">{title}</p>
-                  )}
-
-                  {meta?.description ? (
-                    <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
-                      {meta.description}
-                    </p>
-                  ) : null}
-
-                  <div className="mt-3 space-y-2 text-xs">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Globe className="h-3.5 w-3.5 shrink-0" />
-                      <span className="font-mono text-foreground">{domain}</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-muted-foreground">
-                      <ExternalLink className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                      <span className="break-all font-mono">{longUrl}</span>
-                    </div>
-                    {typeof shortlink?.clicksCount === "number" && (
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <BarChart3 className="h-3.5 w-3.5 shrink-0" />
-                        <span>{shortlink.clicksCount} clic{shortlink.clicksCount > 1 ? "s" : ""} enregistré{shortlink.clicksCount > 1 ? "s" : ""}</span>
+              ) : (
+                <div className="mt-2 overflow-hidden rounded-lg border border-border bg-secondary/50">
+                  <div className="relative aspect-[1.9/1] w-full border-b border-border bg-muted">
+                    {isLoading ? (
+                      <div className="flex h-full w-full items-center justify-center">
+                        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+                      </div>
+                    ) : meta?.image ? (
+                      <img src={meta.image} alt={title} className="h-full w-full object-cover" loading="lazy" />
+                    ) : (
+                      <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 text-muted-foreground">
+                        <ImageOff className="h-6 w-6" />
+                        <span className="text-xs">Aperçu indisponible</span>
                       </div>
                     )}
                   </div>
 
-                  <p className="mt-3 border-t border-border/70 pt-3 text-[11px] text-muted-foreground">
-                    Métadonnées extraites en direct · Lien STAF PRINT CENTER vérifié
-                  </p>
+                  <div className="p-4">
+                    {categoryLabel && (
+                      <span className="mb-2 inline-flex w-fit items-center gap-1 rounded-full border border-border bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                        <Tag className="h-3 w-3" />
+                        {categoryLabel}
+                      </span>
+                    )}
+
+                    {isLoading ? (
+                      <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+                    ) : (
+                      <p className="text-sm font-semibold leading-snug">{title}</p>
+                    )}
+
+                    {meta?.description ? (
+                      <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
+                        {meta.description}
+                      </p>
+                    ) : null}
+
+                    <div className="mt-3 space-y-2 text-xs">
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Globe className="h-3.5 w-3.5 shrink-0" />
+                        <span className="font-mono text-foreground">{domain}</span>
+                      </div>
+                      <div className="flex items-start gap-2 text-muted-foreground">
+                        <ExternalLink className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                        <span className="break-all font-mono">{longUrl}</span>
+                      </div>
+                      {typeof shortlink?.clicksCount === "number" && (
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <BarChart3 className="h-3.5 w-3.5 shrink-0" />
+                          <span>{shortlink.clicksCount} clic{shortlink.clicksCount > 1 ? "s" : ""} enregistré{shortlink.clicksCount > 1 ? "s" : ""}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="mt-3 border-t border-border/70 pt-3 text-[11px] text-muted-foreground">
+                      Métadonnées extraites en direct · Lien STAF PRINT CENTER vérifié
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
-            {/* Colonne droite — countdown et actions */}
+            {/* Colonne droite — état (introuvable / bloqué / countdown / actions) */}
             <div className="flex flex-col items-center justify-center p-6 text-center md:p-8">
-              {redirected ? (
+              {notFound ? (
+                <>
+                  <span className="flex h-21 w-21 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                    <X className="h-10 w-10" strokeWidth={2} />
+                  </span>
+                  <h1 className="mt-4 text-lg font-semibold">Lien introuvable</h1>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Ce lien court n'existe pas. Vérifiez l'adresse ou revenez à l'accueil.
+                  </p>
+                  <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+                    <Button asChild size="lg" className="w-full">
+                      <Link to="/">Retour à l'accueil</Link>
+                    </Button>
+                  </div>
+                </>
+              ) : isBlocked ? (
+                <>
+                  {(() => {
+                    const isPending = shortlink!.activateAt && new Date(shortlink!.activateAt) > new Date();
+                    const isExpired = shortlink!.expiresAt && new Date(shortlink!.expiresAt) < new Date();
+                    return (
+                      <>
+                        <span className="flex h-21 w-21 items-center justify-center rounded-full bg-muted text-muted-foreground">
+                          <Clock className="h-10 w-10" strokeWidth={2} />
+                        </span>
+                        <h1 className="mt-4 text-lg font-semibold">
+                          {isPending ? "Ce lien n'est pas encore actif" : isExpired ? "Ce lien a expiré" : "Ce lien est désactivé"}
+                        </h1>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {isPending
+                            ? `Il sera disponible à partir du ${new Date(shortlink!.activateAt!).toLocaleDateString("fr-FR")}.`
+                            : "Contactez STAF PRINT CENTER si vous pensez qu'il s'agit d'une erreur."}
+                        </p>
+                        <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+                          <Button asChild size="lg" variant="outline" className="w-full">
+                            <Link to="/">Retour à l'accueil</Link>
+                          </Button>
+                          <div className="flex items-center justify-center pt-1">
+                            <ReportDialog alias={alias} />
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </>
+              ) : redirected ? (
                 <>
                   <span className="flex h-21 w-21 items-center justify-center rounded-full bg-success/10 text-success">
                     <CheckCircle2 className="h-10 w-10" strokeWidth={2} />
@@ -244,6 +307,32 @@ function RedirectPage() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     Vous pouvez reprendre la redirection à tout moment.
                   </p>
+                  <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+                    <Button size="lg" className="w-full" onClick={resume}>
+                      Reprendre la redirection
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                    <div className="flex items-center justify-center pt-1">
+                      <ReportDialog alias={alias} />
+                    </div>
+                  </div>
+                </>
+              ) : !isDomainAllowed ? (
+                <>
+                  <span className="flex h-21 w-21 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                    <ShieldAlert className="h-10 w-10" strokeWidth={2} />
+                  </span>
+                  <h1 className="mt-4 text-lg font-semibold">Redirection désactivée</h1>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Le domaine de destination n'a pas pu être vérifié. Consultez les informations
+                    ci-contre avant de continuer manuellement.
+                  </p>
+                  <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+                    <Button size="lg" className="w-full" disabled>
+                      Rediriger maintenant
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </>
               ) : (
                 <>
@@ -272,49 +361,25 @@ function RedirectPage() {
                     Vous serez redirigé vers STAF PRINT CENTER dans {seconds}{" "}
                     seconde{seconds > 1 ? "s" : ""}.
                   </p>
+
+                  <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+                    <Button size="lg" className="w-full" onClick={redirectNow}>
+                      Rediriger maintenant
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                    <Button size="lg" variant="outline" className="w-full" onClick={cancel}>
+                      <X className="h-4 w-4" />
+                      Annuler
+                    </Button>
+                    {/* ReportDialog masqué pendant le décompte — visible uniquement après annulation */}
+                  </div>
                 </>
               )}
-
-              <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
-                {cancelled ? (
-                  <Button size="lg" className="w-full" onClick={resume}>
-                    Reprendre la redirection
-                    <ArrowRight className="h-4 w-4" />
-                  </Button>
-                ) : (
-                  <>
-                    <Button size="lg" className="w-full" onClick={redirectNow} disabled={redirected}>
-                      {redirected ? (
-                        <>
-                          <CheckCircle2 className="h-4 w-4" />
-                          Destination atteinte
-                        </>
-                      ) : (
-                        <>
-                          Rediriger maintenant
-                          <ArrowRight className="h-4 w-4" />
-                        </>
-                      )}
-                    </Button>
-
-                    {!redirected && (
-                      <Button size="lg" variant="outline" className="w-full" onClick={cancel}>
-                        <X className="h-4 w-4" />
-                        Annuler
-                      </Button>
-                    )}
-                  </>
-                )}
-
-                <div className="flex items-center justify-center pt-1">
-                  <ReportDialog alias={alias} />
-                </div>
-              </div>
             </div>
           </div>
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            © 2026 STAF PRINT Shortener · Tous droits réservés.
+            © 2026 SPC Redirect · Le raccourcisseur officiel STAF PRINT CENTER. Tous droits réservés.
           </p>
         </div>
       </main>
