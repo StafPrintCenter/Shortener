@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ReportDialog } from "@/components/report-dialog";
+import { ReportModal } from "@/components/modal/ReportModal";
 
 interface RedirectControlPanelProps {
   notFound: boolean;
