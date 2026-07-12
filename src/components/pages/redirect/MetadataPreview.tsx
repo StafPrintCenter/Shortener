@@ -92,10 +92,6 @@ export function MetadataPreview({
                 </div>
               )}
             </div>
-
-            <p className="mt-3 border-t border-border/70 pt-3 text-[11px] text-muted-foreground">
-              Métadonnées extraites en direct · Lien STAF PRINT CENTER vérifié
-            </p>
           </div>
         </div>
       )}
