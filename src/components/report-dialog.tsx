@@ -1,26 +1,11 @@
 import { useState } from "react";
 import { Flag, CheckCircle2, ShieldAlert } from "lucide-react";
 import { toast } from "sonner";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import { reportReasons } from "@/lib/links";
 
 export function ReportDialog({ alias }: { alias: string }) {
@@ -63,7 +48,7 @@ export function ReportDialog({ alias }: { alias: string }) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[440px]">
+      <DialogContent className="sm:max-w-110">
         {submitted ? (
           <div className="flex flex-col items-center py-6 text-center">
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-success/10 text-success">
