@@ -3,8 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeader, PageFooter } from "@/components/site";
-import { CreateShortlinkModal } from "@/components/modal/CreateShortlinkModal";
-import { ReportModal } from "@/components/modal/ReportModal";
+import { CreateShortlinkModal, ReportModal } from "@/components/modal";
 import { FRONTEND_ORIGIN, SHORT_ORIGIN, stripProtocol } from "@/lib/domain";
 
 export const Route = createFileRoute("/")({
