@@ -1,51 +1,142 @@
-import { Link } from "@tanstack/react-router";
-import { Printer, Home, ArrowLeft } from "lucide-react";
+import { useRouter } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { AlertCircle, RefreshCw, Home } from "lucide-react";
 
 export function NotFoundComponent() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center bg-background px-6 py-12 overflow-hidden bg-grain">
-      {/* Decorative Brand Shapes */}
-      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-accent/10 blur-[120px] pointer-events-none" />
+    <div className="flex min-h-screen items-center justify-center bg-background p-6 md:p-12 select-none">
+      <div className="grid w-full max-w-4xl gap-8 items-center md:grid-cols-12 md:gap-16">
 
-      <div className="relative z-10 max-w-lg w-full text-center">
-        {/* Abstract Graphic */}
-        <div className="relative mx-auto w-24 h-24 mb-8 flex items-center justify-center">
-          <div className="absolute inset-0 rounded-3xl bg-primary/10 rotate-6 transition-transform hover:rotate-12 duration-300" />
-          <div className="absolute inset-0 rounded-3xl bg-accent/20 -rotate-6 transition-transform hover:-rotate-12 duration-300" />
-          <div className="relative rounded-3xl bg-card border border-border w-20 h-20 flex items-center justify-center shadow-lg">
-            <Printer className="h-10 w-10 text-primary" />
+        {/* Colonne Gauche : Illustration vivante du lien brisé */}
+        <div className="md:col-span-5 flex flex-col items-center justify-center relative min-h-[240px] md:min-h-[300px]">
+          <div className="relative flex items-center justify-center w-full h-full">
+            {/* Arrière-plan néon diffus */}
+            <div className="absolute h-40 w-40 rounded-full bg-destructive/10 blur-3xl" />
+
+            {/* Partie supérieure de la chaîne (s'élève légèrement) */}
+            <div className="absolute transform -translate-y-6 -translate-x-4 -rotate-12 animate-bounce [animation-duration:3s] text-muted-foreground/40">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 17H7A5 5 0 0 1 7 7h2" />
+                <line x1="8" y1="12" x2="12" y2="12" />
+              </svg>
+            </div>
+
+            {/* Éclairs de rupture en temps réel */}
+            <div className="absolute text-destructive font-mono font-bold text-xl animate-ping opacity-75">
+              ⚡
+            </div>
+
+            {/* Partie inférieure de la chaîne (tombe vers le bas) */}
+            <div className="absolute transform translate-y-8 translate-x-4 rotate-12 animate-pulse text-destructive/80">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="12" x2="16" y2="12" />
+                <path d="M15 7h2a5 5 0 0 1 0 10h-2" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Badge technique flottant */}
+          <span className="absolute bottom-0 px-3 py-1 text-xs font-mono font-bold tracking-widest text-destructive bg-destructive/10 border border-destructive/20 rounded-full shadow-sm">
+            ERROR_404_LINK_BROKEN
+          </span>
+        </div>
+
+        {/* Colonne Droite : Explications et Actions */}
+        <div className="md:col-span-7 text-center md:text-left flex flex-col justify-center">
+          <div className="inline-flex mx-auto md:mx-0 items-center gap-1.5 px-3 py-1 text-xs font-medium text-muted-foreground bg-muted border border-border/60 rounded-full w-fit">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-destructive animate-pulse" />
+            Rupture de faisceau
+          </div>
+
+          <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            Ce lien est cassé.
+          </h1>
+
+          <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-lg">
+            La clé d'accès ou l'alias de redirection demandé n'existe pas ou a expiré. L'intégrité de la destination ne peut pas être vérifiée.
+          </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 justify-center md:justify-start">
+            <a
+              href="/"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/10 transition hover:opacity-90 active:scale-95 cursor-pointer"
+            >
+              <Home size={16} />
+              Retourner à la base
+            </a>
           </div>
         </div>
 
-        <h1 className="text-8xl font-bold tracking-tight text-foreground font-display select-none">
-          4<span className="text-primary text-gradient-brand">0</span>4
-        </h1>
+      </div>
+    </div>
+  );
+}
 
-        <h2 className="mt-4 text-2xl font-bold text-foreground font-display">
-          Tracé introuvable !
-        </h2>
+/* ==========================================================================
+   2. ERROR COMPONENT (500 - ANOMALIE CRITIQUE)
+   ========================================================================== */
+export function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  const router = useRouter();
 
-        <p className="mt-3 text-muted-foreground max-w-md mx-auto text-sm sm:text-base leading-relaxed">
-          La page que vous recherchez semble avoir été déplacée, supprimée ou n'a jamais été mise sous presse.
-        </p>
+  useEffect(() => {
+    // Loggez l'erreur ici de manière sécurisée si votre système de reporting est actif
+    console.error("Critical Redirection Error:", error);
+  }, [error]);
 
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            to="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all duration-300 hover:bg-primary/95 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
-          >
-            <Home className="h-4 w-4" />
-            Retour à l'accueil
-          </Link>
-          <button
-            onClick={() => window.history.back()}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-input bg-card px-6 py-3 text-sm font-semibold text-foreground transition-all duration-300 hover:bg-muted hover:border-border hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Page précédente
-          </button>
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background p-6 md:p-12 select-none">
+      <div className="grid w-full max-w-4xl gap-8 items-center md:grid-cols-12 md:gap-16">
+
+        {/* Colonne Gauche : Visuel d'anomalie système */}
+        <div className="md:col-span-5 flex flex-col items-center justify-center relative min-h-[240px] md:min-h-[300px]">
+          <div className="relative flex items-center justify-center w-full h-full">
+            <div className="absolute h-40 w-40 rounded-full bg-destructive/10 blur-3xl" />
+
+            <div className="relative p-6 rounded-3xl bg-destructive/5 border border-destructive/20 text-destructive animate-pulse">
+              <AlertCircle width="96" height="96" strokeWidth={1} />
+            </div>
+          </div>
+          <span className="absolute bottom-0 px-3 py-1 text-xs font-mono font-bold tracking-widest text-destructive bg-destructive/10 border border-destructive/20 rounded-full">
+            CRITICAL_SYS_500
+          </span>
         </div>
+
+        {/* Colonne Droite : Contenu de plantage */}
+        <div className="md:col-span-7 text-center md:text-left flex flex-col justify-center">
+          <div className="inline-flex mx-auto md:mx-0 items-center gap-1.5 px-3 py-1 text-xs font-medium text-destructive bg-destructive/10 border border-destructive/20 rounded-full w-fit">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-destructive animate-ping" />
+            Signal d'erreur reçu
+          </div>
+
+          <h1 className="mt-4 font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            Le décodage a échoué.
+          </h1>
+
+          <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-lg">
+            Une erreur critique empêche l'extraction des métadonnées sécurisées. L'infrastructure est intacte, mais la requête actuelle n'a pas pu aboutir.
+          </p>
+
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 justify-center md:justify-start w-full">
+            <button
+              onClick={() => {
+                router.invalidate();
+                reset();
+              }}
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/10 transition hover:opacity-90 active:scale-95 cursor-pointer"
+            >
+              <RefreshCw size={16} />
+              Forcer la reconnexion
+            </button>
+            <a
+              href="/"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-muted active:scale-95 cursor-pointer"
+            >
+              <Home size={16} />
+              Quitter
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   );
