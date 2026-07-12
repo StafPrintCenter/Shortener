@@ -109,7 +109,7 @@ export function CreateShortlinkModal({ isOpen, onClose }: CreateShortlinkModalPr
               value={longUrl}
               onChange={(e) => setLongUrl(e.target.value)}
               placeholder={`${FRONTEND_ORIGIN}/articles/...`}
-              className="input w-full"
+              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
             />
           </label>
 
@@ -118,7 +118,7 @@ export function CreateShortlinkModal({ isOpen, onClose }: CreateShortlinkModalPr
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as ShortlinkCategory)}
-              className="input w-full cursor-pointer"
+              className="input w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
             >
               {SHORTLINK_CATEGORY_OPTIONS.map((c) => (
                 <option key={c} value={c}>{getShortlinkCategoryLabel(c)}</option>
