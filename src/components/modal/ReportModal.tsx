@@ -62,37 +62,27 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Signaler un problème" icon={Flag}>
       <div className="max-h-[60vh] overflow-y-auto pr-1 space-y-4 text-left">
-      {submitted ? (
-        <div className="flex flex-col items-center gap-3 py-4 text-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-success/10 text-success">
-            <CheckCircle2 size={28} />
-          </span>
-          <p className="text-sm font-medium">Signalement envoyé, merci.</p>
-          <p className="text-xs text-muted-foreground">Notre équipe l'examinera dans les meilleurs délais.</p>
-          <button
-            onClick={onClose}
-            className="mt-2 w-full rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
-          >
-            Fermer
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <span className="mb-1.5 block text-sm font-medium">Type de ressource</span>
-            <div className="flex flex-wrap gap-2">
-              {TYPE_OPTIONS.map((t) => (
-                <span
-                  key={t}
-                  aria-disabled={t !== "short_link"}
-                  className={[
-                    "rounded-full border px-3 py-1.5 text-xs font-medium",
-                    t === "short_link"
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border/60 bg-muted text-muted-foreground/50 cursor-not-allowed",
-                  ].join(" ")}
-                >
-                  {REPORTABLE_TYPE_LABELS[t]}
+        {submitted ? (
+          <div className="flex flex-col items-center gap-3 py-4 text-center">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-success/10 text-success">
+              <CheckCircle2 size={28} />
+            </span>
+            <p className="text-sm font-medium">Signalement envoyé, merci.</p>
+            <p className="text-xs text-muted-foreground">Notre équipe l'examinera dans les meilleurs délais.</p>
+            <button
+              onClick={onClose}
+              className="mt-2 w-full rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
+            >
+              Fermer
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <span className="mb-1.5 block text-sm font-medium">Type de ressource</span>
+              <div className="flex flex-wrap gap-2">
+                <span className="rounded-full border border-primary bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+                  {REPORTABLE_TYPE_LABELS["short_link"]}
                 </span>
               ))}
             </div>
