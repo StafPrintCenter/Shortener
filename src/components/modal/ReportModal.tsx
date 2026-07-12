@@ -115,17 +115,17 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
               </select>
             </label>
 
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-medium">Message (optionnel)</span>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              maxLength={500}
-              rows={3}
-              placeholder="Décrivez le problème rencontré…"
-              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
-            />
-          </label>
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium">Message (optionnel)</span>
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                maxLength={500}
+                rows={2}
+                placeholder="Décrivez le problème rencontré…"
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm shadow-sm outline-none transition focus:border-primary resize-none"
+              />
+            </label>
 
             <label className="block">
               <span className="mb-1.5 block text-sm font-medium">Votre email (optionnel)</span>
