@@ -10,10 +10,6 @@ import { Toaster } from "@/components/ui/sonner";
 const SHORTEN_TITLE = "SPC SHORTENER - Redirection de liens sécurisée & transparente";
 const SHORTEN_DESC = "SPC SHORTENER redirige vos liens avec transparence.";
 
-/* ==========================================================================
-   COMPOSANTS D'ERREUR ET UX AMÉLIORÉS
-   ========================================================================== */
-
 export function NotFoundComponent() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12 text-center select-none">
