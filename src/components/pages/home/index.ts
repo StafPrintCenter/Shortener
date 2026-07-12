@@ -1,2 +1,2 @@
-export { PageHeader } from "./PageHeader";
+export { HeroSection } from "./HeroSection";
 export { PageFooter } from "./PageFooter";
