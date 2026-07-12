@@ -24,7 +24,7 @@ export const Route = createFileRoute("/r/$alias")({
   component: RedirectPage,
 });
 
-const COUNTDOWN = 5;
+const COUNTDOWN = 10;
 const BACKEND_URL = import.meta.env.VITE_API_ORIGIN;
 
 function RedirectPage() {
