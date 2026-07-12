@@ -84,12 +84,8 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
                 <span className="rounded-full border border-primary bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
                   {REPORTABLE_TYPE_LABELS["short_link"]}
                 </span>
-              ))}
+              </div>
             </div>
-            <p className="mt-1.5 text-xs text-muted-foreground">
-              Ce site ne permet de signaler que des liens courts.
-            </p>
-          </div>
 
           <label className="block">
             <span className="mb-1.5 block text-sm font-medium">Identifiant du lien court</span>
