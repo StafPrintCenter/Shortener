@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Flag, Loader2, CheckCircle2 } from "lucide-react";
 import { Modal } from "./Modal";
 import { createReport } from "@/stores/useReportsStore";
-import { REPORT_REASON_LABELS, REPORTABLE_TYPE_LABELS, type ReportReason, type ReportableType } from "@/data/reports";
+import { REPORT_REASON_LABELS, REPORTABLE_TYPE_LABELS, type ReportReason } from "@/data/reports";
 
 const REASON_OPTIONS = Object.keys(REPORT_REASON_LABELS) as ReportReason[];
 const TYPE_OPTIONS = Object.keys(REPORTABLE_TYPE_LABELS) as ReportableType[];
