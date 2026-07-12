@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import {
   ShieldCheck,
   ShieldAlert,
@@ -13,14 +14,13 @@ import {
   X,
   ImageOff,
   BarChart3,
+  Clock,
 } from "lucide-react";
 import { toast } from "sonner";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
-import { useServerFn } from "@tanstack/react-start";
-import logo from "@/assets/logos.json";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/r/$alias")({
@@ -39,17 +39,27 @@ export const Route = createFileRoute("/r/$alias")({
 });
 
 const COUNTDOWN = 5;
-const ALLOWED_DOMAIN = "stafprintcenter.com";
+const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL ?? "http://localhost:8000";
+const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL ?? "http://localhost:3000";
+
+/** Reproduit la logique d'autorité de DomainGuard côté Laravel : host:port, port par défaut explicite */
+function authority(url: string): string | null {
+  try {
+    const u = new URL(url);
+    const port = u.port || (u.protocol === "https:" ? "443" : "80");
+    return `${u.hostname.toLowerCase()}:${port}`;
+  } catch {
+    return null;
+  }
+}
 
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
 
-  // ⚠️ Suppose un endpoint GET /api/public/shortlinks/get/{alias} à confirmer côté backend —
-  // resolve/create ne fonctionnent que par long_url, pas par alias.
   const { data: shortlink, isLoading: isLoadingLink, isError: linkError } = useQuery({
     queryKey: ["shortlink", "by-alias", alias],
     queryFn: () => fetchShortlinkByAlias(alias),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 1000 * 60,
   });
 
   const longUrl = shortlink?.longUrl ?? "";
@@ -68,24 +78,29 @@ function RedirectPage() {
   const [redirected, setRedirected] = useState(false);
   const [cancelled, setCancelled] = useState(false);
 
+  // Le vrai lien à suivre pour que le clic soit comptabilisé côté backend
+  const realRedirectUrl = `${BACKEND_URL}/r/${alias}`;
+
+  const isBlocked = shortlink && (shortlink.status !== "active" || shortlink.isActive === false);
+
   useEffect(() => {
-    if (redirected || cancelled || !longUrl) return;
+    if (redirected || cancelled || !longUrl || isBlocked) return;
 
     if (seconds <= 0) {
       setRedirected(true);
       toast.success("Redirection effectuée en toute sécurité.", {
-        description: meta?.domain ?? domain,
+        description: domain,
       });
-      window.location.href = longUrl;
+      window.location.href = realRedirectUrl;
       return;
     }
 
     const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
     return () => clearTimeout(t);
-  }, [seconds, redirected, cancelled, meta?.domain, longUrl]);
+  }, [seconds, redirected, cancelled, longUrl, isBlocked]);
 
   function redirectNow() {
-    if (redirected || cancelled || !longUrl) return;
+    if (redirected || cancelled || !longUrl || isBlocked) return;
     setSeconds(0);
   }
 
@@ -103,7 +118,7 @@ function RedirectPage() {
   }
 
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
-  const isAllowedDomain = domain === ALLOWED_DOMAIN || domain.endsWith(`.${ALLOWED_DOMAIN}`);
+  const isAllowedDomain = longUrl ? authority(longUrl) === authority(FRONTEND_ORIGIN) : false;
 
   const status = isAllowedDomain
     ? {
@@ -118,13 +133,13 @@ function RedirectPage() {
     };
   const StatusIcon = status.icon;
 
-  const title = meta?.title ?? shortlink?.category ?? "Contenu STAF PRINT CENTER";
+  const title = meta?.title ?? "Contenu STAF PRINT CENTER";
 
-  // Countdown ring geometry
   const radius = 34;
   const circumference = 2 * Math.PI * radius;
   const dashoffset = circumference * (seconds / COUNTDOWN);
 
+  // Lien introuvable
   if (!isLoadingLink && (linkError || !shortlink)) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center">
@@ -133,11 +148,39 @@ function RedirectPage() {
         </span>
         <h1 className="text-lg font-semibold">Lien introuvable</h1>
         <p className="max-w-sm text-sm text-muted-foreground">
-          Ce lien court n'existe pas ou n'est plus actif. Vérifiez l'adresse ou revenez à l'accueil.
+          Ce lien court n'existe pas. Vérifiez l'adresse ou revenez à l'accueil.
         </p>
         <Button asChild>
           <Link to="/">Retour à l'accueil</Link>
         </Button>
+      </div>
+    );
+  }
+
+  // Lien désactivé, en attente d'activation, ou expiré
+  if (!isLoadingLink && isBlocked) {
+    const isPending = shortlink!.activateAt && new Date(shortlink!.activateAt) > new Date();
+    const isExpired = shortlink!.expiresAt && new Date(shortlink!.expiresAt) < new Date();
+
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background px-6 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
+          <Clock className="h-8 w-8" />
+        </span>
+        <h1 className="text-lg font-semibold">
+          {isPending ? "Ce lien n'est pas encore actif" : isExpired ? "Ce lien a expiré" : "Ce lien est désactivé"}
+        </h1>
+        <p className="max-w-sm text-sm text-muted-foreground">
+          {isPending
+            ? `Il sera disponible à partir du ${new Date(shortlink!.activateAt!).toLocaleDateString("fr-FR")}.`
+            : "Contactez STAF PRINT CENTER si vous pensez qu'il s'agit d'une erreur."}
+        </p>
+        <div className="flex items-center gap-2">
+          <Button asChild variant="outline">
+            <Link to="/">Retour à l'accueil</Link>
+          </Button>
+          <ReportDialog alias={alias} />
+        </div>
       </div>
     );
   }
@@ -159,7 +202,6 @@ function RedirectPage() {
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
 
         <div className="relative w-full max-w-4xl">
-          {/* Security info bar */}
           <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-accent/60 px-4 py-3 text-accent-foreground">
             <Info className="mt-0.5 h-4 w-4 shrink-0" />
             <p className="text-xs leading-relaxed">
@@ -170,20 +212,17 @@ function RedirectPage() {
           </div>
 
           <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
-            {/* Colonne gauche — destination et logo */}
+            {/* Colonne gauche — destination */}
             <div className="p-6 md:p-8">
-              <div className="flex items-center gap-3">
-                <img src={logo.dc} alt="Logo STAF PRINT CENTER" className="h-9 w-auto" />
-                <span
-                  className={cn(
-                    "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
-                    status.className,
-                  )}
-                >
-                  <StatusIcon className="h-3.5 w-3.5" />
-                  {status.label}
-                </span>
-              </div>
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium",
+                  status.className,
+                )}
+              >
+                <StatusIcon className="h-3.5 w-3.5" />
+                {status.label}
+              </span>
 
               <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Destination
@@ -196,12 +235,7 @@ function RedirectPage() {
                       <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
                     </div>
                   ) : meta?.image ? (
-                    <img
-                      src={meta.image}
-                      alt={title}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
+                    <img src={meta.image} alt={title} className="h-full w-full object-cover" loading="lazy" />
                   ) : (
                     <div className="flex h-full w-full flex-col items-center justify-center gap-1.5 text-muted-foreground">
                       <ImageOff className="h-6 w-6" />
@@ -300,7 +334,6 @@ function RedirectPage() {
                 </>
               )}
 
-              {/* Actions */}
               <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
                 {cancelled ? (
                   <Button size="lg" className="w-full" onClick={resume}>
