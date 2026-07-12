@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, PageFooter } from "@/components/site";
 import { CreateShortlinkModal, ReportModal } from "@/components/modal";
-import { HeroSection } from "@/components/pages/home/HeroSection";
-import { PillarsSection } from "@/components/pages/home/PillarsSection";
+import { HeroSection, PillarsSection } from "@/components/pages/home/HeroSection";
 
 export const Route = createFileRoute("/")({
   component: Home,
