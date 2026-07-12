@@ -1,8 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles, } from "lucide-react";
+import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ReportDialog } from "@/components/report-dialog";
-import logo from "@/assets/logos.json";
+import { PageHeader } from "@/components/site/PageHeader";
+import { PageFooter } from "@/components/site/PageFooter";
+import { CreateShortlinkModal } from "@/components/modal/CreateShortlinkModal";
+import { ReportModal } from "@/components/modal/ReportModal";
+import { FRONTEND_ORIGIN, SHORT_ORIGIN, stripProtocol } from "@/lib/domain";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -23,28 +27,25 @@ const pillars = [
     icon: UserRoundX,
     title: "Anonymat total",
     text: "Aucune inscription n'est requise pour créer un lien court. Partagez vos liens rapidement, en toute confidentialité.",
-  }
+  },
 ];
 
 function Home() {
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isReportOpen, setIsReportOpen] = useState(false);
+
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Header */}
-      <header className="border-b border-border/70 bg-background/80 backdrop-blur">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-          <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
+      <PageHeader>
+        <span className="hidden items-center gap-2 text-xs font-medium text-muted-foreground sm:inline-flex">
+          <span className="h-1.5 w-1.5 rounded-full bg-success" />
+          Systèmes opérationnels
+        </span>
+      </PageHeader>
 
-          <span className="hidden items-center gap-2 text-xs font-medium text-muted-foreground sm:inline-flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-success" />
-            Systèmes opérationnels
-          </span>
-        </div>
-      </header>
-
-      {/* Main Content */}
       <main className="relative flex-1 overflow-hidden">
-        {/* Background Grid Pattern */}
         <div className="pointer-events-none absolute inset-0 grid-field opacity-70" />
+
         <section className="relative mx-auto grid max-w-6xl gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
           {/* Colonne gauche — message et actions */}
           <div className="flex flex-col items-start text-left">
@@ -66,17 +67,13 @@ function Home() {
             </p>
 
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-              <Button asChild size="lg">
-                <a href="#raccourcir-lien">
-                  <Link2 className="h-4 w-4" />
-                  Raccourcir un lien
-                </a>
+              <Button size="lg" onClick={() => setIsCreateOpen(true)}>
+                <Link2 className="h-4 w-4" />
+                Raccourcir un lien
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-card">
-                <Link to="/r/$alias" params={{ alias: "verify" }}>
-                  <AlertTriangle className="mr-2 h-4 w-4 text-destructive" />
-                  Signaler un problème
-                </Link>
+              <Button size="lg" variant="outline" className="bg-card" onClick={() => setIsReportOpen(true)}>
+                <AlertTriangle className="mr-2 h-4 w-4 text-destructive" />
+                Signaler un problème
               </Button>
             </div>
 
@@ -86,21 +83,21 @@ function Home() {
             </div>
           </div>
 
-          {/* Colonne droite — démonstration du raccourcissement */}
-          <div id="raccourcir-lien" className="relative scroll-mt-24">
+          {/* Colonne droite — démonstration du raccourcissement (illustrative, centrée sur mobile) */}
+          <div className="relative mx-auto w-full max-w-md text-center lg:mx-0 lg:max-w-none lg:text-left">
             <div className="absolute -inset-10 -z-10 rounded-full bg-primary/10 blur-3xl" />
 
             <div className="rounded-2xl border border-border bg-card p-6 shadow-panel sm:p-8">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <div className="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground lg:justify-start">
                 <Sparkles className="h-3.5 w-3.5 text-primary" />
                 Exemple de raccourcissement
               </div>
 
               {/* Lien long */}
-              <div className="mt-5 flex items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5">
+              <div className="mt-5 flex items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5 text-left">
                 <Link2 className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <span className="flex-1 truncate text-sm text-muted-foreground">
-                  stafprintcenter.com/articles/5-erreurs-a-eviter-avant-dimprimer
+                  {stripProtocol(FRONTEND_ORIGIN)}/articles/5-erreurs-a-eviter-avant-dimprimer
                 </span>
               </div>
 
@@ -109,10 +106,10 @@ function Home() {
               </div>
 
               {/* Lien court */}
-              <div className="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5">
+              <div className="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5 text-left">
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
                 <span className="flex-1 truncate text-sm font-semibold text-foreground">
-                  spc.link/r/5h0rtn
+                  {stripProtocol(SHORT_ORIGIN)}/r/5h0rtn
                 </span>
                 <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">
                   <Copy className="h-3 w-3" />
@@ -120,7 +117,7 @@ function Home() {
                 </span>
               </div>
 
-              <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
+              <div className="mt-5 flex items-center justify-center gap-4 border-t border-border pt-4 text-xs text-muted-foreground lg:justify-between">
                 <span className="inline-flex items-center gap-1.5">
                   <Check className="h-3.5 w-3.5 text-success" />
                   Destination vérifiée
@@ -149,13 +146,10 @@ function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border/70">
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-center px-6">
-          <p className="text-xs text-muted-foreground">
-            © 2026 SPC Redirect. Tous droits réservés.
-          </p>
-        </div>
-      </footer>
+      <PageFooter />
+
+      <CreateShortlinkModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
+      <ReportModal isOpen={isReportOpen} onClose={() => setIsReportOpen(false)} />
     </div>
   );
 }
