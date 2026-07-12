@@ -11,7 +11,7 @@ import { FRONTEND_ORIGIN, urlAuthority } from "@/lib/domain";
 // Importations des sous-composants locaux isolés
 import { DomainWarning } from "@/components/pages/redirect/DomainWarning";
 import { MetadataPreview } from "@/components/pages/redirect/MetadataPreview";
-import { RedirectControlPanel } from "@/components/pages/redirect/RedirectControlPanel";
+import { RedirectControlPanel } from "@/components/pages/redirect/ControlPanel";
 
 export const Route = createFileRoute("/r/$alias")({
   head: ({ params }) => ({
