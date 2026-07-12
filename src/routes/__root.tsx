@@ -13,7 +13,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: SHORTEN_TITLE },
+
+      // Identifiants par attribut "name" pour permettre la fusion et la surcharge dynamique
+      { name: "title", content: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
       { name: "author", content: "STAF PRINT CENTER" },
       { name: "keywords", content: "raccourcisseur, lien court, redirection securisee, transparence, spc redirect, deconnexion, staf print center, porto-novo" },
@@ -23,7 +25,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: SHORTEN_DESC },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "STAF PRINT CENTER" },
-      { property: "og:image:alt", content: SHORTEN_TITLE },
 
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
