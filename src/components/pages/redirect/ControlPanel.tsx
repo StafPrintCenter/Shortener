@@ -39,6 +39,25 @@ export function RedirectControlPanel({
   const circumference = 2 * Math.PI * radius;
   const dashoffset = circumference * (seconds / countdownMax);
 
+  // Bouton/modal de signalement partagé
+  const renderReportTrigger = () => (
+    <>
+      <button
+        onClick={() => setIsReportOpen(true)}
+        className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-destructive transition-colors cursor-pointer"
+      >
+        <Flag size={13} />
+        Signaler un problème
+      </button>
+
+      <ReportModal
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+        prefill={shortlink?.id ? { reportableId: shortlink.id } : undefined}
+      />
+    </>
+  );
+
   // 1. État : Lien introuvable 404
   if (notFound) {
     return (
