@@ -1,4 +1,4 @@
-import { type Discipline } from "@/data/categories";
+export type Discipline = | "Design" | "Web" | "Impression" | "Vidéo" | "Formation" | "Conseils" | "Actus";
 
 export type ShortlinkStatus = "active" | "disabled" | string;
 export type ShortlinkCategory = "design" | "web" | "print" | "video" | "formation" | "tips" | "news" | "blog" | "newsletter" | "other";
