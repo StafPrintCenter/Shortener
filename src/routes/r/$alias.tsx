@@ -204,11 +204,7 @@ function RedirectPage() {
         <div className="relative w-full max-w-4xl">
           <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-accent/60 px-4 py-3 text-accent-foreground">
             <Info className="mt-0.5 h-4 w-4 shrink-0" />
-            <p className="text-xs leading-relaxed">
-              <span className="font-semibold">SPC Redirect — le raccourcisseur officiel STAF PRINT CENTER :</span>{" "}
-              ce lien ne peut mener que vers un contenu STAF PRINT CENTER. Vérifiez toujours le domaine
-              affiché avant de poursuivre.
-            </p>
+
           </div>
 
           <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
