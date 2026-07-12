@@ -170,7 +170,6 @@ function RedirectPage() {
               onRedirectNow={redirectNow}
               onCancel={cancel}
             />
-
           </div>
         </div>
       </main>
