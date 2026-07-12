@@ -65,7 +65,7 @@ export function NotFoundComponent() {
           </h1>
 
           <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-lg">
-            La clé d'accès ou l'alias de redirection demandé n'existe pas ou a expiré. L'intégrité de la destination ne peut pas être vérifiée.
+            L'adresse demandée ne correspond à aucune page de notre plateforme. Revenez à l'accueil pour retrouver votre chemin.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 justify-center md:justify-start">
