@@ -104,8 +104,6 @@ function RedirectPage() {
   }
 
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
-  const isAllowedDomain = longUrl ? authority(longUrl) === authority(FRONTEND_ORIGIN) : false;
-
   const title = meta?.title ?? "Contenu STAF PRINT CENTER";
 
   const radius = 34;
