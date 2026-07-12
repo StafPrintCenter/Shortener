@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles, } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ReportDialog } from "@/components/report-dialog";
 import logo from "@/assets/logos.json";
 
 export const Route = createFileRoute("/")({
