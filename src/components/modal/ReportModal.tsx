@@ -5,7 +5,6 @@ import { createReport } from "@/stores/useReportsStore";
 import { REPORT_REASON_LABELS, REPORTABLE_TYPE_LABELS, type ReportReason } from "@/data/reports";
 
 const REASON_OPTIONS = Object.keys(REPORT_REASON_LABELS) as ReportReason[];
-const TYPE_OPTIONS = Object.keys(REPORTABLE_TYPE_LABELS) as ReportableType[];
 
 interface ReportModalProps {
   isOpen: boolean;
