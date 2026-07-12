@@ -1,2 +1,2 @@
-export { HeroSection } from "./HeroSection";
+export { DomainWarning } from "./DomainWarning";
 export { PillarsSection } from "./PillarsSection";
