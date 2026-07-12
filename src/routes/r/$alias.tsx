@@ -7,7 +7,7 @@ import { PageHeader, PageFooter } from "@/components/site";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
 import { FRONTEND_ORIGIN, urlAuthority } from "@/lib/domain";
-import { DomainWarning, MetadataPreview, RedirectControlPane } from "@/components/pages/redirect";
+import { DomainWarning, MetadataPreview, RedirectControlPanel } from "@/components/pages/redirect";
 
 export const Route = createFileRoute("/r/$alias")({
   head: ({ params }) => ({
