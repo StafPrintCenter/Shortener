@@ -78,10 +78,6 @@ export function ErrorComponent({ error, reset }: { error: Error; reset: () => vo
   );
 }
 
-/* ==========================================================================
-   DÉFINITION DE LA ROUTE RACINE (ROOT ROUTE)
-   ========================================================================== */
-
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -137,10 +133,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-/* ==========================================================================
-   SHELL ET RACINE DU COMPOSANT
-   ========================================================================== */
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
