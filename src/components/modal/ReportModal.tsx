@@ -109,7 +109,7 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
               onChange={(e) => setReportableId(e.target.value)}
               disabled={!!prefill?.reportableId}
               placeholder="ex: ab93b47d-4e45-4da2-8b81-d033df89bcb6"
-              className="input w-full disabled:cursor-not-allowed disabled:opacity-70"
+              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary disabled:cursor-not-allowed disabled:opacity-70"
             />
             {prefill?.reportableId && (
               <span className="mt-1 block text-xs text-muted-foreground">Rempli automatiquement depuis cette page.</span>
@@ -121,7 +121,7 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
             <select
               value={reason}
               onChange={(e) => setReason(e.target.value as ReportReason)}
-              className="input w-full cursor-pointer"
+              className="input w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
             >
               {REASON_OPTIONS.map((r) => (
                 <option key={r} value={r}>{REPORT_REASON_LABELS[r]}</option>
@@ -137,7 +137,7 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
               maxLength={500}
               rows={3}
               placeholder="Décrivez le problème rencontré…"
-              className="input w-full"
+              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
             />
           </label>
 
@@ -148,7 +148,7 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
               value={reporterEmail}
               onChange={(e) => setReporterEmail(e.target.value)}
               placeholder="vous@exemple.com"
-              className="input w-full"
+              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
             />
           </label>
 
