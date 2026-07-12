@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, Clock, ShieldAlert, X } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReportDialog } from "@/components/report-dialog";
 
@@ -41,7 +41,7 @@ export function RedirectControlPanel({
     return (
       <div className="flex flex-col items-center justify-center p-6 text-center md:p-8">
         <span className="flex h-21 w-21 items-center justify-center rounded-full bg-destructive/10 text-destructive">
-          <X className="h-10 w-10" strokeWidth={2} />
+          <CircleX className="h-10 w-10" strokeWidth={2} />
         </span>
         <h1 className="mt-4 text-lg font-semibold">Lien introuvable</h1>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -106,7 +106,7 @@ export function RedirectControlPanel({
     return (
       <div className="flex flex-col items-center justify-center p-6 text-center md:p-8">
         <span className="flex h-21 w-21 items-center justify-center rounded-full bg-destructive/10 text-destructive">
-          <X className="h-10 w-10" strokeWidth={2} />
+          <CircleX className="h-10 w-10" strokeWidth={2} />
         </span>
         <h1 className="mt-4 text-lg font-semibold">Redirection annulée</h1>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -182,7 +182,7 @@ export function RedirectControlPanel({
           <ArrowRight className="h-4 w-4" />
         </Button>
         <Button size="lg" variant="outline" className="w-full" onClick={onCancel}>
-          <X className="h-4 w-4" />
+          <Undo2 className="h-4 w-4" />
           Annuler
         </Button>
       </div>
