@@ -8,7 +8,6 @@ import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
 import { FRONTEND_ORIGIN, urlAuthority } from "@/lib/domain";
 import { DomainWarning, MetadataPreview } from "@/components/pages/redirect/DomainWarning";
-import { MetadataPreview } from "@/components/pages/redirect/MetadataPreview";
 import { RedirectControlPanel } from "@/components/pages/redirect/ControlPanel";
 
 export const Route = createFileRoute("/r/$alias")({
