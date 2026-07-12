@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,6 +31,16 @@ const pillars = [
 function Home() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlToCreate = params.get("create");
+    if (urlToCreate) {
+      setIsCreateOpen(true);
+      // Optionnel : vous pouvez passer une prop "defaultUrl" à votre CreateShortlinkModal 
+      // pour qu'il injecte directement `urlToCreate` dans l'état `longUrl`.
+    }
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">
