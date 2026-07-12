@@ -2,14 +2,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, createRootRouteWithContext, useRouter, HeadContent, Scripts } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { AlertCircle, FileQuestion, RefreshCw, Home } from "lucide-react";
-
 import appCss from "../styles.css?url";
 import { reportError } from "../lib/error-reporting";
 import { Toaster } from "@/components/ui/sonner";
 
 // Constantes SEO locales dédiées au Shortener
-const SHORTEN_TITLE = "SPC Redirect — Redirection de liens sécurisée & transparente";
-const SHORTEN_DESC = "SPC Redirect redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.";
+const SHORTEN_TITLE = "SPC SHORTENER - Redirection de liens sécurisée & transparente";
+const SHORTEN_DESC = "SPC SHORTENER redirige vos liens avec transparence.";
 
 /* ==========================================================================
    COMPOSANTS D'ERREUR ET UX AMÉLIORÉS
