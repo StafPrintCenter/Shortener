@@ -26,18 +26,8 @@ export const Route = createFileRoute("/r/$alias")({
 
 const COUNTDOWN = 5;
 const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL ?? "http://localhost:8000";
-const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL ?? "http://localhost:3000";
 
 /** Reproduit la logique d'autorité de DomainGuard côté Laravel : host:port, port par défaut explicite */
-function authority(url: string): string | null {
-  try {
-    const u = new URL(url);
-    const port = u.port || (u.protocol === "https:" ? "443" : "80");
-    return `${u.hostname.toLowerCase()}:${port}`;
-  } catch {
-    return null;
-  }
-}
 
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
