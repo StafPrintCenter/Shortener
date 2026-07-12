@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,14 +31,19 @@ const pillars = [
 function Home() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isReportOpen, setIsReportOpen] = useState(false);
+  const [initialLongUrl, setInitialLongUrl] = useState("");
 
+  // Intercepte l'URL passée en paramètre depuis la Landing Page
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const urlToCreate = params.get("create");
+
     if (urlToCreate) {
+      setInitialLongUrl(decodeURIComponent(urlToCreate));
       setIsCreateOpen(true);
-      // Optionnel : vous pouvez passer une prop "defaultUrl" à votre CreateShortlinkModal 
-      // pour qu'il injecte directement `urlToCreate` dans l'état `longUrl`.
+
+      // Nettoie la barre d'adresse pour éviter de réouvrir au refresh
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
 
@@ -91,7 +96,7 @@ function Home() {
             </div>
           </div>
 
-          {/* Colonne droite — démonstration du raccourcissement (illustrative, centrée sur mobile) */}
+          {/* Colonne droite — démonstration du raccourcissement */}
           <div className="relative mx-auto w-full max-w-md text-center lg:mx-0 lg:max-w-none lg:text-left">
             <div className="absolute -inset-10 -z-10 rounded-full bg-primary/10 blur-3xl" />
 
@@ -114,7 +119,7 @@ function Home() {
               </div>
 
               {/* Lien court */}
-              <div className="flex min-w-0 items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5 text-left">
+              <div className="flex min-w-0 items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2 text-left">
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
                 <span className="min-w-0 flex-1 truncate text-sm font-semibold text-foreground">
                   {stripProtocol(SHORT_ORIGIN)}/r/5h0rtn
@@ -158,7 +163,11 @@ function Home() {
 
       <CreateShortlinkModal
         isOpen={isCreateOpen}
-        onClose={() => setIsCreateOpen(false)}
+        onClose={() => {
+          setIsCreateOpen(false);
+          setInitialLongUrl("");
+        }}
+        defaultLongUrl={initialLongUrl}
       />
       <ReportModal
         isOpen={isReportOpen}
