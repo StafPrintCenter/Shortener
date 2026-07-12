@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,8 @@ export function RedirectControlPanel({
   onRedirectNow,
   onCancel,
 }: RedirectControlPanelProps) {
+  const [isReportOpen, setIsReportOpen] = useState(false);
+
   const radius = 34;
   const circumference = 2 * Math.PI * radius;
   const dashoffset = circumference * (seconds / countdownMax);
