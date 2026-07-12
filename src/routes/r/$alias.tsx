@@ -3,9 +3,6 @@ import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import {
-  ShieldCheck,
-  ShieldAlert,
-  Info,
   ExternalLink,
   Globe,
   ArrowRight,
@@ -21,7 +18,6 @@ import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/r/$alias")({
   head: ({ params }) => ({
@@ -119,19 +115,6 @@ function RedirectPage() {
 
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const isAllowedDomain = longUrl ? authority(longUrl) === authority(FRONTEND_ORIGIN) : false;
-
-  const status = isAllowedDomain
-    ? {
-      icon: ShieldCheck,
-      label: "Domaine STAF PRINT CENTER vérifié",
-      className: "border-success/30 bg-success/10 text-success",
-    }
-    : {
-      icon: ShieldAlert,
-      label: "Domaine non reconnu — vérifiez ce lien",
-      className: "border-destructive/30 bg-destructive/10 text-destructive",
-    };
-  const StatusIcon = status.icon;
 
   const title = meta?.title ?? "Contenu STAF PRINT CENTER";
 
