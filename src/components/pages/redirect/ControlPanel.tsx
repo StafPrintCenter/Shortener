@@ -172,7 +172,7 @@ export function RedirectControlPanel({
       </div>
       <h1 className="mt-4 text-lg font-semibold">Redirection en cours…</h1>
       <p className="mt-1 text-sm text-muted-foreground">
-        Vous serez redirigé vers STAF PRINT CENTER dans {seconds} seconde
+        Vous serez redirigé dans {seconds} seconde
         {seconds > 1 ? "s" : ""}.
       </p>
 
