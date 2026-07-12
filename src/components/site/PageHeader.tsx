@@ -1,10 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logos.json";
 
-interface PageHeaderProps {
-  /** Contenu affiché à droite du logo (badge de statut, alias courant, etc.) */
-  children?: React.ReactNode;
-}
+interface PageHeaderProps { children?: React.ReactNode }
 
 export function PageHeader({ children }: PageHeaderProps) {
   return (
