@@ -67,22 +67,37 @@ export function MetadataPreview({
               <p className="text-sm font-semibold leading-snug">{title}</p>
             )}
 
-            {meta?.description ? (
+            {!isLoading && meta?.description ? (
               <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
                 {meta.description}
               </p>
             ) : null}
 
             <div className="mt-3 space-y-2 text-xs">
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Globe className="h-3.5 w-3.5 shrink-0" />
-                <span className="font-mono text-foreground">{domain}</span>
-              </div>
-              <div className="flex items-start gap-2 text-muted-foreground">
-                <ExternalLink className="mt-0.5 h-3.5 w-3.5 shrink-0" />
-                <span className="break-all font-mono">{longUrl}</span>
-              </div>
-              {typeof shortlink?.clicksCount === "number" && (
+              {/* Squelettes d'attente pendant le chargement initial pour éviter le flash de contenu */}
+              {isLoading && (
+                <div className="space-y-2">
+                  <div className="h-3 w-1/2 animate-pulse rounded bg-muted" />
+                  <div className="h-3 w-2/3 animate-pulse rounded bg-muted" />
+                </div>
+              )}
+
+              {/* Affichage conditionnel des lignes complètes après chargement */}
+              {!isLoading && domain && (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Globe className="h-3.5 w-3.5 shrink-0" />
+                  <span className="font-mono text-foreground">{domain}</span>
+                </div>
+              )}
+
+              {!isLoading && longUrl && (
+                <div className="flex items-start gap-2 text-muted-foreground">
+                  <ExternalLink className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                  <span className="break-all font-mono">{longUrl}</span>
+                </div>
+              )}
+
+              {!isLoading && typeof shortlink?.clicksCount === "number" && (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <BarChart3 className="h-3.5 w-3.5 shrink-0" />
                   <span>
