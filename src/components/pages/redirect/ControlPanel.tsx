@@ -118,7 +118,7 @@ export function RedirectControlPanel({
             <ArrowRight className="h-4 w-4" />
           </Button>
           <div className="flex items-center justify-center pt-1">
-            <ReportDialog shortlinkId={shortlink?.id} />
+            {renderReportTrigger()}
           </div>
         </div>
       </div>
