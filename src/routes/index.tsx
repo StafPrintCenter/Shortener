@@ -32,6 +32,7 @@ function Home() {
       <header className="border-b border-border/70 bg-background/80 backdrop-blur">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
           <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
+
           <span className="hidden items-center gap-2 text-xs font-medium text-muted-foreground sm:inline-flex">
             <span className="h-1.5 w-1.5 rounded-full bg-success" />
             Systèmes opérationnels
