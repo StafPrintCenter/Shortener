@@ -89,14 +89,14 @@ function Home() {
 
             <div className="rounded-2xl border border-border bg-card p-6 shadow-panel sm:p-8">
               <div className="flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground lg:justify-start">
-                <Sparkles className="h-3.5 w-3.5 text-primary" />
+                <Sparkles className="h-3.5 w-3.5 shrink-0 text-primary" />
                 Exemple de raccourcissement
               </div>
 
               {/* Lien long */}
-              <div className="mt-5 flex items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5 text-left">
+              <div className="mt-5 flex min-w-0 items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5 text-left">
                 <Link2 className="h-4 w-4 shrink-0 text-muted-foreground" />
-                <span className="flex-1 truncate text-sm text-muted-foreground">
+                <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">
                   {stripProtocol(FRONTEND_ORIGIN)}/articles/5-erreurs-a-eviter-avant-dimprimer
                 </span>
               </div>
@@ -106,9 +106,9 @@ function Home() {
               </div>
 
               {/* Lien court */}
-              <div className="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5 text-left">
+              <div className="flex min-w-0 items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5 text-left">
                 <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
-                <span className="flex-1 truncate text-sm font-semibold text-foreground">
+                <span className="min-w-0 flex-1 truncate text-sm font-semibold text-foreground">
                   {stripProtocol(SHORT_ORIGIN)}/r/5h0rtn
                 </span>
                 <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-primary-foreground">
@@ -119,7 +119,7 @@ function Home() {
 
               <div className="mt-5 flex items-center justify-center gap-4 border-t border-border pt-4 text-xs text-muted-foreground lg:justify-between">
                 <span className="inline-flex items-center gap-1.5">
-                  <Check className="h-3.5 w-3.5 text-success" />
+                  <Check className="h-3.5 w-3.5 shrink-0 text-success" />
                   Destination vérifiée
                 </span>
                 <span>0 clic</span>
