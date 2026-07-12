@@ -2,8 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Eye, UserRoundX, AlertTriangle, Copy, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "@/components/site/PageHeader";
-import { PageFooter } from "@/components/site/PageFooter";
+import { PageHeader, PageFooter } from "@/components/site";
 import { CreateShortlinkModal } from "@/components/modal/CreateShortlinkModal";
 import { ReportModal } from "@/components/modal/ReportModal";
 import { FRONTEND_ORIGIN, SHORT_ORIGIN, stripProtocol } from "@/lib/domain";
@@ -148,8 +147,14 @@ function Home() {
 
       <PageFooter />
 
-      <CreateShortlinkModal isOpen={isCreateOpen} onClose={() => setIsCreateOpen(false)} />
-      <ReportModal isOpen={isReportOpen} onClose={() => setIsReportOpen(false)} />
+      <CreateShortlinkModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+      />
+      <ReportModal
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+      />
     </div>
   );
 }
