@@ -7,15 +7,22 @@ interface HeroSectionProps {
   onReportClick: () => void;
 }
 
+const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
+
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
       {/* Colonne gauche — message et actions */}
       <div className="flex flex-col items-start text-left">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
+        <a
+          href={FRONTEND_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
+        >
           <ShieldCheck className="h-3.5 w-3.5 text-primary" />
           Le raccourcisseur officiel STAF PRINT CENTER
-        </span>
+        </a>
 
         <h1 className="mt-7 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
           Partagez STAF PRINT CENTER<br />
