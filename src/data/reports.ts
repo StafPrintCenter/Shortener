@@ -1,5 +1,5 @@
-export type ReportReason = "broken_link" | "incorrect_info" | "inappropriate_content" | "spam" | "other";
 export type ReportableType = "short_link" | "service" | "training" | "article" | "project";
+export type ReportReason = "broken_link" | "incorrect_info" | "inappropriate_content" | "spam" | "other";
 export type ReportStatus = "pending" | "resolved" | "rejected" | string;
 
 /**
