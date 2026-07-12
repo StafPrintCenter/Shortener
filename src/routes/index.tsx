@@ -33,7 +33,6 @@ function Home() {
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [initialLongUrl, setInitialLongUrl] = useState("");
 
-  // Intercepte l'URL passée en paramètre depuis la Landing Page
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const urlToCreate = params.get("create");
@@ -41,8 +40,6 @@ function Home() {
     if (urlToCreate) {
       setInitialLongUrl(decodeURIComponent(urlToCreate));
       setIsCreateOpen(true);
-
-      // Nettoie la barre d'adresse pour éviter de réouvrir au refresh
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }, []);
