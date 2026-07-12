@@ -1,3 +1,3 @@
 export { Modal } from "./Modal";
-export { CreateShortlinkModal } from "./CreateShortlinkModal";
-export { ReportModal } from "./ReportModal";
+export { PageHeader } from "./PageHeader";
+export { PageFooter } from "./PageFooter";
