@@ -10,17 +10,57 @@ import { FRONTEND_ORIGIN, urlAuthority } from "@/lib/domain";
 import { DomainWarning, MetadataPreview, RedirectControlPanel } from "@/components/pages/redirect";
 
 export const Route = createFileRoute("/r/$alias")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `Redirection STAF PRINT CENTER · /r/${params.alias}` },
-      {
-        name: "description",
-        content:
-          "Page de redirection SPC Redirect — le raccourcisseur officiel de STAF PRINT CENTER. Vérifiez la destination avant de poursuivre.",
-      },
-      { name: "robots", content: "noindex" },
-    ],
-  }),
+  // 1. Le Loader s'exécute côté serveur au premier chargement
+  loader: async ({ params }) => {
+    let shortlink = null;
+    let meta = null;
+
+    try {
+      shortlink = await fetchShortlinkByAlias(params.alias);
+
+      if (shortlink?.longUrl) {
+        meta = await fetchSiteMetadata({ data: { url: shortlink.longUrl } });
+      }
+    } catch (error) {
+      console.error("Erreur de pré-rendu des métadonnées :", error);
+    }
+
+    return {
+      initialShortlink: shortlink,
+      initialMeta: meta,
+    };
+  },
+
+  // 2. On utilise le paramètre direct 'loaderData' fourni par TanStack
+  head: ({ loaderData, params }) => {
+    const title = loaderData?.initialMeta?.title ?? `Redirection STAF PRINT CENTER · /r/${params.alias}`;
+    const description = loaderData?.initialMeta?.description ?? "Page de redirection SPC Redirect — Vérifiez la destination avant de poursuivre.";
+    const image = loaderData?.initialMeta?.image ?? null;
+    const domain = loaderData?.initialMeta?.domain ?? "spc.redirect";
+    const targetUrl = loaderData?.initialMeta?.url ?? "";
+
+    return {
+      meta: [
+        { name: "title", content: title },
+        { name: "description", content: description },
+        { name: "robots", content: "noindex" },
+
+        // Open Graph (Discord, WhatsApp, LinkedIn, Facebook)
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: domain },
+        ...(image ? [{ property: "og:image", content: image }] : []),
+        ...(targetUrl ? [{ property: "og:url", content: targetUrl }] : []),
+
+        // Twitter Cards
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        ...(image ? [{ name: "twitter:image", content: image }] : []),
+      ],
+    };
+  },
   component: RedirectPage,
 });
 
@@ -29,28 +69,28 @@ const BACKEND_URL = import.meta.env.VITE_API_ORIGIN;
 
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
-
-  // 1. Collecte des données du lien court
+  const { initialShortlink, initialMeta } = Route.useLoaderData();
+  const fetchMeta = useServerFn(fetchSiteMetadata);
   const { data: shortlink, isLoading: isLoadingLink, isError: linkError } = useQuery({
     queryKey: ["shortlink", "by-alias", alias],
     queryFn: () => fetchShortlinkByAlias(alias),
+    initialData: initialShortlink ?? undefined,
     staleTime: 1000 * 60,
   });
 
   const longUrl = shortlink?.longUrl ?? "";
 
-  // 2. Récupération distante des métadonnées du site cible
-  const fetchMeta = useServerFn(fetchSiteMetadata);
   const { data: meta, isLoading: isLoadingMeta } = useQuery({
     queryKey: ["site-metadata", longUrl],
     queryFn: () => fetchMeta({ data: { url: longUrl } }),
     enabled: !!longUrl,
+    initialData: initialMeta ?? undefined,
     staleTime: 5 * 60 * 1000,
   });
 
-  const isLoading = isLoadingLink || isLoadingMeta;
+  const isLoading = (!shortlink && isLoadingLink) || (!meta && isLoadingMeta);
 
-  // 3. Gestion de l'état local du processus de redirection
+  // Gestion de l'état local du processus de redirection
   const [seconds, setSeconds] = useState(COUNTDOWN);
   const [redirected, setRedirected] = useState(false);
   const [cancelled, setCancelled] = useState(false);
@@ -61,7 +101,7 @@ function RedirectPage() {
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const canRedirect = !!longUrl && !isBlocked && isDomainAllowed;
 
-  // 4. Cycle de vie du compte à rebours automatique
+  // Cycle de vie du compte à rebours automatique
   useEffect(() => {
     if (redirected || cancelled || !canRedirect) return;
 
@@ -90,7 +130,7 @@ function RedirectPage() {
     setSeconds(COUNTDOWN);
   };
 
-  const notFound = !isLoadingLink && (linkError || !shortlink);
+  const notFound = !isLoadingLink && (!!linkError || !shortlink);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -102,12 +142,10 @@ function RedirectPage() {
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
 
         <div className="relative w-full max-w-4xl">
-          {/* Alerte si le domaine cible n'est pas autorisé par l'organisation */}
           {!notFound && !isBlocked && !isDomainAllowed && <DomainWarning />}
 
           <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
 
-            {/* Colonne Gauche : Affichage des métadonnées du site ciblé */}
             <MetadataPreview
               notFound={notFound}
               isLoading={isLoading}
@@ -117,7 +155,6 @@ function RedirectPage() {
               longUrl={longUrl}
             />
 
-            {/* Colonne Droite : États de redirection et Compte à rebours */}
             <RedirectControlPanel
               notFound={notFound}
               isBlocked={!!isBlocked}
