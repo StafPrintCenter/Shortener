@@ -202,9 +202,7 @@ function RedirectPage() {
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
 
         <div className="relative w-full max-w-4xl">
-          <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-accent/60 px-4 py-3 text-accent-foreground">
 
-          </div>
 
           <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
             {/* Colonne gauche — destination */}
