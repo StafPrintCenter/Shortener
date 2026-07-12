@@ -8,6 +8,7 @@ import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
+import logo from "@/assets/logos.json";
 
 export const Route = createFileRoute("/r/$alias")({
   head: ({ params }) => ({
@@ -149,7 +150,7 @@ function RedirectPage() {
       <header className="border-b border-border/70">
         <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
           <Link to="/" className="text-sm font-semibold tracking-tight transition-opacity hover:opacity-80">
-            SPC Redirect
+            <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
           </Link>
           <span className="font-mono text-xs text-muted-foreground">
             /r/{alias}
