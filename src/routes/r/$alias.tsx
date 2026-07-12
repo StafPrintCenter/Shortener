@@ -203,7 +203,6 @@ function RedirectPage() {
 
         <div className="relative w-full max-w-4xl">
           <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-accent/60 px-4 py-3 text-accent-foreground">
-            <Info className="mt-0.5 h-4 w-4 shrink-0" />
 
           </div>
 
