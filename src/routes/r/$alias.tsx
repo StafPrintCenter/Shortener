@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ExternalLink, Globe, ArrowRight, CheckCircle2, Loader2, X, ImageOff, BarChart3, Clock, Tag, ShieldAlert } from "lucide-react";
+import { ExternalLink, Globe, ArrowRight, CheckCircle2, Loader2, X, ImageOff, BarChart3, Clock, Tag, ShieldAlert, } from "lucide-react";
 import { toast } from "sonner";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
@@ -32,18 +32,6 @@ const COUNTDOWN = 5;
 // Une seule origine : sert à la fois pour les appels API et pour le vrai lien de redirection
 // Laravel (/r/{alias}), qui vit sur la même origine que le backend.
 const BACKEND_URL = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:8000";
-const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL ?? "http://localhost:3000";
-
-/** Reproduit la logique d'autorité de DomainGuard côté Laravel : host:port, port par défaut explicite */
-function authority(url: string): string | null {
-  try {
-    const u = new URL(url);
-    const port = u.port || (u.protocol === "https:" ? "443" : "80");
-    return `${u.hostname.toLowerCase()}:${port}`;
-  } catch {
-    return null;
-  }
-}
 
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
@@ -77,7 +65,7 @@ function RedirectPage() {
   // Garde-fou côté client, en miroir de DomainGuard : si jamais la destination stockée
   // ne correspond pas au domaine du site principal, on n'autorise pas la redirection
   // automatique, même si le lien existe et est actif.
-  const isDomainAllowed = longUrl ? authority(longUrl) === authority(FRONTEND_ORIGIN) : true;
+  const isDomainAllowed = longUrl ? urlAuthority(longUrl) === urlAuthority(FRONTEND_ORIGIN) : true;
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const canRedirect = !!longUrl && !isBlocked && isDomainAllowed;
 
@@ -126,16 +114,11 @@ function RedirectPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="border-b border-border/70">
-        <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
-          <Link to="/" className="transition-opacity hover:opacity-80">
-            <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
-          </Link>
-          <span className="font-mono text-xs text-muted-foreground">
-            /r/{alias}
-          </span>
-        </div>
-      </header>
+      <PageHeader>
+        <span className="font-mono text-xs text-muted-foreground">
+          /r/{alias}
+        </span>
+      </PageHeader>
 
       <main className="relative flex flex-1 items-center justify-center overflow-hidden px-6 py-12">
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
@@ -248,35 +231,33 @@ function RedirectPage() {
                   </div>
                 </>
               ) : isBlocked ? (
-                <>
-                  {(() => {
-                    const isPending = shortlink!.activateAt && new Date(shortlink!.activateAt) > new Date();
-                    const isExpired = shortlink!.expiresAt && new Date(shortlink!.expiresAt) < new Date();
-                    return (
-                      <>
-                        <span className="flex h-21 w-21 items-center justify-center rounded-full bg-muted text-muted-foreground">
-                          <Clock className="h-10 w-10" strokeWidth={2} />
-                        </span>
-                        <h1 className="mt-4 text-lg font-semibold">
-                          {isPending ? "Ce lien n'est pas encore actif" : isExpired ? "Ce lien a expiré" : "Ce lien est désactivé"}
-                        </h1>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                          {isPending
-                            ? `Il sera disponible à partir du ${new Date(shortlink!.activateAt!).toLocaleDateString("fr-FR")}.`
-                            : "Contactez STAF PRINT CENTER si vous pensez qu'il s'agit d'une erreur."}
-                        </p>
-                        <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
-                          <Button asChild size="lg" variant="outline" className="w-full">
-                            <Link to="/">Retour à l'accueil</Link>
-                          </Button>
-                          <div className="flex items-center justify-center pt-1">
-                            <ReportDialog alias={alias} />
-                          </div>
+                (() => {
+                  const isPending = shortlink!.activateAt && new Date(shortlink!.activateAt) > new Date();
+                  const isExpired = shortlink!.expiresAt && new Date(shortlink!.expiresAt) < new Date();
+                  return (
+                    <>
+                      <span className="flex h-21 w-21 items-center justify-center rounded-full bg-muted text-muted-foreground">
+                        <Clock className="h-10 w-10" strokeWidth={2} />
+                      </span>
+                      <h1 className="mt-4 text-lg font-semibold">
+                        {isPending ? "Ce lien n'est pas encore actif" : isExpired ? "Ce lien a expiré" : "Ce lien est désactivé"}
+                      </h1>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {isPending
+                          ? `Il sera disponible à partir du ${new Date(shortlink!.activateAt!).toLocaleDateString("fr-FR")}.`
+                          : "Contactez STAF PRINT CENTER si vous pensez qu'il s'agit d'une erreur."}
+                      </p>
+                      <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
+                        <Button asChild size="lg" variant="outline" className="w-full">
+                          <Link to="/">Retour à l'accueil</Link>
+                        </Button>
+                        <div className="flex items-center justify-center pt-1">
+                          <ReportDialog shortlinkId={shortlink?.id} />
                         </div>
-                      </>
-                    );
-                  })()}
-                </>
+                      </div>
+                    </>
+                  );
+                })()
               ) : redirected ? (
                 <>
                   <span className="flex h-21 w-21 items-center justify-center rounded-full bg-success/10 text-success">
@@ -303,7 +284,7 @@ function RedirectPage() {
                       <ArrowRight className="h-4 w-4" />
                     </Button>
                     <div className="flex items-center justify-center pt-1">
-                      <ReportDialog alias={alias} />
+                      <ReportDialog shortlinkId={shortlink?.id} />
                     </div>
                   </div>
                 </>
@@ -367,12 +348,10 @@ function RedirectPage() {
               )}
             </div>
           </div>
-
-          <p className="mt-6 text-center text-xs text-muted-foreground">
-            © 2026 SPC Redirect · Le raccourcisseur officiel STAF PRINT CENTER. Tous droits réservés.
-          </p>
         </div>
       </main>
+
+      <PageFooter />
     </div>
   );
 }
