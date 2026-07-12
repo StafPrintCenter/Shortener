@@ -314,7 +314,7 @@ function RedirectPage() {
           </div>
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            © 2026 SPC Redirect · Le raccourcisseur officiel STAF PRINT CENTER. Tous droits réservés.
+            © 2026 STAF PRINT Shortener · Tous droits réservés.
           </p>
         </div>
       </main>
