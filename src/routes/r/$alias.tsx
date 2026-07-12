@@ -71,6 +71,7 @@ function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
   const { initialShortlink, initialMeta } = Route.useLoaderData();
   const fetchMeta = useServerFn(fetchSiteMetadata);
+
   const { data: shortlink, isLoading: isLoadingLink, isError: linkError } = useQuery({
     queryKey: ["shortlink", "by-alias", alias],
     queryFn: () => fetchShortlinkByAlias(alias),
