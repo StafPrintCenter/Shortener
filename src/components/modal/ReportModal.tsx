@@ -87,20 +87,20 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
               </div>
             </div>
 
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-medium">Identifiant du lien court</span>
-            <input
-              type="text"
-              value={reportableId}
-              onChange={(e) => setReportableId(e.target.value)}
-              disabled={!!prefill?.reportableId}
-              placeholder="ex: ab93b47d-4e45-4da2-8b81-d033df89bcb6"
-              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary disabled:cursor-not-allowed disabled:opacity-70"
-            />
-            {prefill?.reportableId && (
-              <span className="mt-1 block text-xs text-muted-foreground">Rempli automatiquement depuis cette page.</span>
-            )}
-          </label>
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium">Identifiant du lien court</span>
+              <input
+                type="text"
+                value={reportableId}
+                onChange={(e) => setReportableId(e.target.value)}
+                disabled={!!prefill?.reportableId}
+                placeholder="ex: ab93b47d-4e45-4da2-8b81-d033df89bcb6"
+                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm shadow-sm outline-none transition focus:border-primary disabled:cursor-not-allowed disabled:opacity-70"
+              />
+              {prefill?.reportableId && (
+                <span className="mt-1 block text-xs text-muted-foreground">Rempli automatiquement depuis cette page.</span>
+              )}
+            </label>
 
           <label className="block">
             <span className="mb-1.5 block text-sm font-medium">Motif</span>
