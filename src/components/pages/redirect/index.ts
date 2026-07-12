@@ -1,2 +1,2 @@
 export { DomainWarning } from "./DomainWarning";
-export { MetadataPreview } from "./PillarsSection";
+export { MetadataPreview } from "./MetadataPreview";
