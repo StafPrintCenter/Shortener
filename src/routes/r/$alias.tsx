@@ -6,8 +6,7 @@ import { ExternalLink, Globe, ArrowRight, CheckCircle2, Loader2, X, ImageOff, Ba
 import { toast } from "sonner";
 import { ReportDialog } from "@/components/report-dialog";
 import { Button } from "@/components/ui/button";
-import { PageHeader } from "@/components/site/PageHeader";
-import { PageFooter } from "@/components/site/PageFooter";
+import { PageHeader, PageFooter } from "@/components/site";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel } from "@/data/shortlinks";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
