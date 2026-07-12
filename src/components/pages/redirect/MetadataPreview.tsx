@@ -82,7 +82,6 @@ export function MetadataPreview({
                 </div>
               )}
 
-              {/* Affichage conditionnel des lignes complètes après chargement */}
               {!isLoading && domain && (
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Globe className="h-3.5 w-3.5 shrink-0" />
