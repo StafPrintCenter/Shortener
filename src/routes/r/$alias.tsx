@@ -29,9 +29,7 @@ export const Route = createFileRoute("/r/$alias")({
 });
 
 const COUNTDOWN = 5;
-// Une seule origine : sert à la fois pour les appels API et pour le vrai lien de redirection
-// Laravel (/r/{alias}), qui vit sur la même origine que le backend.
-const BACKEND_URL = import.meta.env.VITE_API_ORIGIN ?? "http://localhost:8000";
+const BACKEND_URL = import.meta.env.VITE_API_ORIGIN;
 
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
