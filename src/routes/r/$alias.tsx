@@ -27,8 +27,6 @@ export const Route = createFileRoute("/r/$alias")({
 const COUNTDOWN = 5;
 const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL ?? "http://localhost:8000";
 
-/** Reproduit la logique d'autorité de DomainGuard côté Laravel : host:port, port par défaut explicite */
-
 function RedirectPage() {
   const { alias } = useParams({ from: "/r/$alias" });
 
