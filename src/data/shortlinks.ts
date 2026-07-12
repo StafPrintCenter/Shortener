@@ -36,3 +36,23 @@ const DISCIPLINE_TO_SHORTLINK_CATEGORY: Partial<Record<Discipline, ShortlinkCate
 export function getShortlinkCategory(discipline?: string): ShortlinkCategory {
   return DISCIPLINE_TO_SHORTLINK_CATEGORY[discipline as Discipline] ?? "other";
 }
+
+const SHORTLINK_CATEGORY_LABELS: Record<ShortlinkCategory, string> = {
+  design: "Design",
+  web: "Web",
+  print: "Impression",
+  video: "Vidéo",
+  formation: "Formation",
+  tips: "Conseils",
+  news: "Actus",
+  blog: "Blog",
+  newsletter: "Newsletter",
+  other: "Autre",
+};
+
+/**
+ * Traduit la catégorie brute d'un shortlink (venant de l'API) en libellé lisible pour l'UI.
+ */
+export function getShortlinkCategoryLabel(category: ShortlinkCategory): string {
+  return SHORTLINK_CATEGORY_LABELS[category] ?? category;
+}
