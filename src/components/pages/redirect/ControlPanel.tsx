@@ -78,7 +78,7 @@ export function RedirectControlPanel({
             <Link to="/">Retour à l'accueil</Link>
           </Button>
           <div className="flex items-center justify-center pt-1">
-            <ReportDialog shortlinkId={shortlink.id} />
+            {renderReportTrigger()}
           </div>
         </div>
       </div>
