@@ -13,8 +13,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-
-      // Identifiants par attribut "name" pour permettre la fusion et la surcharge dynamique
       { name: "title", content: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
       { name: "author", content: "STAF PRINT CENTER" },
