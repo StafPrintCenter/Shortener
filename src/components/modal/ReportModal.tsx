@@ -10,7 +10,6 @@ const TYPE_OPTIONS = Object.keys(REPORTABLE_TYPE_LABELS) as ReportableType[];
 interface ReportModalProps {
   isOpen: boolean;
   onClose: () => void;
-  /** Pré-remplit l'identifiant de la ressource signalée (ex: depuis /r/$alias) */
   prefill?: { reportableId: string };
 }
 
