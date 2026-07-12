@@ -2,10 +2,7 @@ import { useState } from "react";
 import { Flag } from "lucide-react";
 import { ReportModal } from "@/components/modal/ReportModal";
 
-interface ReportDialogProps {
-  /** ID (UUID) du lien court à signaler — pré-remplit et verrouille le champ (ex: sur /r/$alias) */
-  shortlinkId?: string;
-}
+interface ReportDialogProps { shortlinkId?: string; }
 
 export function ReportDialog({ shortlinkId }: ReportDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
