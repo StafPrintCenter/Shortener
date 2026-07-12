@@ -12,7 +12,7 @@ export function urlAuthority(url: string): string | null {
   }
 }
 
-export const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL ?? "http://localhost:3000";
+export const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL;
 export const SHORT_ORIGIN = import.meta.env.VITE_SHORTSITE_URL ?? "http://localhost:3001";
 
 /**
