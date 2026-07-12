@@ -24,6 +24,3 @@ export function getDisciplineColorClass(category?: string): string {
   }
   return FALLBACK_BADGE_COLOR;
 }
-
-// Disciplines qui ont un équivalent en tant que famille de service
-const SERVICE_RELEVANT_DISCIPLINES: Discipline[] = ["Design", "Web", "Vidéo", "Impression", "Formation"];
