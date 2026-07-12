@@ -102,18 +102,18 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
               )}
             </label>
 
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-medium">Motif</span>
-            <select
-              value={reason}
-              onChange={(e) => setReason(e.target.value as ReportReason)}
-              className="input w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
-            >
-              {REASON_OPTIONS.map((r) => (
-                <option key={r} value={r}>{REPORT_REASON_LABELS[r]}</option>
-              ))}
-            </select>
-          </label>
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium">Motif</span>
+              <select
+                value={reason}
+                onChange={(e) => setReason(e.target.value as ReportReason)}
+                className="w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2 text-sm shadow-sm outline-none transition focus:border-primary"
+              >
+                {REASON_OPTIONS.map((r) => (
+                  <option key={r} value={r}>{REPORT_REASON_LABELS[r]}</option>
+                ))}
+              </select>
+            </label>
 
           <label className="block">
             <span className="mb-1.5 block text-sm font-medium">Message (optionnel)</span>
