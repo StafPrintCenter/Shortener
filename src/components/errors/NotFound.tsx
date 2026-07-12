@@ -8,13 +8,13 @@ export function NotFoundComponent() {
       <div className="grid w-full max-w-4xl gap-8 items-center md:grid-cols-12 md:gap-16">
 
         {/* Colonne Gauche : Illustration vivante du lien brisé */}
-        <div className="md:col-span-5 flex flex-col items-center justify-center relative min-h-[240px] md:min-h-[300px]">
+        <div className="md:col-span-5 flex flex-col items-center justify-center relative min-h-60 md:min-h-75">
           <div className="relative flex items-center justify-center w-full h-full">
             {/* Arrière-plan néon diffus */}
             <div className="absolute h-40 w-40 rounded-full bg-destructive/10 blur-3xl" />
 
             {/* Partie supérieure de la chaîne (s'élève légèrement) */}
-            <div className="absolute transform -translate-y-6 -translate-x-4 -rotate-12 animate-bounce [animation-duration:3s] text-muted-foreground/40">
+            <div className="absolute transform -translate-y-6 -translate-x-4 -rotate-12 animate-bounce animation-duration:3s text-muted-foreground/40">
               <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M9 17H7A5 5 0 0 1 7 7h2" />
                 <line x1="8" y1="12" x2="12" y2="12" />
@@ -88,7 +88,7 @@ export function ErrorComponent({ error, reset }: { error: Error; reset: () => vo
       <div className="grid w-full max-w-4xl gap-8 items-center md:grid-cols-12 md:gap-16">
 
         {/* Colonne Gauche : Visuel d'anomalie système */}
-        <div className="md:col-span-5 flex flex-col items-center justify-center relative min-h-[240px] md:min-h-[300px]">
+        <div className="md:col-span-5 flex flex-col items-center justify-center relative min-h-60 md:min-h-75">
           <div className="relative flex items-center justify-center w-full h-full">
             <div className="absolute h-40 w-40 rounded-full bg-destructive/10 blur-3xl" />
 
