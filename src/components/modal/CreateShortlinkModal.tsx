@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
 import { Modal } from "./Modal";
 import { createShortlink } from "@/stores/useShortlinksStore";
@@ -12,15 +12,23 @@ const SHORTLINK_CATEGORY_OPTIONS: ShortlinkCategory[] = [
 interface CreateShortlinkModalProps {
   isOpen: boolean;
   onClose: () => void;
+  defaultLongUrl?: string;
 }
 
-export function CreateShortlinkModal({ isOpen, onClose }: CreateShortlinkModalProps) {
+export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: CreateShortlinkModalProps) {
   const [longUrl, setLongUrl] = useState("");
   const [category, setCategory] = useState<ShortlinkCategory>("other");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<APIShortlink | null>(null);
   const [copied, setCopied] = useState(false);
+
+  // Injecte automatiquement l'URL externe à l'ouverture du modal
+  useEffect(() => {
+    if (isOpen && defaultLongUrl) {
+      setLongUrl(defaultLongUrl);
+    }
+  }, [isOpen, defaultLongUrl]);
 
   const reset = () => {
     setLongUrl("");
