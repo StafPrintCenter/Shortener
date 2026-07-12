@@ -57,12 +57,7 @@ function RedirectPage() {
   const [cancelled, setCancelled] = useState(false);
 
   const realRedirectUrl = `${BACKEND_URL}/r/${alias}`;
-
   const isBlocked = shortlink && (shortlink.status !== "active" || shortlink.isActive === false);
-
-  // Garde-fou côté client, en miroir de DomainGuard : si jamais la destination stockée
-  // ne correspond pas au domaine du site principal, on n'autorise pas la redirection
-  // automatique, même si le lien existe et est actif.
   const isDomainAllowed = longUrl ? urlAuthority(longUrl) === urlAuthority(FRONTEND_ORIGIN) : true;
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const canRedirect = !!longUrl && !isBlocked && isDomainAllowed;
