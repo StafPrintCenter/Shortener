@@ -61,7 +61,6 @@ export function ReportModal({ isOpen, onClose, prefill }: ReportModalProps) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Signaler un problème" icon={Flag}>
-      {/* Conteneur défilant à hauteur contrôlée */}
       <div className="max-h-[60vh] overflow-y-auto pr-1 space-y-4 text-left">
       {submitted ? (
         <div className="flex flex-col items-center gap-3 py-4 text-center">
