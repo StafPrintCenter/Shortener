@@ -46,7 +46,7 @@ export async function createShortlink(longUrl: string, category?: ShortlinkCateg
  * Rédiriger vers un lien court
  */
 export async function fetchShortlinkByAlias(alias: string): Promise<APIShortlink | null> {
-  const url = resolveApiUrl(`/api/r/${alias}`);
+  const url = resolveApiUrl(`/api/public/shortlinks/get/${alias}`);
   const response = await fetch(url);
   if (response.status === 404) return null;
   if (!response.ok) {
