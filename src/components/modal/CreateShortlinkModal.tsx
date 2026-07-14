@@ -60,7 +60,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
       return;
     }
     if (!isAllowedFrontendUrl(trimmed)) {
-      setError(`Seuls les liens vers ${FRONTEND_ORIGIN} peuvent être raccourcis ici.`);
+      setError(`Seuls les liens vers ${SITE.landing} peuvent être raccourcis ici.`);
       return;
     }
 
