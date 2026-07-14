@@ -1,3 +1,5 @@
+import { SITE } from "@/data/site";
+
 export function PageFooter() {
   return (
     <footer className="border-t border-border/70">
