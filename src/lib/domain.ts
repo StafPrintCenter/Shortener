@@ -14,8 +14,6 @@ export function urlAuthority(url: string): string | null {
   }
 }
 
-export const SHORT_ORIGIN = import.meta.env.VITE_SHORTSITE_URL;
-
 /**
  * Vérifie qu'une URL pointe bien vers le site principal.
  */
