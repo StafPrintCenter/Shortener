@@ -4,6 +4,7 @@ import { type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
+import { SITE } from "@/data/site";
 
 const SHORTEN_TITLE = "SPC Redirect — Redirection de liens sécurisée & transparente";
 const SHORTEN_DESC = "SPC Redirect redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.";
@@ -15,7 +16,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "title", content: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
-      { name: "author", content: "STAF PRINT CENTER" },
+      {
+        name: "author", content: `${SITE.name}`
+      },
       { name: "keywords", content: "raccourcisseur, lien court, redirection securisee, transparence, spc redirect, deconnexion, staf print center, porto-novo" },
 
       // Open Graph / Facebook / LinkedIn
