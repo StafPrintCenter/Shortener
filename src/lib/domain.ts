@@ -16,7 +16,7 @@ export const FRONTEND_ORIGIN = import.meta.env.VITE_FRONTEND_URL;
 export const SHORT_ORIGIN = import.meta.env.VITE_SHORTSITE_URL;
 
 /**
- * Vérifie qu'une URL pointe bien vers le site principal STAF PRINT CENTER.
+ * Vérifie qu'une URL pointe bien vers le site principal.
  */
 export function isAllowedFrontendUrl(url: string): boolean {
   const target = urlAuthority(url);
