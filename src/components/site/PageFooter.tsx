@@ -17,7 +17,7 @@ export function PageFooter() {
             href={SITE.landing}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium underline underline-offset-4 hover:text-foreground transition-colors"
+            className="font-medium underline underline-offset-4 hover:text-primary transition-colors"
           >
             {SITE.name}
           </a>
