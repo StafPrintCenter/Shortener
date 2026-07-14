@@ -1,7 +1,6 @@
 const isProd = import.meta.env.PROD;
 const alias = isProd ? "ebdu5x" : "spc.local";
 
-// 1. On déclare SITE en premier pour pouvoir utiliser SITE.name juste après
 export const SITE = {
   name: "STAF PRINT CENTER",
   slogan: "L'empreinte de votre succès",
@@ -10,7 +9,7 @@ export const SITE = {
   alias,
 };
 
-// 2. Message rédigé de façon humaine utilisant dynamiquement SITE.name
+// Message rédigé
 export const CONTACT_PRESET_MESSAGE = [
   `Bonjour ${SITE.name},`,
   "",
