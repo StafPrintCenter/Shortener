@@ -11,6 +11,13 @@ interface MetadataPreviewProps {
   longUrl: string;
 }
 
+// Décoder les entités HTML
+function decodeHtml(html: string): string {
+  if (!html) return "";
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.documentElement.textContent || "";
+}
+
 export function MetadataPreview({
   notFound,
   isLoading,
@@ -19,7 +26,10 @@ export function MetadataPreview({
   domain,
   longUrl,
 }: MetadataPreviewProps) {
-  const title = meta?.title ?? `Contenu ${SITE.name}`;
+  const rawTitle = meta?.title ?? `Contenu ${SITE.name}`;
+  const title = decodeHtml(rawTitle);
+  const description = meta?.description ? decodeHtml(meta.description) : null;
+
   const categoryLabel = shortlink ? getShortlinkCategoryLabel(shortlink.category) : null;
 
   return (
@@ -68,9 +78,9 @@ export function MetadataPreview({
               <p className="text-sm font-semibold leading-snug">{title}</p>
             )}
 
-            {!isLoading && meta?.description ? (
+            {!isLoading && description ? (
               <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-muted-foreground">
-                {meta.description}
+                {description}
               </p>
             ) : null}
 
