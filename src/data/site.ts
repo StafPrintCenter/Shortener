@@ -20,7 +20,7 @@ export const CONTACT_PRESET_MESSAGE = [
   "Merci et à bientôt.",
 ].join("\n");
 
-// 3. URL brute lisible par les humains (utilisée pour l'affichage de l'exemple)
+// URL brute
 export const CONTACT_PRESET_HUMAN_URL = `?quote=autre&custom=Prise de contact&details=${CONTACT_PRESET_MESSAGE}`;
 
 // 4. URL encodée proprement par le navigateur (pour les vrais liens/redirections si besoin)
