@@ -11,6 +11,9 @@ interface HeroSectionProps {
 const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
+  // Valeur du bloc d'exemple
+  const longUrl = `${stripProtocol(FRONTEND_ORIGIN)}?quote=autre&custom=Prise de contact&details=${CONTACT_PRESET_MESSAGE}`;
+
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
       {/* Colonne gauche — message et actions */}
