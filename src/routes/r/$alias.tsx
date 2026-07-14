@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { PageHeader, PageFooter } from "@/components/site";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
-import { FRONTEND_ORIGIN, urlAuthority } from "@/lib/domain";
+import { urlAuthority } from "@/lib/domain";
 import { DomainWarning, MetadataPreview, RedirectControlPanel } from "@/components/pages/redirect";
 import { SITE } from "@/data/site";
 
