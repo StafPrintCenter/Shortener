@@ -11,7 +11,6 @@ interface HeroSectionProps {
 const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
 // Nouveau message
-
 const CONTACT_PRESET_MESSAGE = [
   `Bonjour ${SITE.name}, `,
   "",
