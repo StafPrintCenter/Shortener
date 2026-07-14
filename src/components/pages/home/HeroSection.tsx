@@ -1,6 +1,6 @@
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Copy, Check, Sparkles, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FRONTEND_ORIGIN, SHORT_ORIGIN, stripProtocol } from "@/lib/domain";
+import { SHORT_ORIGIN, stripProtocol } from "@/lib/domain";
 import { SITE, CONTACT_PRESET_ENCODE } from "@/data/site";
 
 interface HeroSectionProps {
