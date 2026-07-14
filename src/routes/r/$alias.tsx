@@ -34,7 +34,7 @@ export const Route = createFileRoute("/r/$alias")({
 
   // 2. On utilise le paramètre direct 'loaderData' fourni par TanStack
   head: ({ loaderData, params }) => {
-    const title = loaderData?.initialMeta?.title ?? `Redirection ${SITE.name} · /r/${params.alias}`;
+    const title = loaderData?.initialMeta?.title ?? `Redirection /r/${params.alias} | ${SITE.name}`;
     const description = loaderData?.initialMeta?.description ?? "Page de redirection SPC Redirect — Vérifiez la destination avant de poursuivre.";
     const image = loaderData?.initialMeta?.image ?? null;
     const domain = loaderData?.initialMeta?.domain ?? "spc.redirect";
