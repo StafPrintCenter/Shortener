@@ -9,6 +9,9 @@ interface HeroSectionProps {
 
 const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
+// Nouveau message
+const CONTACT_PRESET_URL = "?quote=autre&custom=Prise+de+contact&details=Bonjour%20STAF%20PRINT%20CENTER%2C%0AJe%20d%C3%A9couvre%20votre%20site%20internet%20et%20je%20souhaiterais%20%C3%A9changer%20avec%20votre%20%C3%A9quipe%20concernant%20vos%20services.%0APouvez-vous%20me%20recontacter%20lorsque%20vous%20serez%20disponible%20%3F%0AMerci%20et%20%C3%A0%20bient%C3%B4t.";
+
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
@@ -67,7 +70,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
           <div className="mt-5 flex w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5 text-left">
             <Link2 className="h-4 w-4 shrink-0 text-muted-foreground" />
             <span className="min-w-0 flex-1 truncate text-xs sm:text-sm text-muted-foreground block">
-              {stripProtocol(FRONTEND_ORIGIN)}/articles/5-erreurs-a-eviter-avant-dimprimer
+              {stripProtocol(FRONTEND_ORIGIN)}{CONTACT_PRESET_URL}
             </span>
           </div>
 
