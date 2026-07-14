@@ -5,7 +5,7 @@ const pillars = [
   {
     icon: ShieldCheck,
     title: `Exclusivement ${SITE.name}`,
-    text: "Chaque lien raccourci pointe uniquement vers nos contenus officiels — services, réalisations, formations et articles. Aucune destination externe n'est acceptée.",
+    text: "Chaque lien raccourci pointe uniquement vers nos contenus officiels - services, réalisations, formations et articles. Aucune destination externe n'est acceptée.",
   },
   {
     icon: Eye,
