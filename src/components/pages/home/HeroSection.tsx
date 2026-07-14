@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
-// Nouveau message encodé proprement
+// Nouveau message
 const CONTACT_PRESET_URL = "?quote=autre&custom=Prise+de+contact&details=Bonjour%20STAF%20PRINT%20CENTER%2C%0AJe%20d%C3%A9couvre%20votre%20site%20internet%20et%20je%20souhaiterais%20%C3%A9changer%20avec%20votre%20%C3%A9quipe%20concernant%20vos%20services.%0APouvez-vous%20me%20recontacter%20lorsque%20vous%20serez%20disponible%20%3F%0AMerci%20et%20%C3%A0%20bient%C3%B4t.";
 
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
