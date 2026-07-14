@@ -50,10 +50,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description: SHORTEN_DESC,
           applicationCategory: "SecurityApplication",
           operatingSystem: "All",
-          author: {
-            "@type": "Organization",
-            name: SITE.name
-          }
+          author: { "@type": "Organization", name: SITE.name }
         }),
       },
     ],
