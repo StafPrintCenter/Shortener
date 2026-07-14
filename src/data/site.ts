@@ -23,7 +23,7 @@ export const CONTACT_PRESET_MESSAGE = [
 // URL brute
 export const CONTACT_PRESET_HUMAN_URL = `?quote=autre&custom=Prise de contact&details=${CONTACT_PRESET_MESSAGE}`;
 
-// 4. URL encodée proprement par le navigateur (pour les vrais liens/redirections si besoin)
+// 4.Encodage par le navigateur
 export const CONTACT_PRESET_URL = `?${new URLSearchParams({
   quote: "autre",
   custom: "Prise de contact",
