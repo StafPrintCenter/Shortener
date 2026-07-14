@@ -8,6 +8,7 @@ import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
 import { FRONTEND_ORIGIN, urlAuthority } from "@/lib/domain";
 import { DomainWarning, MetadataPreview, RedirectControlPanel } from "@/components/pages/redirect";
+import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/r/$alias")({
   // 1. Le Loader s'exécute côté serveur au premier chargement
@@ -33,7 +34,7 @@ export const Route = createFileRoute("/r/$alias")({
 
   // 2. On utilise le paramètre direct 'loaderData' fourni par TanStack
   head: ({ loaderData, params }) => {
-    const title = loaderData?.initialMeta?.title ?? `Redirection STAF PRINT CENTER · /r/${params.alias}`;
+    const title = loaderData?.initialMeta?.title ?? `Redirection ${SITE.name} · /r/${params.alias}`;
     const description = loaderData?.initialMeta?.description ?? "Page de redirection SPC Redirect — Vérifiez la destination avant de poursuivre.";
     const image = loaderData?.initialMeta?.image ?? null;
     const domain = loaderData?.initialMeta?.domain ?? "spc.redirect";
