@@ -7,6 +7,21 @@ export function PageFooter() {
         <p className="text-xs text-muted-foreground">
           © 2026 SPC Shortener · Tous droits réservés.
         </p>
+
+        {/* Séparateur masqué sur mobile, visible sur PC */}
+        <span className="hidden text-xs text-muted-foreground/60 sm:inline">|</span>
+
+        <p className="text-xs text-muted-foreground">
+          Un service fourni par{" "}
+          <a
+            href={SITE.landing}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline underline-offset-4 hover:text-foreground transition-colors"
+          >
+            {SITE.name}
+          </a>
+        </p>
       </div>
     </footer>
   );
