@@ -84,7 +84,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
           <div className="flex w-full min-w-0 items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5 text-left">
             <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
             <span className="min-w-0 flex-1 truncate text-xs sm:text-sm font-semibold text-foreground block">
-              {stripProtocol(SHORT_ORIGIN)}/r/{SITE.alias}
+              hortUrl
             </span>
             <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-[11px] font-semibold text-primary-foreground sm:px-2.5 sm:py-1 sm:text-xs">
               <Copy className="h-3 w-3" />
