@@ -1,3 +1,5 @@
+import { SITE } from "@/data/site";
+
 /**
  * Reproduit côté client la logique d'autorité de App\Support\DomainGuard :
  * host:port en minuscules, avec le port par défaut du schéma explicité.
