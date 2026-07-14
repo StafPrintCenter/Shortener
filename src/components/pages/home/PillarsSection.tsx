@@ -10,7 +10,7 @@ const pillars = [
   {
     icon: Eye,
     title: "Aperçu avant redirection",
-    text: "Titre, image et description du contenu ciblé sont vérifiables avant de cliquer — pas de surprise à l'arrivée.",
+    text: "Titre, image et description du contenu ciblé sont vérifiables avant de cliquer - pas de surprise à l'arrivée.",
   },
   {
     icon: UserRoundX,
