@@ -99,7 +99,7 @@ function RedirectPage() {
 
   const realRedirectUrl = `${BACKEND_URL}/r/${alias}`;
   const isBlocked = shortlink && (shortlink.status !== "active" || shortlink.isActive === false);
-  const isDomainAllowed = longUrl ? urlAuthority(longUrl) === urlAuthority(FRONTEND_ORIGIN) : true;
+  const isDomainAllowed = longUrl ? urlAuthority(longUrl) === urlAuthority(SITE.landing) : true;
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const canRedirect = !!longUrl && !isBlocked && isDomainAllowed;
 
