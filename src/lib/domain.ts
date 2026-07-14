@@ -21,7 +21,7 @@ export const SHORT_ORIGIN = import.meta.env.VITE_SHORTSITE_URL;
  */
 export function isAllowedFrontendUrl(url: string): boolean {
   const target = urlAuthority(url);
-  const allowed = urlAuthority(FRONTEND_ORIGIN);
+  const allowed = urlAuthority(SITE.landing);
   return !!target && target === allowed;
 }
 
