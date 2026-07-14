@@ -12,7 +12,7 @@ const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
 // Nouveau message
 const CONTACT_PRESET_MESSAGE = [
-  `Bonjour ${SITE.name}, `,
+  `Bonjour ${SITE.name},`,
   "",
   "Je découvre votre site internet et je souhaiterais échanger avec votre équipe concernant vos services.",
   "",
