@@ -1,5 +1,6 @@
 import { ImageOff, Loader2, Tag, Globe, ExternalLink, BarChart3 } from "lucide-react";
 import { getShortlinkCategoryLabel } from "@/data/shortlinks";
+import { SITE } from "@/data/site";
 
 interface MetadataPreviewProps {
   notFound: boolean;
@@ -18,7 +19,7 @@ export function MetadataPreview({
   domain,
   longUrl,
 }: MetadataPreviewProps) {
-  const title = meta?.title ?? "Contenu STAF PRINT CENTER";
+  const title = meta?.title ?? `Contenu ${SITE.name}`;
   const categoryLabel = shortlink ? getShortlinkCategoryLabel(shortlink.category) : null;
 
   return (
