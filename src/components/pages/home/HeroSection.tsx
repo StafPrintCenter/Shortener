@@ -1,7 +1,7 @@
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Copy, Check, Sparkles, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FRONTEND_ORIGIN, SHORT_ORIGIN, stripProtocol } from "@/lib/domain";
-import { SITE, CONTACT_PRESET_HUMAN_URL } from "@/data/site";
+import { SITE, CONTACT_PRESET_ENCODE } from "@/data/site";
 
 interface HeroSectionProps {
   onCreateClick: () => void;
@@ -12,7 +12,7 @@ const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   // Valeur du bloc d'exemple
-  const longUrl = `${stripProtocol(FRONTEND_ORIGIN)}${CONTACT_PRESET_HUMAN_URL}`;
+  const longUrl = `${stripProtocol(FRONTEND_ORIGIN)}${CONTACT_PRESET_ENCODE}`;
   const shortUrl = `${stripProtocol(SHORT_ORIGIN)}/r/${SITE.alias}`;
 
   return (
