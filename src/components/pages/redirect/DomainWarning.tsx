@@ -1,4 +1,5 @@
 import { ShieldAlert } from "lucide-react";
+import { SITE } from "@/data/site";
 
 export function DomainWarning() {
   return (
@@ -6,7 +7,7 @@ export function DomainWarning() {
       <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
       <p className="text-xs leading-relaxed">
         <span className="font-semibold">Domaine non reconnu :</span> cette
-        destination ne correspond pas à un domaine STAF PRINT CENTER autorisé.
+        destination ne correspond pas à un domaine {SITE.name} autorisé.
         La redirection automatique a été désactivée par précaution.
       </p>
     </div>
