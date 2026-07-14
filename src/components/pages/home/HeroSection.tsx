@@ -20,7 +20,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
       {/* Colonne gauche — message et actions */}
       <div className="flex flex-col items-start text-left">
         <a
-          href={FRONTEND_URL}
+          href={SITE.landing}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
