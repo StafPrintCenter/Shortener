@@ -86,7 +86,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
     <Modal isOpen={isOpen} onClose={handleClose} title="Raccourcir un lien" icon={Link2}>
       <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
         <AlertTriangle size={14} className="mt-0.5 shrink-0 text-primary" />
-        <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{FRONTEND_ORIGIN}</span> peuvent être raccourcis.</p>
+        <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE.landing}</span> peuvent être raccourcis.</p>
       </div>
 
       {result ? (
