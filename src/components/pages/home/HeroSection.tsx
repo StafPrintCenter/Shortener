@@ -66,7 +66,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
             Exemple de raccourcissement
           </div>
 
-          {/* Lien long mis à jour avec la constante */}
+          {/* Lien long */}
           <div className="mt-5 flex w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5 text-left">
             <Link2 className="h-4 w-4 shrink-0 text-muted-foreground" />
             <span className="min-w-0 flex-1 truncate text-xs sm:text-sm text-muted-foreground block">
