@@ -11,7 +11,7 @@ interface HeroSectionProps {
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   // Valeur du bloc d'exemple
   const longUrl = `${stripProtocol(SITE.landing)}${CONTACT_PRESET_ENCODE}`;
-  const shortUrl = `${stripProtocol(SHORT_ORIGIN)}/r/${SITE.alias}`;
+  const shortUrl = `${stripProtocol(SITE.url)}/r/${SITE.alias}`;
 
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
