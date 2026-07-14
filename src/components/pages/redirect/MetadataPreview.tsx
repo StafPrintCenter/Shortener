@@ -14,8 +14,29 @@ interface MetadataPreviewProps {
 // Décoder les entités HTML
 function decodeHtml(html: string): string {
   if (!html) return "";
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  return doc.documentElement.textContent || "";
+
+  // Côté serveur
+  if (typeof window === "undefined" || typeof DOMParser === "undefined") {
+    const entities: Record<string, string> = {
+      "&amp;": "&",
+      "&lt;": "<",
+      "&gt;": ">",
+      "&quot;": '"',
+      "&#39;": "'",
+      "&apos;": "'",
+    };
+    return html
+      .replace(/&[a-zA-Z0-9#]+;/g, (match) => entities[match] || match)
+      .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(dec));
+  }
+
+  // Côté client
+  try {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.documentElement.textContent || "";
+  } catch (e) {
+    return html;
+  }
 }
 
 export function MetadataPreview({
