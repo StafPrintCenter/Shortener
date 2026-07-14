@@ -10,24 +10,6 @@ interface HeroSectionProps {
 
 const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
-// Nouveau message
-const CONTACT_PRESET_MESSAGE = [
-  `Bonjour ${SITE.name},`,
-  "",
-  "Je découvre votre site internet et je souhaiterais échanger avec votre équipe concernant vos services.",
-  "",
-  "Pouvez-vous me recontacter lorsque vous serez disponible ?",
-  "",
-  "Merci et à bientôt.",
-].join("\n");
-
-// Encodage de l'URL
-const CONTACT_PRESET_URL = `?${new URLSearchParams({
-  quote: "autre",
-  custom: "Prise de contact",
-  details: CONTACT_PRESET_MESSAGE,
-}).toString()}`;
-
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
