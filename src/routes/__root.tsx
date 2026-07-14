@@ -52,7 +52,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           operatingSystem: "All",
           author: {
             "@type": "Organization",
-            name: "STAF PRINT CENTER"
+            name: SITE.name
           }
         }),
       },
