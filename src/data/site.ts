@@ -1,5 +1,5 @@
 const isProd = import.meta.env.PROD;
-const alias = isProd ? "ebdu5x" : "spcss.local";
+const alias = isProd ? "ebdu5x" : "688ddw";
 
 export const SITE = {
   name: "STAF PRINT CENTER",
