@@ -21,6 +21,7 @@ const CONTACT_PRESET_MESSAGE = [
   "Merci et à bientôt.",
 ].join("\n");
 
+// Encodage de l'URL
 const CONTACT_PRESET_URL = `?${new URLSearchParams({
   quote: "autre",
   custom: "Prise de contact",
