@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2, Flag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReportModal } from "@/components/modal/ReportModal";
+import { SITE } from "@/data/site";
 
 interface RedirectControlPanelProps {
   notFound: boolean;
@@ -93,7 +94,7 @@ export function RedirectControlPanel({
         <p className="mt-1 text-sm text-muted-foreground">
           {isPending
             ? `Il sera disponible à partir du ${new Date(shortlink.activateAt).toLocaleDateString("fr-FR")}.`
-            : "Contactez STAF PRINT CENTER si vous pensez qu'il s'agit d'une erreur."}
+            : `Contactez ${SITE.name} si vous pensez qu'il s'agit d'une erreur.`}
         </p>
         <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
           <Button asChild size="lg" variant="outline" className="w-full">
