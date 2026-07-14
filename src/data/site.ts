@@ -1,9 +1,18 @@
 const isProd = import.meta.env.PROD;
 const alias = isProd ? "ebdu5x" : "spc.local";
 
-// Message rédigé de façon humaine sous forme de tableau
+// 1. On déclare SITE en premier pour pouvoir utiliser SITE.name juste après
+export const SITE = {
+  name: "STAF PRINT CENTER",
+  slogan: "L'empreinte de votre succès",
+  activity: "Studio de design et d'impression",
+  url: import.meta.env.VITE_SITE_URL,
+  alias,
+};
+
+// 2. Message rédigé de façon humaine utilisant dynamiquement SITE.name
 export const CONTACT_PRESET_MESSAGE = [
-  "Bonjour STAF PRINT CENTER,",
+  `Bonjour ${SITE.name},`,
   "",
   "Je découvre votre site internet et je souhaiterais échanger avec votre équipe concernant vos services.",
   "",
@@ -12,17 +21,12 @@ export const CONTACT_PRESET_MESSAGE = [
   "Merci et à bientôt.",
 ].join("\n");
 
-// URL construite proprement avec l'encodage du navigateur
+// 3. URL brute lisible par les humains (utilisée pour l'affichage de l'exemple)
+export const CONTACT_PRESET_HUMAN_URL = `?quote=autre&custom=Prise de contact&details=${CONTACT_PRESET_MESSAGE}`;
+
+// 4. URL encodée proprement par le navigateur (pour les vrais liens/redirections si besoin)
 export const CONTACT_PRESET_URL = `?${new URLSearchParams({
   quote: "autre",
   custom: "Prise de contact",
   details: CONTACT_PRESET_MESSAGE,
 }).toString()}`;
-
-export const SITE = {
-  name: "STAF PRINT CENTER",
-  slogan: "L'empreinte de votre succès",
-  activity: "Studio de design et d'impression",
-  url: import.meta.env.VITE_SITE_URL,
-  alias,
-};
