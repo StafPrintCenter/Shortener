@@ -21,7 +21,7 @@ export const CONTACT_PRESET_MESSAGE = [
 ].join("\n");
 
 // URL brute
-export const CONTACT_PRESET_HUMAN_URL = `?quote=autre&custom=Prise de contact&details=${CONTACT_PRESET_MESSAGE}`;
+export const CONTACT_PRESET_ENCODE = `?quote=autre&custom=Prise de contact&details=${CONTACT_PRESET_MESSAGE}`;
 
 // Encodage par le navigateur
 export const CONTACT_PRESET_URL = `?${new URLSearchParams({
