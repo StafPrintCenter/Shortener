@@ -1,9 +1,10 @@
 import { ShieldCheck, Eye, UserRoundX } from "lucide-react";
+import { SITE } from "@/data/site";
 
 const pillars = [
   {
     icon: ShieldCheck,
-    title: "Exclusivement STAF PRINT CENTER",
+    title: `Exclusivement ${SITE.name}`,
     text: "Chaque lien raccourci pointe uniquement vers nos contenus officiels — services, réalisations, formations et articles. Aucune destination externe n'est acceptée.",
   },
   {
