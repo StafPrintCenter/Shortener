@@ -9,19 +9,7 @@ export const SITE = {
   whatsappLink: "https://wa.me/2290160300607",
   email: "stafprintcenter@gmail.com",
   url: import.meta.env.VITE_SITE_URL,
-  maps: "https://maps.app.goo.gl/4mbhWctm6LnTgYsAA",
-  notice: "https://search.google.com/local/reviews?placeid=ChIJPb8nmaNbOxARzgX2S_y9o_M",
-  socials: {
-    facebook: "https://web.facebook.com/StafPrintCenter",
-    instagram: "https://www.instagram.com/stafprintcenter/",
-    linkedin: "https://linkedin.com/company/stafprintcenter",
-    x: "https://x.com/stafprintcenter",
-  },
-  opinion: {
-    nb: "120+",
-    label: "avis clients",
-    stars: "4.9",
-  }
+  shortAlias: import.meta.env.VITE_SITE_URL,
 };
 
 export const NAV_LINKS = [
