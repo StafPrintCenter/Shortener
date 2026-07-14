@@ -23,7 +23,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: SHORTEN_TITLE },
       { property: "og:description", content: SHORTEN_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "STAF PRINT CENTER" },
+      { property: "og:site_name", content: SITE.name },
 
       // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
