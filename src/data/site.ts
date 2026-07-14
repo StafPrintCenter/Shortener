@@ -5,7 +5,8 @@ export const SITE = {
   name: "STAF PRINT CENTER",
   slogan: "L'empreinte de votre succès",
   activity: "Studio de design et d'impression",
-  url: import.meta.env.VITE_SITE_URL,
+  url: import.meta.env.VITE_SHORTSITE_URL,
+  landing: import.meta.env.VITE_FRONTEND_URL,
   alias,
 };
 
