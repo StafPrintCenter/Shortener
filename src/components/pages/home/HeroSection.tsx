@@ -8,8 +8,6 @@ interface HeroSectionProps {
   onReportClick: () => void;
 }
 
-const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
-
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   // Valeur du bloc d'exemple
   const longUrl = `${stripProtocol(SITE.landing)}${CONTACT_PRESET_ENCODE}`;
