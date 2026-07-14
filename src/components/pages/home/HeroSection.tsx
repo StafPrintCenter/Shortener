@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
 
-// Nouveau message
+// Nouveau message encodé proprement
 const CONTACT_PRESET_URL = "?quote=autre&custom=Prise+de+contact&details=Bonjour%20STAF%20PRINT%20CENTER%2C%0AJe%20d%C3%A9couvre%20votre%20site%20internet%20et%20je%20souhaiterais%20%C3%A9changer%20avec%20votre%20%C3%A9quipe%20concernant%20vos%20services.%0APouvez-vous%20me%20recontacter%20lorsque%20vous%20serez%20disponible%20%3F%0AMerci%20et%20%C3%A0%20bient%C3%B4t.";
 
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
@@ -66,7 +66,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
             Exemple de raccourcissement
           </div>
 
-          {/* Lien long */}
+          {/* Lien long mis à jour avec la constante */}
           <div className="mt-5 flex w-full min-w-0 items-center gap-2 rounded-xl border border-border bg-muted px-3 py-2.5 text-left">
             <Link2 className="h-4 w-4 shrink-0 text-muted-foreground" />
             <span className="min-w-0 flex-1 truncate text-xs sm:text-sm text-muted-foreground block">
