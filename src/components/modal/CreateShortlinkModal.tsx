@@ -3,7 +3,8 @@ import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
 import { Modal } from "./Modal";
 import { createShortlink } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
-import { isAllowedFrontendUrl, FRONTEND_ORIGIN } from "@/lib/domain";
+import { isAllowedFrontendUrl } from "@/lib/domain";
+import { SITE } from "@/data/site";
 
 const SHORTLINK_CATEGORY_OPTIONS: ShortlinkCategory[] = [
   "other", "blog", "design", "web", "print", "video", "formation", "tips", "news", "newsletter",
