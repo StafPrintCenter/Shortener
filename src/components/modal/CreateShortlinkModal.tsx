@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
+import { Link2, Copy, Check, Loader2, AlertTriangle, QrCode } from "lucide-react";
 import { Modal } from "./Modal";
+import { QrCodeModal } from "./QrCodeModal";
 import { createShortlink } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
 import { isAllowedFrontendUrl } from "@/lib/domain";
@@ -23,8 +24,8 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<APIShortlink | null>(null);
   const [copied, setCopied] = useState(false);
+  const [isQrOpen, setIsQrOpen] = useState(false);
 
-  // Injecte automatiquement l'URL externe à l'ouverture du modal
   useEffect(() => {
     if (isOpen && defaultLongUrl) {
       setLongUrl(defaultLongUrl);
@@ -83,70 +84,90 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={handleClose} title="Raccourcir un lien" icon={Link2}>
-      <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
-        <AlertTriangle size={14} className="mt-0.5 shrink-0 text-primary" />
-        <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE.landing}</span> peuvent être raccourcis.</p>
-      </div>
+    <>
+      <Modal isOpen={isOpen} onClose={handleClose} title="Raccourcir un lien" icon={Link2}>
+        <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
+          <AlertTriangle size={14} className="mt-0.5 shrink-0 text-primary" />
+          <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE.landing}</span> peuvent être raccourcis.</p>
+        </div>
 
-      {result ? (
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5">
-            <Link2 size={16} className="shrink-0 text-primary" />
-            <span className="flex-1 truncate text-sm font-medium text-foreground">{result.shortUrl}</span>
+        {result ? (
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5">
+              <Link2 size={16} className="shrink-0 text-primary" />
+              <span className="min-w-0 flex-1 truncate text-sm font-medium text-foreground">{result.shortUrl}</span>
+              <button
+                onClick={handleCopy}
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground hover:opacity-90 cursor-pointer"
+              >
+                {copied ? <Check size={13} /> : <Copy size={13} />}
+                {copied ? "Copié" : "Copier"}
+              </button>
+            </div>
+
             <button
-              onClick={handleCopy}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground hover:opacity-90 cursor-pointer"
+              onClick={() => setIsQrOpen(true)}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
             >
-              {copied ? <Check size={13} /> : <Copy size={13} />}
-              {copied ? "Copié" : "Copier"}
+              <QrCode size={16} />
+              Afficher le code QR
+            </button>
+
+            <button
+              onClick={reset}
+              className="w-full rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
+            >
+              Raccourcir un autre lien
             </button>
           </div>
-          <button
-            onClick={reset}
-            className="w-full rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
-          >
-            Raccourcir un autre lien
-          </button>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-medium">Lien à raccourcir</span>
-            <input
-              type="url"
-              value={longUrl}
-              onChange={(e) => setLongUrl(e.target.value)}
-              placeholder={`${SITE.landing}/chemin/...`}
-              className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
-            />
-          </label>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium">Lien à raccourcir</span>
+              <input
+                type="url"
+                value={longUrl}
+                onChange={(e) => setLongUrl(e.target.value)}
+                placeholder={`${SITE.landing}/chemin/...`}
+                className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
+              />
+            </label>
 
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-medium">Catégorie</span>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value as ShortlinkCategory)}
-              className="input w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
+            <label className="block">
+              <span className="mb-1.5 block text-sm font-medium">Catégorie</span>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value as ShortlinkCategory)}
+                className="input w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
+              >
+                {SHORTLINK_CATEGORY_OPTIONS.map((c) => (
+                  <option key={c} value={c}>{getShortlinkCategoryLabel(c)}</option>
+                ))}
+              </select>
+            </label>
+
+            {error && <p className="text-xs text-destructive">{error}</p>}
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-60 cursor-pointer"
             >
-              {SHORTLINK_CATEGORY_OPTIONS.map((c) => (
-                <option key={c} value={c}>{getShortlinkCategoryLabel(c)}</option>
-              ))}
-            </select>
-          </label>
+              {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Link2 size={16} />}
+              {isSubmitting ? "Création…" : "Raccourcir"}
+            </button>
+          </form>
+        )}
+      </Modal>
 
-          {error && <p className="text-xs text-destructive">{error}</p>}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 disabled:opacity-60 cursor-pointer"
-          >
-            {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : <Link2 size={16} />}
-            {isSubmitting ? "Création…" : "Raccourcir"}
-          </button>
-        </form>
+      {result && (
+        <QrCodeModal
+          isOpen={isQrOpen}
+          onClose={() => setIsQrOpen(false)}
+          alias={result.alias}
+          shortUrl={result.shortUrl}
+        />
       )}
-    </Modal>
+    </>
   );
 }
