@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link2, Copy, Check, Loader2, AlertTriangle, QrCode } from "lucide-react";
+import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
 import { Modal } from "./Modal";
-import { QrCodeModal } from "./QrCodeModal";
+import { QrCodeAutoPanel } from "./QrCodeAutoPanel";
 import { createShortlink } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
 import { isAllowedFrontendUrl } from "@/lib/domain";
@@ -24,7 +24,6 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<APIShortlink | null>(null);
   const [copied, setCopied] = useState(false);
-  const [isQrOpen, setIsQrOpen] = useState(false);
 
   useEffect(() => {
     if (isOpen && defaultLongUrl) {
@@ -106,14 +105,6 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
             </div>
 
             <button
-              onClick={() => setIsQrOpen(true)}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
-            >
-              <QrCode size={16} />
-              Afficher le code QR
-            </button>
-
-            <button
               onClick={reset}
               className="w-full rounded-full border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted cursor-pointer"
             >
@@ -160,14 +151,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
         )}
       </Modal>
 
-      {result && (
-        <QrCodeModal
-          isOpen={isQrOpen}
-          onClose={() => setIsQrOpen(false)}
-          alias={result.alias}
-          shortUrl={result.shortUrl}
-        />
-      )}
+      <QrCodeAutoPanel alias={result?.alias ?? null} shortUrl={result?.shortUrl} />
     </>
   );
 }
