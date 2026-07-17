@@ -82,7 +82,7 @@ function QrCodePanelUI({ alias, onClose, autoCloseSeconds }: QrCodePanelUIProps)
       const blobUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
-      link.download = `qr-${alias}.png`;
+      link.download = `SPC_qr-${alias}.png`;
       document.body.appendChild(link);
       link.click();
       link.remove();
