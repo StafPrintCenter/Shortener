@@ -151,7 +151,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
         )}
       </Modal>
 
-      <QrCodeAutoPanel alias={result?.alias ?? null} shortUrl={result?.shortUrl} />
+      <QrCodeAutoPanel alias={result?.alias ?? null} />
     </>
   );
 }
