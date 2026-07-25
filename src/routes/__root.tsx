@@ -17,7 +17,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "title", content: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
       { name: "author", content: SITE.name },
-      { name: "keywords", content: `raccourcisseur, lien court, redirection securisee, transparence, spc Shortener, deconnexion, ${SITE.name}, porto-novo` },
+      { name: "keywords", content: `raccourcisseur, lien court, redirection securisee, transparence, spc shortener, deconnexion, ${SITE.name}, porto-novo` },
 
       // Open Graph / Facebook / LinkedIn
       { property: "og:title", content: SHORTEN_TITLE },
