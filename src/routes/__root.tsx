@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
 import { SITE } from "@/data/site";
 
-const SHORTEN_TITLE = "SPC Redirect — Redirection de liens sécurisée & transparente";
-const SHORTEN_DESC = "SPC Redirect redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.";
+const SHORTEN_TITLE = "SPC Shortener — Redirection de liens sécurisée & transparente";
+const SHORTEN_DESC = "SPC Shortener redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -17,7 +17,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "title", content: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
       { name: "author", content: SITE.name },
-      { name: "keywords", content: `raccourcisseur, lien court, redirection securisee, transparence, spc redirect, deconnexion, ${SITE.name}, porto-novo` },
+      { name: "keywords", content: `raccourcisseur, lien court, redirection securisee, transparence, spc Shortener, deconnexion, ${SITE.name}, porto-novo` },
 
       // Open Graph / Facebook / LinkedIn
       { property: "og:title", content: SHORTEN_TITLE },
