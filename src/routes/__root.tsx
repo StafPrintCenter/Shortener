@@ -45,7 +45,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: "SPC Redirect",
+          name: "SPC Shortener",
           alternateName: "SPC Shortener",
           description: SHORTEN_DESC,
           applicationCategory: "SecurityApplication",
