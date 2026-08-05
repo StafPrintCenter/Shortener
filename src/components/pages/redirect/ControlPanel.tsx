@@ -200,8 +200,25 @@ export function RedirectControlPanel({
         {seconds > 1 ? "s" : ""}.
       </p>
 
-      <div className="mt-6 flex w-full max-w-xs flex-col gap-2.5">
-        <Button size="lg" className="w-full" onClick={onRedirectNow}>
+      {/* Notice d'information sur la collecte anonyme */}
+      <div className="mt-5 flex max-w-xs items-start gap-2 rounded-xl bg-muted/50 p-3 text-left text-xs text-muted-foreground/90 border border-border/50">
+        <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+        <p>
+          En poursuivant, vous prenez connaissance que des données techniques anonymisées (IP, ville, appareil) sont mesurées à des fins statistiques. Voir notre{" "}
+          <a
+            href={`${landingBase}/legal/privacy`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline underline-offset-2 hover:text-primary transition-colors"
+          >
+            politique de confidentialité
+          </a>
+          .
+        </p>
+      </div>
+
+      <div className="mt-4 flex w-full max-w-xs flex-col gap-2.5">
+        <Button size="lg" className="w-full cursor-pointer" onClick={onRedirectNow}>
           Rediriger maintenant
           <ArrowRight className="h-4 w-4" />
         </Button>
