@@ -10,7 +10,40 @@ export function PageFooter() {
           © 2026 SPC Shortener · Tous droits réservés.
         </p>
 
-        {/* Séparateur masqué sur mobile, visible sur PC */}
+        {/* Séparateur masqué sur mobile */}
+        <span className="hidden text-xs text-muted-foreground/60 sm:inline">|</span>
+
+        {/* Liens légaux */}
+        <div className="flex flex-wrap justify-center gap-2 text-xs text-muted-foreground">
+          <a
+            href={`${landingBase}/legal/mentions`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary underline underline-offset-4 transition-colors"
+          >
+            Mentions légales
+          </a>
+          <span>·</span>
+          <a
+            href={`${landingBase}/legal/privacy`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary underline underline-offset-4 transition-colors"
+          >
+            Confidentialité
+          </a>
+          <span>·</span>
+          <a
+            href={`${landingBase}/legal/mentions#cookies`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary underline underline-offset-4 transition-colors"
+          >
+            Cookies
+          </a>
+        </div>
+
+        {/* Séparateur masqué sur mobile */}
         <span className="hidden text-xs text-muted-foreground/60 sm:inline">|</span>
 
         <p className="text-xs text-muted-foreground">
