@@ -33,7 +33,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
         </h1>
 
         <p className="mt-6 max-w-xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
-          SPC Shortener  {SITE.shortName} raccourcit exclusivement les liens vers nos services,
+          {SITE.shortName} raccourcit exclusivement les liens vers nos services,
           réalisations, formations et articles ; jamais vers une destination
           externe. Un aperçu clair avant chaque clic, et un suivi des clics
           pour vos partages.
