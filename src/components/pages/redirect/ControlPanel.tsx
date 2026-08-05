@@ -222,7 +222,7 @@ export function RedirectControlPanel({
           Rediriger maintenant
           <ArrowRight className="h-4 w-4" />
         </Button>
-        <Button size="lg" variant="outline" className="w-full" onClick={onCancel}>
+        <Button size="lg" variant="outline" className="w-full cursor-pointer" onClick={onCancel}>
           <Undo2 className="h-4 w-4" />
           Annuler
         </Button>
