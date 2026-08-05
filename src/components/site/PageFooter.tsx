@@ -7,8 +7,7 @@ export function PageFooter() {
     <footer className="border-t border-border/70">
       <div className="mx-auto flex min-h-16 w-full max-w-6xl flex-col items-center justify-center gap-2 px-6 py-4 text-center sm:flex-row sm:gap-3 sm:py-0">
         <p className="text-xs text-muted-foreground">
-          © 2022 SPC Shortener · Tous droits réservés.
-          © {new Date().getFullYear()} {SITE.name} · Tous droits réservés.
+          © {new Date().getFullYear()} {SITE.shortName} · Tous droits réservés.
         </p>
 
         {/* Séparateur masqué sur mobile */}
