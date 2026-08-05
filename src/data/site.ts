@@ -3,6 +3,7 @@ const alias = isProd ? "ebdu5x" : "688ddw";
 
 export const SITE = {
   name: "STAF PRINT CENTER",
+  shortName: "SPC Shortener",
   slogan: "L'empreinte de votre succès",
   activity: "Studio de design et d'impression",
   url: import.meta.env.VITE_SHORTSITE_URL,
