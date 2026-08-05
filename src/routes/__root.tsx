@@ -6,8 +6,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
 import { SITE } from "@/data/site";
 
-const SHORTEN_TITLE = "SPC Shortener — Redirection de liens sécurisée & transparente";
-const SHORTEN_DESC = "SPC Shortener redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.";
+const SHORTEN_TITLE = `SPC Shortener — Redirection de liens sécurisée & transparente`;
+const SHORTEN_DESC = `SPC Shortener redirige vos liens avec transparence: chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
