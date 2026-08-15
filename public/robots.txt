@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Disallow: /r/
+
+Sitemap: https://go.stafprint.com/sitemap.xml
