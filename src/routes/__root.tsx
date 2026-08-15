@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
 import { type ReactNode } from "react";
-import appCss from "../styles.css?url";
 import { Toaster } from "@/components/ui/sonner";
+import appCss from "../styles.css?url";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
 import { SITE } from "@/data/site";
 
-const SHORTEN_TITLE = `${SITE.shortName}  - Redirection de liens sécurisée & transparente`;
+const SHORTEN_TITLE = `${SITE.shortName}  - Redirection de liens sécurisée & transparente pour ${SITE.name}`;
 const SHORTEN_DESC = `${SITE.shortName} redirige vos liens avec transparence: chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -30,6 +30,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: SHORTEN_TITLE },
       { name: "twitter:description", content: SHORTEN_DESC },
       { name: "twitter:site", content: "@StafPrintCenter" },
+
+      /* Google Verification */
+      { name: "google-site-verification", content: "OdKxHpVkBSxk0mj4vD4OTmZPdVi5pWzyCu4QPIMHy9A" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
