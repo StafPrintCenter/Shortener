@@ -13,10 +13,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=5" },
       { name: "title", content: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
       { name: "author", content: SITE.name },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "SPC Shortener" },
+      { property: "og:locale", content: "fr_FR" },
       { name: "keywords", content: `raccourcisseur, lien court, redirection securisee, transparence, spc shortener, deconnexion, ${SITE.name}, porto-novo` },
 
       // Open Graph / Facebook / LinkedIn
@@ -54,6 +57,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           applicationCategory: "SecurityApplication",
           operatingSystem: "All",
           author: { "@type": "Organization", name: SITE.name }
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "SPC Redirect",
+          description: "Plateforme de redirection de liens axée sur la sécurité et la transparence.",
         }),
       },
     ],
