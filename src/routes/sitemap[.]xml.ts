@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { } from "@tanstack/react-start";
 
-// TODO: replace with your project URL once a project name or custom domain is set.
 const RAW_URL = import.meta.env.VITE_SHORTSITE_URL || "https://go.stafprint.com";
 const BASE_URL = RAW_URL.replace(/\/$/, "");
 
