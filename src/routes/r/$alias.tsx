@@ -44,7 +44,7 @@ export const Route = createFileRoute("/r/$alias")({
       meta: [
         { name: "title", content: title },
         { name: "description", content: description },
-        { name: "robots", content: "noindex" },
+        { name: "robots", content: "noindex, nofollow" },
 
         // Open Graph (Discord, WhatsApp, LinkedIn, Facebook)
         { property: "og:title", content: title },
