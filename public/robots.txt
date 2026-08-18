@@ -1,6 +1,18 @@
-User-agent: *
+Disallow: /r/
+
+User-agent: Googlebot
 Allow: /
 
-Disallow: /r/
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
 
 Sitemap: https://go.stafprint.com/sitemap.xml
