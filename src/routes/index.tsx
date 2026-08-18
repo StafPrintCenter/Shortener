@@ -3,8 +3,22 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, PageFooter } from "@/components/site";
 import { CreateShortlinkModal, ReportModal } from "@/components/modal";
 import { HeroSection, PillarsSection } from "@/components/pages/home";
+import { SITE } from "@/data/site";
+
+const SHORTEN_TITLE = `${SITE.shortName}  - Redirection de liens sécurisée & transparente pour ${SITE.name}`;
+const SHORTEN_DESC = `${SITE.shortName} redirige vos liens avec transparence: chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.`;
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { name: "title", content: SHORTEN_TITLE },
+      { name: "description", content: SHORTEN_DESC },
+      { property: "og:title", content: SHORTEN_TITLE },
+      { property: "og:description", content: SHORTEN_DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Home,
 });
 
