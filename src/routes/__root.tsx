@@ -6,15 +6,15 @@ import appCss from "../styles.css?url";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
 import { SITE } from "@/data/site";
 
-const SHORTEN_TITLE = `${SITE.shortName}  - Redirection de liens sécurisée & transparente pour ${SITE.name}`;
-const SHORTEN_DESC = `${SITE.shortName} redirige vos liens avec transparence: chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.`;
+const SHORTEN_TITLE = `${SITE.shortName} - Redirection de liens sécurisée & transparente pour ${SITE.name}`;
+const SHORTEN_DESC = `${SITE.shortName} redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, maximum-scale=5" },
-      { name: "title", content: SHORTEN_TITLE },
+      { title: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
       { name: "author", content: SITE.name },
       { name: "robots", content: "index, follow" },
@@ -55,7 +55,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description: SHORTEN_DESC,
           applicationCategory: "SecurityApplication",
           operatingSystem: "All",
-          author: { "@type": "Organization", name: SITE.name }
+          author: { "@type": "Organization", name: SITE.name },
         }),
       },
       {
