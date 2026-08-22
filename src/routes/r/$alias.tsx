@@ -140,7 +140,7 @@ function RedirectPage() {
         <span className="font-mono text-xs text-muted-foreground">/r/{alias}</span>
       </PageHeader>
 
-      <main className="relative flex flex-1 items-center justify-center overflow-hidden px-6 py-12">
+      <main className="relative flex flex-1 items-center justify-center  px-6 py-12">
         <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
 
         <div className="relative w-full max-w-4xl">
