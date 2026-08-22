@@ -29,7 +29,7 @@ export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) 
 
         <h1 className="mt-7 text-balance text-4xl font-extralight leading-[1.08] tracking-tight sm:text-6xl">
           Partagez <span className="font-black">{SITE.name}</span><br />
-          en <span className="text-primary">un lien court.</span>
+          en un <span className="text-primary">lien court.</span>
         </h1>
 
         <p className="mt-6 max-w-xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
