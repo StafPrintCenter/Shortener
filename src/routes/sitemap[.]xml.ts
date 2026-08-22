@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { } from "@tanstack/react-start";
 
-const RAW_URL = import.meta.env.VITE_SHORTSITE_URL || "https://go.stafprint.com";
+const RAW_URL = import.meta.env.VITE_SHORTSITE_URL;
 const BASE_URL = RAW_URL.replace(/\/$/, "");
 
 interface SitemapEntry {
