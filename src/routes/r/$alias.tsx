@@ -8,7 +8,7 @@ import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
 import { urlAuthority } from "@/lib/domain";
 import { DomainWarning, MetadataPreview, RedirectControlPanel } from "@/components/pages/redirect";
-import { SITE } from "@/data/site";
+import { SITE, SITE_LINK } from "@/data/site";
 
 export const Route = createFileRoute("/r/$alias")({
   // 1. Le Loader s'exécute côté serveur au premier chargement
@@ -99,7 +99,7 @@ function RedirectPage() {
 
   const realRedirectUrl = `${BACKEND_URL}/r/${alias}`;
   const isBlocked = shortlink && (shortlink.status !== "active" || shortlink.isActive === false);
-  const isDomainAllowed = longUrl ? urlAuthority(longUrl) === urlAuthority(SITE.landing) : true;
+  const isDomainAllowed = longUrl ? urlAuthority(longUrl) === urlAuthority(SITE_LINK.landingUrl) : true;
   const domain = longUrl ? new URL(longUrl).hostname.replace(/^www\./, "") : "";
   const canRedirect = !!longUrl && !isBlocked && isDomainAllowed;
 
