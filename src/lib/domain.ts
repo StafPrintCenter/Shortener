@@ -1,4 +1,4 @@
-import { SITE } from "@/data/site";
+import { SITE_LINK } from "@/data/site";
 
 /**
  * Reproduit côté client la logique d'autorité de App\Support\DomainGuard :
@@ -19,7 +19,7 @@ export function urlAuthority(url: string): string | null {
  */
 export function isAllowedFrontendUrl(url: string): boolean {
   const target = urlAuthority(url);
-  const allowed = urlAuthority(SITE.landing);
+  const allowed = urlAuthority(SITE_LINK.landingUrl);
   return !!target && target === allowed;
 }
 
