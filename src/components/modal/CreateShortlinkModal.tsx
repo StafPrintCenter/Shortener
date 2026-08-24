@@ -5,7 +5,7 @@ import { QrCodeAutoPanel } from "./QrCodeAutoPanel";
 import { createShortlink } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
 import { isAllowedFrontendUrl } from "@/lib/domain";
-import { SITE } from "@/data/site";
+import { SITE_LINK } from "@/data/site";
 
 const SHORTLINK_CATEGORY_OPTIONS: ShortlinkCategory[] = [
   "other", "blog", "design", "web", "print", "video", "formation", "tips", "news", "newsletter",
@@ -60,7 +60,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
       return;
     }
     if (!isAllowedFrontendUrl(trimmed)) {
-      setError(`Seuls les liens vers ${SITE.landing} peuvent être raccourcis ici.`);
+      setError(`Seuls les liens vers ${SITE_LINK.landingUrl} peuvent être raccourcis ici.`);
       return;
     }
 
@@ -87,7 +87,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
       <Modal isOpen={isOpen} onClose={handleClose} title="Raccourcir un lien" icon={Link2}>
         <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
           <AlertTriangle size={14} className="mt-0.5 shrink-0 text-primary" />
-          <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE.landing}</span> peuvent être raccourcis.</p>
+          <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE_LINK.landingUrl}</span> peuvent être raccourcis.</p>
         </div>
 
         {result ? (
@@ -119,7 +119,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
                 type="url"
                 value={longUrl}
                 onChange={(e) => setLongUrl(e.target.value)}
-                placeholder={`${SITE.landing}/chemin/...`}
+                placeholder={`${SITE_LINK.landingUrl}/chemin/...`}
                 className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
               />
             </label>
