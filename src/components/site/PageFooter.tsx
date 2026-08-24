@@ -1,7 +1,7 @@
-import { SITE } from "@/data/site";
+import { SITE, SITE_LINK } from "@/data/site";
 
 export function PageFooter() {
-  const landingBase = SITE.landing.replace(/\/$/, "");
+  const landingBase = SITE_LINK.landingUrl.replace(/\/$/, "");
 
   return (
     <footer className="border-t border-border/70">
@@ -32,15 +32,6 @@ export function PageFooter() {
           >
             Confidentialité
           </a>
-          <span>·</span>
-          <a
-            href={`${landingBase}/legal/mentions#cookies`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary underline underline-offset-4 transition-colors"
-          >
-            Cookies
-          </a>
         </div>
 
         {/* Séparateur masqué sur mobile */}
@@ -49,7 +40,7 @@ export function PageFooter() {
         <p className="text-xs text-muted-foreground">
           Un service fourni par{" "}
           <a
-            href={SITE.landing}
+            href={SITE_LINK.landingUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium underline underline-offset-4 hover:text-primary transition-colors"
