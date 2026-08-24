@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2, Flag, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReportModal } from "@/components/modal/ReportModal";
-import { SITE } from "@/data/site";
+import { SITE, SITE_LINK } from "@/data/site";
 
 interface RedirectControlPanelProps {
   notFound: boolean;
@@ -36,7 +36,7 @@ export function RedirectControlPanel({
 }: RedirectControlPanelProps) {
   const [isReportOpen, setIsReportOpen] = useState(false);
 
-  const landingBase = SITE.landing.replace(/\/$/, "");
+  const landingBase = SITE_LINK.landingUrl.replace(/\/$/, "");
   const radius = 34;
   const circumference = 2 * Math.PI * radius;
   const dashoffset = circumference * (seconds / countdownMax);
