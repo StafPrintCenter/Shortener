@@ -1,7 +1,7 @@
 import { ShieldCheck, Link2, ArrowUpRight, Lock, Copy, Check, Sparkles, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { stripProtocol } from "@/lib/domain";
-import { SITE, CONTACT_PRESET_ENCODE } from "@/data/site";
+import { SITE, CONTACT_PRESET_ENCODE, SITE_LINK } from "@/data/site";
 
 interface HeroSectionProps {
   onCreateClick: () => void;
@@ -10,15 +10,15 @@ interface HeroSectionProps {
 
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   // Valeur du bloc d'exemple
-  const longUrl = `${stripProtocol(SITE.landing)}${CONTACT_PRESET_ENCODE}`;
-  const shortUrl = `${stripProtocol(SITE.url)}/r/${SITE.alias}`;
+  const longUrl = `${stripProtocol(SITE_LINK.landingUrl)}${CONTACT_PRESET_ENCODE}`;
+  const shortUrl = `${stripProtocol(SITE_LINK.shortUrl)}/r/${SITE.alias}`;
 
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
       {/* Colonne gauche — message et actions */}
       <div className="flex flex-col items-start text-left">
         <a
-          href={SITE.landing}
+          href={SITE_LINK.landingUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
