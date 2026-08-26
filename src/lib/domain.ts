@@ -15,12 +15,16 @@ export function urlAuthority(url: string): string | null {
 }
 
 /**
- * Vérifie qu'une URL pointe bien vers le site principal.
+ * Vérifie qu'une URL pointe bien vers le site principal ou la documentation.
  */
 export function isAllowedFrontendUrl(url: string): boolean {
   const target = urlAuthority(url);
-  const allowed = urlAuthority(SITE_LINK.landingUrl);
-  return !!target && target === allowed;
+  if (!target) return false;
+
+  const allowedLanding = urlAuthority(SITE_LINK.landingUrl);
+  const allowedDocs = urlAuthority(SITE_LINK.docsUrl);
+
+  return target === allowedLanding || target === allowedDocs;
 }
 
 /** Retire le protocole (http(s)://) d'une URL pour un affichage plus lisible */
