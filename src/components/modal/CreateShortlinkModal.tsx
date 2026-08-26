@@ -60,7 +60,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
       return;
     }
     if (!isAllowedFrontendUrl(trimmed)) {
-      setError(`Seuls les liens vers ${SITE_LINK.landingUrl} peuvent être raccourcis ici.`);
+      setError(`Seuls les liens vers ${SITE_LINK.landingUrl} ou ${SITE_LINK.docsUrl} peuvent être raccourcis ici.`);
       return;
     }
 
@@ -87,7 +87,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
       <Modal isOpen={isOpen} onClose={handleClose} title="Raccourcir un lien" icon={Link2}>
         <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
           <AlertTriangle size={14} className="mt-0.5 shrink-0 text-primary" />
-          <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE_LINK.landingUrl}</span> peuvent être raccourcis.</p>
+          <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE_LINK.landingUrl}</span> ou <span className="font-mono text-foreground">{SITE_LINK.docsUrl}</span> peuvent être raccourcis.</p>
         </div>
 
         {result ? (
@@ -119,7 +119,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
                 type="url"
                 value={longUrl}
                 onChange={(e) => setLongUrl(e.target.value)}
-                placeholder={`${SITE_LINK.landingUrl}/chemin/...`}
+                placeholder={`${SITE_LINK.landingUrl}/chemin/... ou ${SITE_LINK.docsUrl}/...`}
                 className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
               />
             </label>
