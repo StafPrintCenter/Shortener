@@ -3,7 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2, Flag, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReportModal } from "@/components/modal/ReportModal";
-import { SITE, SITE_LINK } from "@/data/site";
+import {
+  NotFoundState,
+  BlockedState,
+  RedirectedState,
+  CancelledState,
+  UntrustedDomainState,
+  CountdownState,
+} from "./states";
 
 interface RedirectControlPanelProps {
   notFound: boolean;
