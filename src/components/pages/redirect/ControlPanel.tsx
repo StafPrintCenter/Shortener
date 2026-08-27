@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, Clock, ShieldAlert, CircleX, Undo2, Flag, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Flag } from "lucide-react";
 import { ReportModal } from "@/components/modal/ReportModal";
 import {
   NotFoundState,
