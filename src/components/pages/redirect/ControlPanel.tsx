@@ -75,7 +75,7 @@ export function RedirectControlPanel({
     );
   }
 
-  // 3. État : Redirection effectuée avec succès
+  // Redirection effectuée avec succès
   if (redirected) {
     return <RedirectedState domain={domain} />;
   }
