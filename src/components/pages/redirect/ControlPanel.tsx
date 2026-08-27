@@ -95,7 +95,7 @@ export function RedirectControlPanel({
     return <UntrustedDomainState />;
   }
 
-  // 6. État par défaut : Décompte en cours actif
+  // Décompte en cours actif
   return (
     <CountdownState
       seconds={seconds}
