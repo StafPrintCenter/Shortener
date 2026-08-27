@@ -41,11 +41,6 @@ export function RedirectControlPanel({
 }: RedirectControlPanelProps) {
   const [isReportOpen, setIsReportOpen] = useState(false);
 
-  const landingBase = SITE_LINK.landingUrl.replace(/\/$/, "");
-  const radius = 34;
-  const circumference = 2 * Math.PI * radius;
-  const dashoffset = circumference * (seconds / countdownMax);
-
   // Bouton/modal de signalement partagé
   const renderReportTrigger = () => (
     <>
