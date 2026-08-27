@@ -90,7 +90,7 @@ export function RedirectControlPanel({
     );
   }
 
-  // 5. État : Domaine non sécurisé ou non autorisé
+  // Domaine non sécurisé ou non autorisé
   if (!isDomainAllowed) {
     return <UntrustedDomainState />;
   }
