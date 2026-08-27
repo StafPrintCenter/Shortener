@@ -65,7 +65,7 @@ export function RedirectControlPanel({
     return <NotFoundState />;
   }
 
-  // 2. État : Lien bloqué, suspendu ou expiré
+  // Lien bloqué, suspendu ou expiré
   if (isBlocked && shortlink) {
     return (
       <BlockedState
