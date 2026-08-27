@@ -80,7 +80,7 @@ export function RedirectControlPanel({
     return <RedirectedState domain={domain} />;
   }
 
-  // 4. État : Redirection annulée manuellement
+  // Redirection annulée manuellement
   if (cancelled) {
     return (
       <CancelledState
