@@ -41,7 +41,7 @@ export function RedirectControlPanel({
 }: RedirectControlPanelProps) {
   const [isReportOpen, setIsReportOpen] = useState(false);
 
-  // Bouton/modal de signalement partagé
+  // Bouton/modal de signalement
   const renderReportTrigger = () => (
     <>
       <button
