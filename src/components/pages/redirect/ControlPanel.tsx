@@ -60,7 +60,7 @@ export function RedirectControlPanel({
     </>
   );
 
-  // 1. État : Lien introuvable 404
+  // Lien introuvable 404
   if (notFound) {
     return <NotFoundState />;
   }
