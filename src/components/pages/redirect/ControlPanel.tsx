@@ -67,8 +67,6 @@ export function RedirectControlPanel({
 
   // 2. État : Lien bloqué, suspendu ou expiré
   if (isBlocked && shortlink) {
-    const isPending = shortlink.activateAt && new Date(shortlink.activateAt) > new Date();
-    const isExpired = shortlink.expiresAt && new Date(shortlink.expiresAt) < new Date();
     return (
       <BlockedState
         shortlink={shortlink}
