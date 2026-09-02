@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/logos.json";
+import { ThemeToggle } from "./";
 
 interface PageHeaderProps {
   children?: React.ReactNode;
@@ -13,6 +14,8 @@ export function PageHeader({ children }: PageHeaderProps) {
           <img src={logo.dc} alt="Logo SPC" className="h-10 md:h-12 w-auto" />
         </Link>
         {children}
+
+        <ThemeToggle />
       </div>
     </header>
   );
