@@ -15,7 +15,7 @@ export function urlAuthority(url: string): string | null {
 }
 
 /**
- * Vérifie qu'une URL pointe bien vers le site principal ou la documentation.
+ * Vérifie qu'une URL pointe bien vers le site principal, la documentation ou la plateforme IA.
  */
 export function isAllowedFrontendUrl(url: string): boolean {
   const target = urlAuthority(url);
