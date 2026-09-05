@@ -27,7 +27,7 @@ export function AllowedDomainsTooltip() {
   };
 
   return (
-    <span className="relative inline-flex">
+    <span className="relative inline-flex shrink-0">
       <button
         ref={buttonRef}
         type="button"
