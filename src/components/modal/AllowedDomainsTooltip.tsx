@@ -55,7 +55,7 @@ export function AllowedDomainsTooltip() {
               {ALLOWED_DOMAINS.map((domain) => (
                 <li key={domain} className="flex items-center gap-1.5">
                   <span className="size-1 rounded-full bg-primary shrink-0" />
-                  {formatDomain(domain)}
+                  {stripProtocol(domain)}
                 </li>
               ))}
             </ul>
