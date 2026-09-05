@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
 import { Modal } from "./Modal";
-import { QrCodeAutoPanel } from "./QrCodeAutoPanel";
+import { QrCodeAutoPanel, AllowedDomainsTooltip } from "./";
 import { createShortlink } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
 import { isAllowedFrontendUrl } from "@/lib/domain";
