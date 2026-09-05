@@ -58,8 +58,8 @@ export const Route = createFileRoute("/r/$alias")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
-        ...(image ? [{ name: "twitter:image", content: image }] : []),
-      ],
+        { name: "twitter:image", content: image ? image : undefined },
+      ].filter((m) => m.content !== undefined),
     };
   },
   component: RedirectPage,
