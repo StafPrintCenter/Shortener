@@ -119,7 +119,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
                 type="url"
                 value={longUrl}
                 onChange={(e) => setLongUrl(e.target.value)}
-                placeholder={`${SITE_LINK.landingUrl}/chemin/... ou ${SITE_LINK.docsUrl}/...`}
+                placeholder={`${stripProtocol(SITE_LINK.landingUrl)}/... ou ${stripProtocol(SITE_LINK.aiUrl)}/...`}
                 className="input w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
               />
             </label>
