@@ -139,7 +139,7 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
                 onChange={(e) => setCategory(e.target.value as ShortlinkCategory)}
                 className="input w-full cursor-pointer rounded-xl border border-border bg-background px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-primary"
               >
-                {SHORTLINK_CATEGORY_OPTIONS.map((c) => (
+                {SHORTLINK_CATEGORIES.map((c) => (
                   <option key={c} value={c}>{getShortlinkCategoryLabel(c)}</option>
                 ))}
               </select>
