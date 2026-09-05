@@ -1,4 +1,4 @@
-export type Discipline = | "Design" | "Web" | "Impression" | "Vidéo" | "Formation" | "Conseils" | "Actus";
+export type Discipline = "Design" | "Web" | "Impression" | "Vidéo" | "Formation" | "Conseils" | "Actus";
 export type ShortlinkStatus = "active" | "disabled" | string;
 
 export type ShortlinkCategory =
