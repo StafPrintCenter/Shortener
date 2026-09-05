@@ -1,4 +1,3 @@
-// src/components/modal/CreateShortlinkModal.tsx
 import { useState, useEffect } from "react";
 import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
 import { Modal } from "./Modal";
