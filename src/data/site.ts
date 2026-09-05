@@ -36,6 +36,7 @@ export const SITE_LINK = {
   studentUrl: import.meta.env.VITE_STUDENT_URL,
   meetUrl: import.meta.env.VITE_MEET_URL,
   arcadeUrl: import.meta.env.VITE_ARCADE_URL,
+  aiUrl: import.meta.env.VITE_AI_URL,
   docsUrl: import.meta.env.VITE_DOCS_URL,
 };
 
