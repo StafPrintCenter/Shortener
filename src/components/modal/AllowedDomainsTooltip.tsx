@@ -1,4 +1,3 @@
-// src/components/modal/AllowedDomainsTooltip.tsx
 import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Info } from "lucide-react";
