@@ -4,7 +4,7 @@ import { Modal } from "./Modal";
 import { QrCodeAutoPanel, AllowedDomainsTooltip } from "./";
 import { createShortlink } from "@/stores/useShortlinksStore";
 import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
-import { isAllowedFrontendUrl } from "@/lib/domain";
+import { isAllowedFrontendUrl, stripProtocol } from "@/lib/domain";
 import { SITE_LINK } from "@/data/site";
 
 const SHORTLINK_CATEGORY_OPTIONS: ShortlinkCategory[] = [
