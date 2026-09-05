@@ -102,6 +102,7 @@ function RedirectPage() {
   const ALLOWED_ORIGINS = [
     SITE_LINK.landingUrl,
     SITE_LINK.docsUrl,
+    SITE_LINK.aiUrl,
   ];
   const isDomainAllowed = longUrl
     ? ALLOWED_ORIGINS.some((allowedUrl) => allowedUrl && urlAuthority(longUrl) === urlAuthority(allowedUrl))
