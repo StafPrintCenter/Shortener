@@ -10,8 +10,6 @@ const ALLOWED_DOMAINS = [
   SITE_LINK.aiUrl,
 ].filter(Boolean);
 
-const formatDomain = (url: string) => url.replace(/^https?:\/\//, "");
-
 export function AllowedDomainsTooltip() {
   const [show, setShow] = useState(false);
   const [coords, setCoords] = useState<{ top: number; left: number } | null>(null);
