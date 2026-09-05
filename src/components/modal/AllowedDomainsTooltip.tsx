@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Info } from "lucide-react";
 import { SITE_LINK } from "@/data/site";
+import { stripProtocol } from "@/lib/domain";
 
 const ALLOWED_DOMAINS = [
   SITE_LINK.landingUrl,
