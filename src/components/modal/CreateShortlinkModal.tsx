@@ -85,9 +85,17 @@ export function CreateShortlinkModal({ isOpen, onClose, defaultLongUrl = "" }: C
   return (
     <>
       <Modal isOpen={isOpen} onClose={handleClose} title="Raccourcir un lien" icon={Link2}>
-        <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
-          <AlertTriangle size={14} className="mt-0.5 shrink-0 text-primary" />
-          <p>Seuls les liens pointant vers <span className="font-mono text-foreground">{SITE_LINK.landingUrl}</span> ou <span className="font-mono text-foreground">{SITE_LINK.docsUrl}</span> peuvent être raccourcis.</p>
+        <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 rounded-lg border border-border bg-muted/60 px-3 py-2.5 text-xs text-muted-foreground">
+          <div className="flex items-start sm:items-center gap-2">
+            <AlertTriangle size={14} className="mt-0.5 sm:mt-0 shrink-0 text-primary" />
+            <p className="leading-snug">
+              Seuls les liens de nos domaines officiels peuvent être raccourcis.
+            </p>
+          </div>
+
+          <div className="self-end sm:self-auto">
+            <AllowedDomainsTooltip />
+          </div>
         </div>
 
         {result ? (
