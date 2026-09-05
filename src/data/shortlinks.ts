@@ -16,6 +16,24 @@ export type ShortlinkCategory =
   | "chat";
 
 /**
+ * Source unique de vérité pour l'ensemble des catégories disponibles dans le formulaire
+ */
+export const SHORTLINK_CATEGORIES: ShortlinkCategory[] = [
+  "other",
+  "blog",
+  "design",
+  "web",
+  "print",
+  "video",
+  "formation",
+  "tips",
+  "news",
+  "newsletter",
+  "documentation",
+  "chat",
+];
+
+/**
  * Type aligné sur la réponse de l'API publique /shortlinks
  */
 export type APIShortlink = {
