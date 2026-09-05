@@ -23,6 +23,7 @@ export function isAllowedFrontendUrl(url: string): boolean {
 
   const allowedLanding = urlAuthority(SITE_LINK.landingUrl);
   const allowedDocs = urlAuthority(SITE_LINK.docsUrl);
+  const allowedAi = urlAuthority(SITE_LINK.aiUrl);
 
   return (
     target === allowedLanding ||
