@@ -24,7 +24,11 @@ export function isAllowedFrontendUrl(url: string): boolean {
   const allowedLanding = urlAuthority(SITE_LINK.landingUrl);
   const allowedDocs = urlAuthority(SITE_LINK.docsUrl);
 
-  return target === allowedLanding || target === allowedDocs;
+  return (
+    target === allowedLanding ||
+    target === allowedDocs ||
+    target === allowedAi
+  );
 }
 
 /** Retire le protocole (http(s)://) d'une URL pour un affichage plus lisible */
