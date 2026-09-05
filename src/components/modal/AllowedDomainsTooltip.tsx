@@ -47,7 +47,7 @@ export function AllowedDomainsTooltip() {
           <span
             role="tooltip"
             style={{ top: coords.top, left: coords.left }}
-            className="fixed z-[200] w-60 -translate-x-1/2 -translate-y-full rounded-lg border border-border bg-card p-3 text-xs leading-relaxed text-muted-foreground shadow-lg"
+            className="fixed z-200 w-60 -translate-x-1/2 -translate-y-full rounded-lg border border-border bg-card p-3 text-xs leading-relaxed text-muted-foreground shadow-lg"
           >
             <strong className="block mb-1.5 text-foreground font-semibold">
               Domaines acceptés :
