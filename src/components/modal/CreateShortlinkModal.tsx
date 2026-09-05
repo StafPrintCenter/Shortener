@@ -7,10 +7,6 @@ import { getShortlinkCategoryLabel, SHORTLINK_CATEGORIES, type ShortlinkCategory
 import { isAllowedFrontendUrl, stripProtocol } from "@/lib/domain";
 import { SITE_LINK } from "@/data/site";
 
-const SHORTLINK_CATEGORY_OPTIONS: ShortlinkCategory[] = [
-  "other", "blog", "design", "web", "print", "video", "formation", "tips", "news", "newsletter",
-];
-
 interface CreateShortlinkModalProps {
   isOpen: boolean;
   onClose: () => void;
