@@ -60,6 +60,8 @@ const SHORTLINK_CATEGORY_LABELS: Record<ShortlinkCategory, string> = {
   blog: "Blog",
   newsletter: "Newsletter",
   other: "Autre",
+  documentation: "Documentation",
+  chat: "Discussion IA",
 };
 
 /**
