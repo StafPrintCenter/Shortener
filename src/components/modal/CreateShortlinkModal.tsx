@@ -3,7 +3,7 @@ import { Link2, Copy, Check, Loader2, AlertTriangle } from "lucide-react";
 import { Modal } from "./Modal";
 import { QrCodeAutoPanel, AllowedDomainsTooltip } from "./";
 import { createShortlink } from "@/stores/useShortlinksStore";
-import { getShortlinkCategoryLabel, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
+import { getShortlinkCategoryLabel, SHORTLINK_CATEGORIES, type ShortlinkCategory, type APIShortlink } from "@/data/shortlinks";
 import { isAllowedFrontendUrl, stripProtocol } from "@/lib/domain";
 import { SITE_LINK } from "@/data/site";
 
