@@ -36,7 +36,7 @@ export function AllowedDomainsTooltip() {
         onFocus={handleShow}
         onBlur={() => setShow(false)}
         aria-label="Voir la liste des domaines autorisés"
-        className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-2 hover:bg-muted hover:decoration-foreground cursor-help shrink-0"
+        className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium text-foreground underline decoration-muted-foreground/40 underline-offset-2 hover:bg-muted hover:decoration-foreground cursor-help"
       >
         <Info size={12} className="text-primary" />
       </button>
