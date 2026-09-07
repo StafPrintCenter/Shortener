@@ -18,20 +18,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { title: SHORTEN_TITLE },
       { name: "description", content: SHORTEN_DESC },
-      { name: "author", content: SITE.name },
-      { name: "robots", content: "index, follow" },
-      { property: "og:site_name", content: "SPC Shortener" },
-      { property: "og:locale", content: "fr_FR" },
-      { name: "keywords", content: `raccourcisseur, lien court, redirection securisee, transparence, spc shortener, deconnexion, ${SITE.name}, porto-novo` },
+      { name: "author", content: `${SITE.manager}` },
 
-      // Open Graph / Facebook / LinkedIn
+      /* Open Graph / Facebook / WhatsApp */
       { property: "og:title", content: SHORTEN_TITLE },
       { property: "og:description", content: SHORTEN_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: SITE.name },
+      { property: "og:site_name", content: `${SITE.shortName} - ${SITE.name}` },
+      { property: "og:image", content: `${logo.meta}` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: `${SITE.shortName} - Réducteur de liens sécurisé par ${SITE.name}` },
+      { property: "og:url", content: `${SITE_LINK.shortUrl}` },
+      { property: "og:locale", content: "fr_BJ" },
 
-      // Twitter Card
+      /* Twitter / X */
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: `${logo.meta}` },
       { name: "twitter:title", content: SHORTEN_TITLE },
       { name: "twitter:description", content: SHORTEN_DESC },
       { name: "twitter:site", content: "@StafPrintCenter" },
@@ -46,31 +49,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
       { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
     ],
     scripts: [
+      /* 1. Schéma WebApplication pour l'outil de réduction de lien */
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: "SPC Shortener",
-          alternateName: "SPC Shortener",
-          description: SHORTEN_DESC,
-          applicationCategory: "SecurityApplication",
+          "@id": `${SITE_LINK.shortUrl}/#webapp`,
+          url: SITE_LINK.shortUrl,
+          name: `${SITE.shortName} - Réducteur de lien`,
+          applicationCategory: "UtilitiesApplication",
           operatingSystem: "All",
-          author: { "@type": "Organization", name: SITE.name },
+          description: SHORTEN_DESC,
+          inLanguage: "fr-BJ",
+          publisher: {
+            "@type": "Organization",
+            name: SITE.name,
+            logo: {
+              "@type": "ImageObject",
+              url: `${logo.meta}`
+            }
+          }
         }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "SPC Redirect",
-          description: "Plateforme de redirection de liens axée sur la sécurité et la transparence.",
-        }),
-      },
+      }
     ],
   }),
   shellComponent: RootShell,
