@@ -7,8 +7,8 @@ import { SITE, SITE_LINK } from "@/data/site";
 import logo from "@/assets/logos.json";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
 
-const SHORTEN_TITLE = `${SITE.shortName} - Redirection de liens sécurisée & transparente pour ${SITE.name}`;
-const SHORTEN_DESC = `${SITE.shortName} redirige vos liens avec transparence : chaque destination est analysée et ses métadonnées sont extraites pour votre sécurité avant l'accès.`;
+const SHORTEN_TITLE = `${SITE.shortName} | Réducteur de Lien Sécurisé & Raccourcisseur d'URL - ${SITE.name}`;
+const SHORTEN_DESC = `Raccourcissez vos liens en toute sécurité avec ${SITE.shortName}. Analyse de sécurité des URLs, aperçu des métadonnées et redirection transparente par ${SITE.name}.`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
