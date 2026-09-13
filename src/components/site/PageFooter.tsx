@@ -1,53 +1,60 @@
 import { SITE, SITE_LINK } from "@/data/site";
 
 export function PageFooter() {
-  const landingBase = SITE_LINK.landingUrl.replace(/\/$/, "");
-
   return (
-    <footer className="border-t border-border/70">
-      <div className="mx-auto flex min-h-16 w-full max-w-6xl flex-col items-center justify-center gap-2 px-6 py-4 text-center sm:flex-row sm:gap-3 sm:py-0">
-        <p className="text-xs text-muted-foreground">
+    <footer className="border-t border-border/70 bg-card/40">
+      <div className="mx-auto flex min-h-16 w-full max-w-6xl flex-col gap-3 px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:py-3">
+        {/* Copyright */}
+        <p className="text-center text-xs text-muted-foreground sm:text-left">
           © {new Date().getFullYear()} {SITE.shortName} · Tous droits réservés.
-        </p>
+          <span className="mx-1.5 hidden text-muted-foreground/50 sm:inline">|</span>
 
-        {/* Séparateur masqué sur mobile */}
-        <span className="hidden text-xs text-muted-foreground/60 sm:inline">|</span>
-
-        {/* Liens légaux */}
-        <div className="flex flex-wrap justify-center gap-2 text-xs text-muted-foreground">
-          <a
-            href={`${landingBase}/legal/mentions`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary underline underline-offset-4 transition-colors"
-          >
-            Mentions légales
-          </a>
-          <span>·</span>
-          <a
-            href={`${landingBase}/legal/privacy`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary underline underline-offset-4 transition-colors"
-          >
-            Confidentialité
-          </a>
-        </div>
-
-        {/* Séparateur masqué sur mobile */}
-        <span className="hidden text-xs text-muted-foreground/60 sm:inline">|</span>
-
-        <p className="text-xs text-muted-foreground">
-          Un service fourni par{" "}
           <a
             href={SITE_LINK.landingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium underline underline-offset-4 hover:text-primary transition-colors"
+            className="mt-1 block font-medium underline underline-offset-4 transition-colors hover:text-primary sm:mt-0 sm:inline"
           >
             {SITE.name}
           </a>
         </p>
+
+        {/* Liens */}
+        <nav
+          aria-label="Liens légaux"
+          className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground sm:justify-end"
+        >
+          <a
+            href={`${SITE_LINK.landingUrl}/legal/mentions`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 transition-colors hover:text-primary"
+          >
+            Mentions légales
+          </a>
+
+          <span className="text-muted-foreground/50">·</span>
+
+          <a
+            href={`${SITE_LINK.landingUrl}/legal/privacy`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 transition-colors hover:text-primary"
+          >
+            Confidentialité
+          </a>
+
+          <span className="text-muted-foreground/50">·</span>
+
+          <a
+            href={`${SITE_LINK.docsUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 transition-colors hover:text-primary"
+          >
+            Lire la Documentation
+          </a>
+        </nav>
       </div>
     </footer>
   );
