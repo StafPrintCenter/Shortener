@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader, PageFooter } from "@/components/site";
+import { ShortShell } from "@/components/site";
 import { CreateShortlinkModal, ReportModal } from "@/components/modal";
 import { HeroSection, PillarsSection } from "@/components/pages/home";
 import { SITE } from "@/data/site";
