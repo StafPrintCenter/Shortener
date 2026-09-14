@@ -3,7 +3,7 @@ import { createFileRoute, useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
-import { PageHeader, PageFooter } from "@/components/site";
+import { ShortShell } from "@/components/site";
 import { fetchShortlinkByAlias } from "@/stores/useShortlinksStore";
 import { fetchSiteMetadata } from "@/lib/metadata.functions";
 import { urlAuthority } from "@/lib/domain";
@@ -142,47 +142,39 @@ function RedirectPage() {
   const notFound = !isLoadingLink && (!!linkError || !shortlink);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <PageHeader>
-        <span className="font-mono text-xs text-muted-foreground">/r/{alias}</span>
-      </PageHeader>
+    <ShortShell
+      headerContent={<span className="font-mono text-xs text-muted-foreground">/r/{alias}</span>}
+      mainClassName="flex items-center justify-center px-6 py-12"
+    >
+      <div className="relative w-full max-w-4xl">
+        {!notFound && !isBlocked && !isDomainAllowed && <DomainWarning />}
 
-      <main className="relative flex flex-1 items-center justify-center px-6 py-12">
-        <div className="pointer-events-none absolute inset-0 grid-field opacity-50" />
+        <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
+          <MetadataPreview
+            notFound={notFound}
+            isLoading={isLoading}
+            shortlink={shortlink}
+            meta={meta}
+            domain={domain}
+            longUrl={longUrl}
+          />
 
-        <div className="relative w-full max-w-4xl">
-          {!notFound && !isBlocked && !isDomainAllowed && <DomainWarning />}
-
-          <div className="grid gap-4 overflow-hidden rounded-xl border border-border bg-card shadow-panel lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-border">
-
-            <MetadataPreview
-              notFound={notFound}
-              isLoading={isLoading}
-              shortlink={shortlink}
-              meta={meta}
-              domain={domain}
-              longUrl={longUrl}
-            />
-
-            <RedirectControlPanel
-              notFound={notFound}
-              isBlocked={!!isBlocked}
-              isDomainAllowed={isDomainAllowed}
-              redirected={redirected}
-              cancelled={cancelled}
-              seconds={seconds}
-              countdownMax={COUNTDOWN}
-              shortlink={shortlink}
-              domain={domain}
-              onResume={resume}
-              onRedirectNow={redirectNow}
-              onCancel={cancel}
-            />
-          </div>
+          <RedirectControlPanel
+            notFound={notFound}
+            isBlocked={!!isBlocked}
+            isDomainAllowed={isDomainAllowed}
+            redirected={redirected}
+            cancelled={cancelled}
+            seconds={seconds}
+            countdownMax={COUNTDOWN}
+            shortlink={shortlink}
+            domain={domain}
+            onResume={resume}
+            onRedirectNow={redirectNow}
+            onCancel={cancel}
+          />
         </div>
-      </main>
-
-      <PageFooter />
-    </div>
+      </div>
+    </ShortShell>
   );
 }
