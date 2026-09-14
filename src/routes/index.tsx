@@ -40,30 +40,24 @@ function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <PageHeader>
+    <ShortShell
+      headerContent={
         <span className="hidden items-center gap-2 text-xs font-medium text-muted-foreground sm:inline-flex">
           <span className="h-1.5 w-1.5 rounded-full bg-success" />
           Systèmes opérationnels
         </span>
-      </PageHeader>
+      }
+    >
+      {/* Bloc d'introduction et d'action */}
+      <HeroSection
+        onCreateClick={() => setIsCreateOpen(true)}
+        onReportClick={() => setIsReportOpen(true)}
+      />
 
-      <main className="relative flex-1 overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 grid-field opacity-70" />
+      {/* Bloc descriptif des arguments clés */}
+      <PillarsSection />
 
-        {/* Bloc d'introduction et d'action */}
-        <HeroSection
-          onCreateClick={() => setIsCreateOpen(true)}
-          onReportClick={() => setIsReportOpen(true)}
-        />
-
-        {/* Bloc descriptif des arguments clés */}
-        <PillarsSection />
-      </main>
-
-      <PageFooter />
-
-      {/* Gestion des Modals */}
+      {/* Modals */}
       <CreateShortlinkModal
         isOpen={isCreateOpen}
         onClose={() => {
@@ -77,6 +71,6 @@ function Home() {
         isOpen={isReportOpen}
         onClose={() => setIsReportOpen(false)}
       />
-    </div>
+    </ShortShell>
   );
 }
