@@ -7,7 +7,7 @@ interface ShortShellProps {
   headerContent?: React.ReactNode;
   className?: string;
   mainClassName?: string;
-  gridOpacityClass?: string;
+  showGrid?: boolean;
 }
 
 export function ShortShell({
@@ -15,23 +15,24 @@ export function ShortShell({
   headerContent,
   className,
   mainClassName,
-  gridOpacityClass = "opacity-80",
+  showGrid = true,
 }: ShortShellProps) {
   return (
-    <div className={cn("relative min-h-screen bg-background overflow-x-clip text-foreground font-sans", className)}>
-      {/* Background papier avec grille toujours active */}
-      <div className={cn("pointer-events-none absolute inset-0 paper-grid", gridOpacityClass)} />
+    <div className={cn("flex min-h-screen flex-col bg-background text-foreground font-sans", className)}>
+      <PageHeader>{headerContent}</PageHeader>
 
-      {/* Contenu principal isolé au z-index supérieur */}
-      <div className="relative z-10 flex min-h-screen flex-col">
-        <PageHeader>{headerContent}</PageHeader>
+      <main className={cn("relative flex-1 overflow-hidden", mainClassName)}>
+        {/* Grille d'arrière-plan isolée dans le main pour ne pas recouvrir le header/footer */}
+        {showGrid && (
+          <div
+            className={cn("pointer-events-none absolute inset-0 grid-field")}
+          />
+        )}
 
-        <main className={cn("relative flex-1", mainClassName)}>
-          {children}
-        </main>
+        {children}
+      </main>
 
-        <PageFooter />
-      </div>
+      <PageFooter />
     </div>
   );
 }
