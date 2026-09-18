@@ -4,13 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * SPC Shortener — Design system
- * Warm African / terracotta aesthetic: sharp borders, high-contrast, earthy
- * orange & ochre accents. Light-first, deep warm dark theme.
-
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
