@@ -11,6 +11,7 @@ interface HeroSectionProps {
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
   const isProd = import.meta.env.PROD;
   const envAlias = isProd ? "ebdu5x" : "688ddw";
+
   // Valeur du bloc d'exemple
   const longUrl = `${stripProtocol(SITE_LINK.landingUrl)}${CONTACT_PRESET_ENCODE}`;
   const shortUrl = `${stripProtocol(SITE_LINK.shortUrl)}/r/${envAlias}`;
