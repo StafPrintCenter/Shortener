@@ -1,6 +1,3 @@
-const isProd = import.meta.env.PROD;
-const alias = isProd ? "ebdu5x" : "688ddw";
-
 export const SITE = {
   name: "STAF PRINT CENTER",
   tool: "SPC Shortener",
@@ -24,8 +21,7 @@ export const SITE = {
     nb: "120+",
     label: "avis clients",
     stars: "4.9",
-  },
-  alias,
+  }
 };
 
 export const SITE_LINK = {
