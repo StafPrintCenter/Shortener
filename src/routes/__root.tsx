@@ -7,8 +7,8 @@ import { SITE, SITE_LINK } from "@/data/site";
 import logo from "@/assets/logos.json";
 import { NotFoundComponent, ErrorComponent } from "@/components/errors";
 
-const SHORTEN_TITLE = `${SITE.shortName} | Réducteur de Lien Sécurisé & Raccourcisseur d'URL - ${SITE.name}`;
-const SHORTEN_DESC = `Raccourcissez vos liens en toute sécurité avec ${SITE.shortName}. Analyse de sécurité des URLs, aperçu des métadonnées et redirection transparente par ${SITE.name}.`;
+const SHORTEN_TITLE = `${SITE.tool} | Réducteur de Lien Sécurisé & Raccourcisseur d'URL - ${SITE.name}`;
+const SHORTEN_DESC = `Raccourcissez vos liens en toute sécurité avec ${SITE.tool}. Analyse de sécurité des URLs, aperçu des métadonnées et redirection transparente par ${SITE.name}.`;
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -24,11 +24,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: SHORTEN_TITLE },
       { property: "og:description", content: SHORTEN_DESC },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: `${SITE.shortName} - ${SITE.name}` },
+      { property: "og:site_name", content: `${SITE.tool} - ${SITE.name}` },
       { property: "og:image", content: `${logo.meta}` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: `${SITE.shortName} - Réducteur de liens sécurisé par ${SITE.name}` },
+      { property: "og:image:alt", content: `${SITE.tool} - Réducteur de liens sécurisé par ${SITE.name}` },
       { property: "og:url", content: `${SITE_LINK.shortUrl}` },
       { property: "og:locale", content: "fr_BJ" },
 
@@ -60,7 +60,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "WebApplication",
           "@id": `${SITE_LINK.shortUrl}/#webapp`,
           url: SITE_LINK.shortUrl,
-          name: `${SITE.shortName} - Réducteur de lien`,
+          name: `${SITE.tool} - Réducteur de lien`,
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "All",
           description: SHORTEN_DESC,
