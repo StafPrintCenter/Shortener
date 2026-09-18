@@ -9,9 +9,11 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onCreateClick, onReportClick }: HeroSectionProps) {
+  const isProd = import.meta.env.PROD;
+  const envAlias = isProd ? "ebdu5x" : "688ddw";
   // Valeur du bloc d'exemple
   const longUrl = `${stripProtocol(SITE_LINK.landingUrl)}${CONTACT_PRESET_ENCODE}`;
-  const shortUrl = `${stripProtocol(SITE_LINK.shortUrl)}/r/${SITE.alias}`;
+  const shortUrl = `${stripProtocol(SITE_LINK.shortUrl)}/r/${envAlias}`;
 
   return (
     <section className="relative mx-auto grid max-w-6xl grid-cols-1 gap-14 px-6 py-20 lg:grid-cols-2 lg:items-center lg:gap-10">
