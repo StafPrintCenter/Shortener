@@ -3,6 +3,7 @@ const alias = isProd ? "ebdu5x" : "688ddw";
 
 export const SITE = {
   name: "STAF PRINT CENTER",
+  tool: "SPC Shortener",
   slogan: "L'empreinte de votre succès",
   activity: "Studio de design et d'impression",
   manager: "Steve Aster Afovo",
@@ -24,8 +25,6 @@ export const SITE = {
     label: "avis clients",
     stars: "4.9",
   },
-
-  shortName: "SPC Shortener",
   alias,
 };
 
