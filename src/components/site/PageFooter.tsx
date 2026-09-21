@@ -47,14 +47,14 @@ export function PageFooter() {
 
           <span className="text-muted-foreground/50">·</span>
 
-          <a
-            href={`${SITE_LINK.landingUrl}/legal/privacy`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 transition-colors hover:text-primary"
-          >
-            Confidentialité
-          </a>
+            <a
+              href={`${landingBase}/legal/privacy`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 transition-colors hover:text-primary"
+            >
+              Confidentialité
+            </a>
 
           <span className="text-muted-foreground/50">·</span>
 
