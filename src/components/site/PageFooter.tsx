@@ -58,15 +58,34 @@ export function PageFooter() {
 
             <span className="text-muted-foreground/50">·</span>
 
-          <a
-            href={`${SITE_LINK.docsUrl}/docs/shortener/raccourcir-un-lien`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline underline-offset-4 transition-colors hover:text-primary"
-          >
-            Lire la Documentation
-          </a>
-        </nav>
+            <a
+              href={`${SITE_LINK.docsUrl}/docs/shortener/raccourcir-un-lien`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 transition-colors hover:text-primary"
+            >
+              Lire la Documentation
+            </a>
+          </nav>
+
+          <span className="hidden text-muted-foreground/30 sm:inline">|</span>
+
+          {/* Réseaux sociaux */}
+          <div className="flex items-center gap-2">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-primary"
+              >
+                <Icon className="size-4" />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );
