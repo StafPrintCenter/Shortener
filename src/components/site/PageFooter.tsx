@@ -45,7 +45,7 @@ export function PageFooter() {
               Mentions légales
             </a>
 
-          <span className="text-muted-foreground/50">·</span>
+            <span className="text-muted-foreground/50">·</span>
 
             <a
               href={`${landingBase}/legal/privacy`}
