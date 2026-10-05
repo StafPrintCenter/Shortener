@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ShieldCheck, Mail, Scale } from "lucide-react";
 import { ShortShell } from "@/components/site";
 import { SITE } from "@/data/site";
 
