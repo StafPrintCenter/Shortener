@@ -3,10 +3,8 @@ import { ShortShell } from "@/components/site";
 import { SITE } from "@/data/site";
 
 const PAGE_TITLE = `Conditions Générales d'Utilisation - ${SITE.tool} | ${SITE.name}`;
-const PAGE_DESC = `Conditions générales d'utilisation de la plateforme ${SITE.tool} : données personnelles, propriété intellectuelle et délais.`;
-
-// Date de dernière mise à jour fixe
-const LAST_UPDATE_DATE = "17 septembre 2026";
+const PAGE_DESC = `Conditions Générales d'Utilisation de la plateforme ${SITE.tool}. Fonctionnement des redirections, sécurité, signalements et responsabilités.`;
+const LAST_UPDATE_DATE = "5 octobre 2026";
 
 export const Route = createFileRoute("/cgu")({
   head: () => ({
