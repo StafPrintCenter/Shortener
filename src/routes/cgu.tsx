@@ -67,8 +67,20 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    title: "5. Délais et production",
-    body: `Les délais indiqués (Ultra Express, Standard, Planifié) sont donnés à titre indicatif et courent à partir de la validation du bon à tirer et du versement de l'acompte convenu. Les retards liés à la fourniture tardive d'éléments par le client ne peuvent être imputés à ${SITE.name}.`,
+    id: "signalement",
+    title: "6. Procédure de signalement d'abus",
+    paragraphs: [
+      "Chaque page de redirection intègre un bouton « Signaler un problème » permettant à toute personne de notifier un lien suspect en précisant le motif (phishing, spam, contenu malveillant, autre).",
+      `Les signalements sont instruits par l'équipe technique de ${SITE.name} afin de prendre les mesures conservatoires appropriées (suspension d'alias, blocage de domaine).`,
+    ],
+  },
+  {
+    id: "responsabilite",
+    title: "7. Responsabilité & Liens tiers",
+    paragraphs: [
+      `${SITE.name} déploie ses meilleurs efforts pour assurer une haute disponibilité du service ${SITE.tool}. Toutefois, sa responsabilité ne saurait être engagée en cas d'interruption momentanée, d'indisponibilité du réseau ou d'indisponibilité du site tiers ciblé.`,
+      `${SITE.name} n'exerçant aucun contrôle sur les sites externes vers lesquels pointent les liens redirigés, l'utilisateur navigue sur ces plateformes tierces sous sa propre responsabilité.`,
+    ],
   },
   {
     title: "6. Retrait et livraison",
