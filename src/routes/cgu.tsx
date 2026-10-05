@@ -85,8 +85,8 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    id: "donnees",
-    title: "8. Données personnelles & Confidentialité",
+    id: "propriete-intellectuelle",
+    title: "8. Propriété intellectuelle & Contenus de l'écosystème",
     paragraphs: [
       `${SITE.tool} privilégie la minimisation des données : le service n'exige la création d'aucun compte public et n'utilise pas de traceurs publicitaires intrusifs. Les éventuelles préférences d'affichage (ex. thème clair/sombre) sont enregistrées localement dans votre navigateur.`,
       "Les informations transmises lors d'un signalement sont exclusivement exploitées aux fins d'investigation de sécurité et d'assainissement du service.",
