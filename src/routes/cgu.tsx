@@ -62,8 +62,9 @@ const SECTIONS: CguSection[] = [
     id: "liens-interdits",
     title: "5. Usages interdits & Protection des utilisateurs",
     paragraphs: [
-      `Il est strictement interdit d'utiliser ${SITE.tool} pour diffuser des liens pointant vers des contenus frauduleux (hameçonnage / phishing), des logiciels malveillants, des escroqueries financières ou tout contenu contraire à l'ordre public et aux bonnes mœurs.`,
-      `${SITE.name} se réserve le droit de neutraliser, désactiver ou supprimer sans préavis tout alias suspect ou avéré nuisible.`,
+      `La plateforme ${SITE.tool} applique une politique stricte de redirection contrôlée : aucun lien externe ne peut être redirigé. Seuls les domaines et sous-domaines officiellement autorisés et validés par ${SITE.name} (notamment l'écosystème https://go.stafprint.com et ses plateformes associées) sont admis.`,
+      `Il est strictement interdit de tenter de contourner cette liste blanche, d'injecter des domaines tiers non autorisés, d'obscurcir intentionnellement des destinations ou d'exploiter les passerelles à des fins d'hameçonnage (phishing), d'escroquerie ou de diffusion de code malveillant.`,
+      `Toute tentative de manipulation technique, d'utilisation abusive de scripts automatisés ou de saturation anormale de la passerelle entraîne la neutralisation immédiate de l'alias et le blocage de la requête par ${SITE.name}.`,
     ],
   },
   {
