@@ -96,8 +96,12 @@ const SECTIONS: CguSection[] = [
     id: "propriete",
     title: "9. Propriété intellectuelle",
     paragraphs: [
-      `La marque, la charte graphique, les composants visuels et le code de ${SITE.tool} sont la propriété exclusive de ${SITE.name}. Toute reproduction ou exploitation non autorisée est interdite.`,
-      "Les logos, titres et images extraits des sites de destination demeurent la propriété exclusive de leurs détenteurs respectifs.",
+      `Lors de l'interaction avec nos liens courts (notamment https://go.stafprint.com) ou avec nos bannières et annonces d'information, nous collectons automatiquement certaines données techniques anonymisées ou pseudonymisées :`,
+      `• Données de géolocalisation : Pays et ville d'origine déduits de l'adresse IP.`,
+      `• Informations sur le dispositif : Type d'appareil (mobile ou ordinateur) et navigateur web utilisé.`,
+      `• Données d'horodatage et de provenance : Date et heure exactes des interactions ainsi que le domaine référent (Referer).`,
+      `• Métriques d'affichage : Nombre de vues, clics et fermetures des annonces et bannières publiées sur le site.`,
+      `Ces données sont strictement destinées au suivi technique, à la sécurité des flux et à la mesure d'audience de ${SITE.name}, sans revente ni cession publicitaire à des tiers.`,
     ],
   },
   {
