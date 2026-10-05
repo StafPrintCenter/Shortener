@@ -59,8 +59,12 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    title: "4. Signalement de liens",
-    body: `Rôle du formulaire de signalement, traitement des signalements (actuellement non persistés en base réelle — à adapter si vous branchez un vrai backend plus tard).`,
+    id: "liens-interdits",
+    title: "5. Usages interdits & Protection des utilisateurs",
+    paragraphs: [
+      `Il est strictement interdit d'utiliser ${SITE.tool} pour diffuser des liens pointant vers des contenus frauduleux (hameçonnage / phishing), des logiciels malveillants, des escroqueries financières ou tout contenu contraire à l'ordre public et aux bonnes mœurs.`,
+      `${SITE.name} se réserve le droit de neutraliser, désactiver ou supprimer sans préavis tout alias suspect ou avéré nuisible.`,
+    ],
   },
   {
     title: "5. Délais et production",
