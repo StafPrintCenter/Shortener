@@ -107,7 +107,7 @@ const SECTIONS: CguSection[] = [
   },
 ];
 
-function CguPage() {
+export function CguPage() {
   return (
     <ShortShell>
       <main className="mx-auto w-full max-w-3xl px-4">
