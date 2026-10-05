@@ -36,6 +36,7 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
+    id: "acceptation",
     title: "2. Acceptation des conditions",
     paragraphs: [
       `L'accès et l'utilisation de ${SITE.tool} (notamment l'accès aux pages de transit sous la forme /r/:alias) emportent l'acceptation pleine, entière et sans réserve des présentes Conditions Générales d'Utilisation (CGU).`,
