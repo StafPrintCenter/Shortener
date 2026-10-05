@@ -59,7 +59,7 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    id: "liens-interdits",
+    id: "usages-interdits",
     title: "5. Usages interdits & Protection des utilisateurs",
     paragraphs: [
       `La plateforme ${SITE.tool} applique une politique stricte de redirection contrôlée : aucun lien externe ne peut être redirigé. Seuls les domaines et sous-domaines officiellement autorisés et validés par ${SITE.name} (notamment l'écosystème https://go.stafprint.com et ses plateformes associées) sont admis.`,
