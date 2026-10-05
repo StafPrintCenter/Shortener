@@ -53,7 +53,7 @@ const SECTIONS = [
 
 function CguPage() {
   return (
-    <BriefShell>
+    <ShortShell>
       <main className="mx-auto w-full max-w-3xl px-4">
         <h1 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
           Conditions Générales d'Utilisation
