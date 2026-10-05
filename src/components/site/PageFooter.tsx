@@ -43,7 +43,7 @@ export function PageFooter() {
               rel="noopener noreferrer"
               className="underline underline-offset-4 transition-colors hover:text-primary"
             >
-              Conditions Générales d'Utilisation
+              CGU
             </Link>
 
             <span className="text-muted-foreground/50">·</span>
