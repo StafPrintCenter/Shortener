@@ -37,11 +37,26 @@ const SECTIONS: CguSection[] = [
   },
   {
     title: "2. Acceptation des conditions",
-    body: "L'utilisation du service (clic sur un lien /r/:alias) implique l'acceptation des présentes CGU.",
+    paragraphs: [
+      `L'accès et l'utilisation de ${SITE.tool} (notamment l'accès aux pages de transit sous la forme /r/:alias) emportent l'acceptation pleine, entière et sans réserve des présentes Conditions Générales d'Utilisation (CGU).`,
+      "Si un utilisateur refuse tout ou partie de ces stipulations, il lui est expressément recommandé d'interrompre la navigation ou de cliquer sur le bouton « Annuler » disponible sur chaque page d'interstitiel.",
+    ],
   },
   {
-    title: "3. Description du service",
-    body: "Fonctionnement de la redirection, délai de 10 secondes, bouton « Annuler », extraction de métadonnées depuis la destination réelle, mention « Vérifié sécurisé » (préciser que c'est une vérification d'intégrité technique, pas une garantie absolue de sécurité du contenu tiers).",
+    id: "fonctionnement",
+    title: "3. Fonctionnement de la redirection & Compte à rebours",
+    paragraphs: [
+      `Lorsqu'un utilisateur ouvre un lien ${SITE.tool}, une page d'attente affiche un compte à rebours de 10 secondes ainsi que l'URL cible intégrale avant que la redirection automatique ne soit déclenchée.`,
+      "L'utilisateur conserve à tout moment la faculté de suspendre le décompte en cliquant sur « Annuler », de le « Reprendre » à sa convenance, ou d'accélérer l'accès immédiat via « Rediriger maintenant ».",
+    ],
+  },
+  {
+    id: "metadonnees",
+    title: "4. Extraction de métadonnées & Mention « Vérifié »",
+    paragraphs: [
+      `${SITE.tool} interroge en temps réel les balises publiques Open Graph (titre, description, visuel d'aperçu) publiées par le site de destination afin de donner une visibilité claire sur la ressource ciblée.`,
+      `La mention « Vérifié sécurisé » atteste de la bonne conformité technique du lien et du protocole chiffré (HTTPS), mais ne constitue en aucun cas une certification d'innocuité absolue ni un aval éditorial de ${SITE.name} quant aux contenus édités par les éditeurs tiers.`,
+    ],
   },
   {
     title: "4. Signalement de liens",
