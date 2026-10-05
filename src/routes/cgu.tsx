@@ -184,7 +184,7 @@ export function CguPage() {
                 .
               </p>
             </section>
-          ))}
+          </div>
         </div>
       </main>
     </ShortShell>
