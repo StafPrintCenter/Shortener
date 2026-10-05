@@ -91,8 +91,19 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    title: "7. Modification des CGU",
-    body: `${SITE.name} se réserve le droit de faire évoluer les présentes conditions. La version applicable est celle publiée sur cette page au moment de l'envoi du brief.`,
+    id: "propriete",
+    title: "9. Propriété intellectuelle",
+    paragraphs: [
+      `La marque, la charte graphique, les composants visuels et le code de ${SITE.tool} sont la propriété exclusive de ${SITE.name}. Toute reproduction ou exploitation non autorisée est interdite.`,
+      "Les logos, titres et images extraits des sites de destination demeurent la propriété exclusive de leurs détenteurs respectifs.",
+    ],
+  },
+  {
+    id: "droit",
+    title: "10. Droit applicable & Règlement des litiges",
+    paragraphs: [
+      `Les présentes CGU sont régies par le droit en vigueur en République du Bénin. En cas de différend relatif à l'interprétation ou à l'exécution des présentes, les parties privilégieront une résolution amiable avant toute saisine des juridictions compétentes du ressort de Porto-Novo.`,
+    ],
   },
 ];
 
