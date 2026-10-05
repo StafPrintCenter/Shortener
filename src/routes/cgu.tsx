@@ -93,8 +93,8 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    id: "propriete",
-    title: "9. Propriété intellectuelle",
+    id: "donnees-personnelles",
+    title: "9. Données personnelles, Télémétrie & Confidentialité",
     paragraphs: [
       `Lors de l'interaction avec nos liens courts (notamment https://go.stafprint.com) ou avec nos bannières et annonces d'information, nous collectons automatiquement certaines données techniques anonymisées ou pseudonymisées :`,
       `• Données de géolocalisation : Pays et ville d'origine déduits de l'adresse IP.`,
