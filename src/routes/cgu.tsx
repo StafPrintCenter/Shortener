@@ -74,6 +74,6 @@ function CguPage() {
           ))}
         </div>
       </main>
-    </BriefShell>
+    </ShortShell>
   );
 }
