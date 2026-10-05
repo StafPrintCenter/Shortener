@@ -88,8 +88,8 @@ const SECTIONS: CguSection[] = [
     id: "propriete-intellectuelle",
     title: "8. Propriété intellectuelle & Contenus de l'écosystème",
     paragraphs: [
-      `${SITE.tool} privilégie la minimisation des données : le service n'exige la création d'aucun compte public et n'utilise pas de traceurs publicitaires intrusifs. Les éventuelles préférences d'affichage (ex. thème clair/sombre) sont enregistrées localement dans votre navigateur.`,
-      "Les informations transmises lors d'un signalement sont exclusivement exploitées aux fins d'investigation de sécurité et d'assainissement du service.",
+      `L'architecture logicielle, la marque, les interfaces et la charte graphique de ${SITE.tool} sont la propriété exclusive de ${SITE.name}.`,
+      `Dans la mesure où la plateforme ne redirige que vers les domaines habilités par ${SITE.name}, l'ensemble des éléments, marques, catalogues, visuels et données applicatives consultés sur les plateformes cibles sont également protégés au titre du droit d'auteur et de la propriété intellectuelle. Toute extraction, reproduction ou détournement de ces ressources sans accord préalable est rigoureusement prohibé.`,
     ],
   },
   {
