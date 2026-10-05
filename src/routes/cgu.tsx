@@ -20,7 +20,13 @@ export const Route = createFileRoute("/cgu")({
   component: CguPage,
 });
 
-const SECTIONS = [
+interface CguSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+}
+
+const SECTIONS: CguSection[] = [
   {
     title: "1. Préambule & objet",
     body: `${SITE.tool} est un service de redirection de liens courts édité par ${SITE.name} avec vérification préalable (aperçu titre/image/description) avant redirection vers la destination finale.`,
