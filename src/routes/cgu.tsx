@@ -111,21 +111,78 @@ function CguPage() {
   return (
     <ShortShell>
       <main className="mx-auto w-full max-w-3xl px-4">
-        <h1 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
-          Conditions Générales d'Utilisation
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          Dernière mise à jour : {LAST_UPDATE_DATE}
-        </p>
+        <div className="flex min-h-screen flex-col bg-background text-foreground">
+          {/* Main Content */}
+          <div className="pointer-events-none absolute inset-0 grid-field opacity-60" />
 
-        <div className="mt-8 space-y-6">
-          {SECTIONS.map((s) => (
-            <section
-              key={s.title}
-              className="rounded-2xl border border-border bg-card p-6 shadow-soft"
-            >
-              <h2 className="text-lg font-semibold text-foreground">{s.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+          <div className="relative mx-auto w-full max-w-4xl px-6 py-12 sm:py-16">
+            {/* Badge & Title */}
+            <div className="text-center sm:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm">
+                <Scale className="h-3.5 w-3.5 text-primary" />
+                Cadre légal & Transparence
+              </span>
+              <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Conditions Générales d'Utilisation
+              </h1>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Plateforme <strong className="text-foreground">{SITE.tool}</strong> · Éditée par{" "}
+                <strong className="text-foreground">{SITE.name}</strong> ({SITE.city})
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Dernière mise à jour : {LAST_UPDATE_DATE}
+              </p>
+            </div>
+
+            {/* Quick Notice */}
+            <div className="mt-8 flex items-start gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+              <ShieldCheck className="h-5 w-5 shrink-0 text-primary" />
+              <p>
+                En empruntant un lien de redirection géré par{" "}
+                <span className="font-semibold text-foreground">{SITE.tool}</span>, vous bénéficiez
+                d'un contrôle d'intégrité préalable. Ces conditions précisent vos droits, les règles
+                d'usage et les limites de garantie applicables.
+              </p>
+            </div>
+
+            {/* Sections List */}
+            <div className="mt-10 space-y-6">
+              {SECTIONS.map((section) => (
+                <section
+                  key={section.id}
+                  id={section.id}
+                  className="rounded-xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-panel"
+                >
+                  <h2 className="text-base font-semibold text-foreground sm:text-lg">
+                    {section.title}
+                  </h2>
+                  <div className="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                    {section.paragraphs.map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            {/* Contact Box */}
+            <section className="mt-10 rounded-xl border border-border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2 text-base font-semibold text-foreground">
+                <Mail className="h-4 w-4 text-primary" />
+                <h3>11. Contact & Réclamations</h3>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Pour toute question sur l'application de ces conditions ou pour notifier un contenu
+                litigieux, vous pouvez joindre l'équipe de{" "}
+                <strong className="text-foreground">{SITE.name}</strong> à l'adresse suivante :{" "}
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="font-medium text-primary underline underline-offset-4 hover:opacity-80"
+                >
+                  {SITE.email}
+                </a>
+                .
+              </p>
             </section>
           ))}
         </div>
