@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { SITE, SITE_LINK } from "@/data/site";
 import { FacebookIcon, InstagramIcon, LinkedinIcon, XIcon, WhatsAppIcon } from "@/components/site/icons";
 
@@ -36,14 +37,14 @@ export function PageFooter() {
             aria-label="Liens légaux"
             className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground"
           >
-            <a
-              href={`${landingBase}/legal/mentions`}
+            <Link
+              to="/cgu"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-4 transition-colors hover:text-primary"
             >
-              Mentions légales
-            </a>
+              Conditions Générales d'Utilisation
+            </Link>
 
             <span className="text-muted-foreground/50">·</span>
 
@@ -87,6 +88,6 @@ export function PageFooter() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 }
