@@ -76,8 +76,8 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    id: "responsabilite",
-    title: "7. Responsabilité & Liens tiers",
+    id: "responsabilite-destinations",
+    title: "7. Responsabilité & Périmètre des redirections",
     paragraphs: [
       `${SITE.name} déploie ses meilleurs efforts pour assurer une haute disponibilité du service ${SITE.tool}. Toutefois, sa responsabilité ne saurait être engagée en cas d'interruption momentanée, d'indisponibilité du réseau ou d'indisponibilité du site tiers ciblé.`,
       `${SITE.name} n'exerçant aucun contrôle sur les sites externes vers lesquels pointent les liens redirigés, l'utilisateur navigue sur ces plateformes tierces sous sa propre responsabilité.`,
