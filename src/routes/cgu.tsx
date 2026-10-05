@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BriefShell } from "@/components/site";
+import { ShortShell } from "@/components/site";
 import { SITE } from "@/data/site";
 
 const PAGE_TITLE = `Conditions Générales d'Utilisation - ${SITE.tool} | ${SITE.name}`;
-const PAGE_DESC = `Conditions générales d'utilisation de la plateforme ${SITE.tool} : données personnelles, devis gratuit, propriété intellectuelle et délais.`;
+const PAGE_DESC = `Conditions générales d'utilisation de la plateforme ${SITE.tool} : données personnelles, propriété intellectuelle et délais.`;
 
 // Date de dernière mise à jour fixe
 const LAST_UPDATE_DATE = "17 septembre 2026";
