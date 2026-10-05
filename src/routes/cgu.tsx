@@ -22,20 +22,20 @@ export const Route = createFileRoute("/cgu")({
 
 const SECTIONS = [
   {
-    title: "1. Objet",
-    body: `${SITE.tool} est un service gratuit édité par ${SITE.name} (Porto-Novo, Bénin). Il permet à toute personne de formaliser un besoin en impression, identité visuelle, packaging ou solution digitale, puis de le transmettre à notre équipe commerciale.`,
+    title: "1. Préambule & objet",
+    body: `${SITE.tool} est un service de redirection de liens courts édité par ${SITE.name} avec vérification préalable (aperçu titre/image/description) avant redirection vers la destination finale.`,
   },
   {
-    title: "2. Données personnelles",
-    body: `Les briefs sont enregistrés dans la mémoire de votre navigateur (stockage local) et ne sont transmis à ${SITE.name} que lorsque vous décidez de les envoyer. Les informations collectées servent exclusivement au traitement de votre demande et ne sont ni revendues, ni cédées à des tiers. Vous pouvez supprimer un brief à tout moment depuis la page « Mes briefs ».`,
+    title: "2. Acceptation des conditions",
+    body: "L'utilisation du service (clic sur un lien /r/:alias) implique l'acceptation des présentes CGU.",
   },
   {
-    title: "3. Devis gratuit et sans engagement",
-    body: "L'envoi d'un brief ne constitue ni une commande, ni un engagement contractuel. Le devis établi à partir de vos informations est gratuit et valable trente (30) jours. Toute commande ferme fait l'objet d'un bon de commande signé.",
+    title: "3. Description du service",
+    body: "Fonctionnement de la redirection, délai de 10 secondes, bouton « Annuler », extraction de métadonnées depuis la destination réelle, mention « Vérifié sécurisé » (préciser que c'est une vérification d'intégrité technique, pas une garantie absolue de sécurité du contenu tiers).",
   },
   {
-    title: "4. Propriété intellectuelle",
-    body: `Les créations graphiques réalisées par ${SITE.name} demeurent sa propriété jusqu'au règlement intégral de la prestation. Le client garantit détenir les droits sur les éléments qu'il transmet (logos, photographies, textes) et assume l'entière responsabilité de leur utilisation.`,
+    title: "4. Signalement de liens",
+    body: `Rôle du formulaire de signalement, traitement des signalements (actuellement non persistés en base réelle — à adapter si vous branchez un vrai backend plus tard).`,
   },
   {
     title: "5. Délais et production",
