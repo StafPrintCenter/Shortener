@@ -28,8 +28,12 @@ interface CguSection {
 
 const SECTIONS: CguSection[] = [
   {
-    title: "1. Préambule & objet",
-    body: `${SITE.tool} est un service de redirection de liens courts édité par ${SITE.name} avec vérification préalable (aperçu titre/image/description) avant redirection vers la destination finale.`,
+    id: "preambule",
+    title: "1. Présentation & Éditeur du service",
+    paragraphs: [
+      `La plateforme ${SITE.tool} est un outil de redirection sécurisée et de raccourcissement de liens, conçu et édité par ${SITE.name}, établissement situé à ${SITE.city}.`,
+      `Le service a pour vocation de renforcer la confiance numérique lors de la consultation de liens raccourcis en offrant un sas de vérification préalable avant toute redirection finale.`,
+    ],
   },
   {
     title: "2. Acceptation des conditions",
