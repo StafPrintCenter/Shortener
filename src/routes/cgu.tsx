@@ -83,8 +83,12 @@ const SECTIONS: CguSection[] = [
     ],
   },
   {
-    title: "6. Retrait et livraison",
-    body: "Les commandes peuvent être retirées dans nos locaux à Porto-Novo aux heures d'ouverture, ou livrées à l'adresse indiquée. Les frais de livraison varient selon la zone et sont précisés dans le devis.",
+    id: "donnees",
+    title: "8. Données personnelles & Confidentialité",
+    paragraphs: [
+      `${SITE.tool} privilégie la minimisation des données : le service n'exige la création d'aucun compte public et n'utilise pas de traceurs publicitaires intrusifs. Les éventuelles préférences d'affichage (ex. thème clair/sombre) sont enregistrées localement dans votre navigateur.`,
+      "Les informations transmises lors d'un signalement sont exclusivement exploitées aux fins d'investigation de sécurité et d'assainissement du service.",
+    ],
   },
   {
     title: "7. Modification des CGU",
