@@ -79,8 +79,9 @@ const SECTIONS: CguSection[] = [
     id: "responsabilite-destinations",
     title: "7. Responsabilité & Périmètre des redirections",
     paragraphs: [
-      `${SITE.name} déploie ses meilleurs efforts pour assurer une haute disponibilité du service ${SITE.tool}. Toutefois, sa responsabilité ne saurait être engagée en cas d'interruption momentanée, d'indisponibilité du réseau ou d'indisponibilité du site tiers ciblé.`,
-      `${SITE.name} n'exerçant aucun contrôle sur les sites externes vers lesquels pointent les liens redirigés, l'utilisateur navigue sur ces plateformes tierces sous sa propre responsabilité.`,
+      `Puisque seules les destinations autorisées de l'écosystème ${SITE.name} sont configurées, l'Éditeur s'assure de l'intégrité et de la légitimité de chaque destination programmée.`,
+      `La page interstitielle de prévisualisation avec décompte a pour vocation d'offrir une visibilité totale sur l'acheminement avant chargement final. L'utilisateur conserve à tout moment la liberté d'interrompre ou d'annuler le transit grâce au bouton d'annulation.`,
+      `${SITE.name} ne saurait être tenu responsable des lenteurs réseau, indisponibilités momentanées ou erreurs d'hébergement pouvant survenir sur les services cibles au terme de la redirection.`,
     ],
   },
   {
