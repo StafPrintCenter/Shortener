@@ -39,8 +39,6 @@ export function PageFooter() {
           >
             <Link
               to="/cgu"
-              target="_blank"
-              rel="noopener noreferrer"
               className="underline underline-offset-4 transition-colors hover:text-primary"
             >
               CGU
