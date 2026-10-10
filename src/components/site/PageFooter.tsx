@@ -58,7 +58,7 @@ export function PageFooter() {
             <span className="text-muted-foreground/50">·</span>
 
             <a
-              href={`${SITE_LINK.docsUrl}/docs/shortener/raccourcir-un-lien`}
+              href={`${SITE_LINK.docsUrl}/docs/shortener/index`}
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-4 transition-colors hover:text-primary"
